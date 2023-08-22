@@ -1,10 +1,21 @@
 import React from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="app">
-      <h1>Slack clone</h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<h1>Home page</h1>}>
+          </Route>
+        </Routes>
+    </Router>
     </div>
   );
 }
