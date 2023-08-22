@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import SidebarOption from "./SidebarOption";
+import { ExpandMore } from "@mui/icons-material";
 
 function Sidebar() {
   return (
     <SidebarContainer>
-      <SidebarOption />
+      <SidebarOption Icon = {ExpandMore} title="Channels"/>
     </SidebarContainer>
   );
 }

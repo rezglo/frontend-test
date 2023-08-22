@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
-function SidebarOption() {
-  return (
-    <div>SidebarOption</div>
-  )
+function SidebarOption(props) {
+  return <SidebarOptionContainer>
+    {props.Icon && <props.Icon fontSize="small" style={{ padding: 10 }} />}
+  </SidebarOptionContainer>;
 }
 
-export default SidebarOption
+export default SidebarOption;
+
+const SidebarOptionContainer = styled.div``;
