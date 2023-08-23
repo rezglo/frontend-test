@@ -2,23 +2,36 @@ import React from "react";
 import styled from "styled-components";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { useSelector } from "react-redux";
+import { selectChannelId } from "../features/appSlice"
+import ChatInput from "./ChatInput";
 
 function Chat() {
+  const channelId = useSelector(selectChannelId);
+  
   return (
     <ChatContainer>
-      <Header>
-        <HeaderLeft>
-          <h4>
-            <strong>#channel-name</strong>
-          </h4>
-          <StarBorderIcon />
-        </HeaderLeft>
-        <HeaderRight>
-          <p>
-            <InfoOutlinedIcon /> Details
-          </p>
-        </HeaderRight>
-      </Header>
+      <>
+        <Header>
+          <HeaderLeft>
+            <h4>
+              <strong>#channel-name</strong>
+            </h4>
+            <StarBorderIcon />
+          </HeaderLeft>
+          <HeaderRight>
+            <p>
+              <InfoOutlinedIcon /> Details
+            </p>
+          </HeaderRight>
+        </Header>
+
+        <ChatMessages>{/* List out the messages */}</ChatMessages>
+        <ChatInput 
+          // ChannelName
+          channelId = {channelId}
+        />
+      </>
     </ChatContainer>
   );
 }
@@ -35,7 +48,7 @@ const Header = styled.div`
 const HeaderLeft = styled.div`
   display: flex;
   align-items: center;
-  
+
   > h4 {
     display: flex;
     text-transform: lowercase;
@@ -47,6 +60,8 @@ const HeaderLeft = styled.div`
     font-size: 18px;
   }
 `;
+
+const ChatMessages = styled.div``;
 
 const HeaderRight = styled.div`
   > p {
