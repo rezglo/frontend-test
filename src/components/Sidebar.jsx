@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SidebarOption from "./SidebarOption";
 import { Add, ExpandMore } from "@mui/icons-material";
+import { fetchChannelsAsync, selectChannels } from "../features/appSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Sidebar() {
+  
+  const channels = useSelector(selectChannels);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(fetchChannelsAsync());
+  }, [dispatch]);
+
   return (
     <SidebarContainer>
-      <SidebarOption Icon = {ExpandMore} title="Channels"/>
+      <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
-      <SidebarOption Icon = {Add} addChannelOption title="Add channel" />
+      <SidebarOption Icon={Add} addChannelOption title="Add channel" />
+      {channels?.map((channel) => (
+        <SidebarOption key={channel.id} id={channel.id} title={channel.name} />
+      ))}
     </SidebarContainer>
   );
 }

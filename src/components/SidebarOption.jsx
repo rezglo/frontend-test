@@ -1,23 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { postChannelAsync } from "../features/appSlice";
+import { useDispatch } from "react-redux";
 
 function SidebarOption(props) {
+  const dispatch = useDispatch();
+  
   const addChannel = () => {
-    const channelName = prompt("Please enter the channel name");
+    const channel = prompt("Please provide a channel");
     const data = {
-      name: channelName
+      name: channel
     };
-    if (channelName) {
-      axios
-        .post("http://localhost:3001/channels", data)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    if(channel){
+      dispatch(postChannelAsync(data));
+    } 
   };
 
   const selectChannel = () => {};
