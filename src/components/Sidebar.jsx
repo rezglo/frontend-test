@@ -8,7 +8,7 @@ function Sidebar() {
     <SidebarContainer>
       <SidebarOption Icon = {ExpandMore} title="Channels"/>
       <hr />
-      <SidebarOption Icon = {Add} title="Add channel" />
+      <SidebarOption Icon = {Add} addChannelOption title="Add channel" />
     </SidebarContainer>
   );
 }
