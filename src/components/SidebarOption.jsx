@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { postChannelAsync } from "../features/appSlice";
+import { postChannelAsync, enterChannel } from "../features/appSlice";
 import { useDispatch } from "react-redux";
 
 function SidebarOption(props) {
@@ -16,7 +16,11 @@ function SidebarOption(props) {
     } 
   };
 
-  const selectChannel = () => {};
+  const selectChannel = () => {
+    if(props.id){
+      dispatch(enterChannel(props.id));
+    }
+  };
 
   return (
     <SidebarOptionContainer
@@ -57,4 +61,7 @@ const SidebarOptionContainer = styled.div`
   }
 `;
 
-const SidebarOptionChannel = styled.div``;
+const SidebarOptionChannel = styled.h3`
+  padding: 10px 0;
+  font-weight: 300;
+`;
