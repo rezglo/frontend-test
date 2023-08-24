@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchChannels, postChannel, updateChannel, fetchChannelById } from "./api";
+import { fetchChannels, postChannel, updateChannel, fetchChannelById, fetchUsers } from "./api";
 
 const initialState = {
   channels: [],
   channelId: null,
   channel : null,
   user: null,
+  users: null,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -48,6 +49,14 @@ export const fetchChannelByIdAsync = createAsyncThunk(
   }
 );
 
+export const fetchUsersAsync = createAsyncThunk(
+  "counter/fetchUsers",
+  async () => {
+    const response = await fetchUsers();
+    return response.data;
+  }
+);
+
 export const appSlice = createSlice({
   name: "app",
   initialState,
@@ -76,6 +85,9 @@ export const appSlice = createSlice({
       })
       .addCase(fetchChannelByIdAsync.fulfilled, (state, action) => {
         state.channel = action.payload;
+      })
+      .addCase(fetchUsersAsync.fulfilled, (state, action) => {
+        state.users = action.payload;
       });
   },
 });
@@ -92,5 +104,7 @@ export const selectChannelId = (state) => state.app.channelId;
 export const selectChannel = (state) => state.app.channel;
 
 export const selectUser = (state) => state.app.user;
+
+export const selectUsers = (state) => state.app.users;
 
 export default appSlice.reducer;

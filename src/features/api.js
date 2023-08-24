@@ -19,3 +19,7 @@ export function updateChannel(id, data){
     return axios.get("http://localhost:3001/channels");
   });
 }
+
+export function fetchUsers(){
+  return axios.get("http://localhost:3001/users");
+}
