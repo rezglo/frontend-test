@@ -1,10 +1,29 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { loginUser } from "../features/appSlice";
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
   const signIn = (e) => {
     e.preventDefault();
+
+    if (username === "dariolggomez" && password === "1234") {
+      const user = {
+        username: username,
+        password: password,
+      };
+      dispatch(loginUser(user));
+    } else {
+      alert("Wrong username or password");
+    }
+
+    setUsername("");
+    setPassword("");
   };
   return (
     <LoginContainer>
@@ -18,13 +37,24 @@ function Login() {
         <form>
           <label>Username</label>
           <br />
-          <input type="text"/>
+          <input
+            type="text"
+            spellCheck={false}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <br />
           <label>Password</label>
           <br />
-          <input type="password"/>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </form>
-        <Button type="submit" onClick={signIn}>Sign in</Button>
+        <Button type="submit" onClick={signIn}>
+          Sign in
+        </Button>
       </LoginInnerContainer>
     </LoginContainer>
   );
@@ -54,10 +84,6 @@ const LoginInnerContainer = styled.div`
 
   > p {
     margin-bottom: 20px;
-  }
-
-  > form {
-    justify-content: center;
   }
 
   > form > input {

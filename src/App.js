@@ -5,9 +5,11 @@ import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/appSlice";
 
 function App() {
-  const user = null;
+  const user = useSelector(selectUser);
   return (
     <div className="app">
       <Router>
@@ -21,7 +23,6 @@ function App() {
             </Routes>
           </AppBoddy>
         )}
-        ;
       </Router>
     </div>
   );

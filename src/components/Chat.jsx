@@ -48,7 +48,7 @@ function Chat() {
                 />
               );
             })}
-            ;
+
             <ChatBottom ref={chatBottomRef} />
           </ChatMessages>
           <ChatInput
@@ -57,7 +57,7 @@ function Chat() {
             channelName={channel?.name}
           />
         </>
-      )};
+      )}
     </ChatContainer>
   );
 }
