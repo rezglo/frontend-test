@@ -16,6 +16,7 @@ function ChatInput(props) {
       return false;
     }
     const message = {
+      id: Date.now(), //This is only for genarating an almost unique id.
       message: input,
       date: moment().format("MMMM Do YYYY, h:mm:ss a"),
       user: "Angel Dario",

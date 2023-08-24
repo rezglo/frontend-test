@@ -29,7 +29,7 @@ function Chat() {
         <ChatMessages>{/* List out the messages */
         <ul>
           {channel?.messages.map((message) => (
-            <li key={message.date}>{message.message}</li>
+            <li key={message.id}>{message.message}</li>
           ))}
         </ul>
         }</ChatMessages>
