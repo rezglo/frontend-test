@@ -15,6 +15,15 @@ function Login() {
         />
         <h1>Slack Clone</h1>
         <p>by dariolggomez</p>
+        <form>
+          <label>Username</label>
+          <br />
+          <input type="text"/>
+          <br />
+          <label>Password</label>
+          <br />
+          <input type="password"/>
+        </form>
         <Button type="submit" onClick={signIn}>Sign in</Button>
       </LoginInnerContainer>
     </LoginContainer>
@@ -31,7 +40,8 @@ const LoginContainer = styled.div`
 `;
 
 const LoginInnerContainer = styled.div`
-  padding: 100px;
+  padding: 60px;
+  width: 20%;
   text-align: center;
   background-color: white;
   border-radius: 10px;
@@ -40,11 +50,34 @@ const LoginInnerContainer = styled.div`
   > img {
     object-fit: contain;
     height: 100px;
-    margin-bottom: 40px;
+  }
+
+  > p {
+    margin-bottom: 20px;
+  }
+
+  > form {
+    justify-content: center;
+  }
+
+  > form > input {
+    width: 80%;
+    height: 1.5rem;
+    border: 2px solid gray;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    outline: none;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  > form > label {
+    font-size: 17px;
   }
 
   > button {
-    margin-top: 50px;
+    margin-top: 10px;
     text-transform: inherit !important;
     background-color: #0a8d48 !important;
     color: white;
