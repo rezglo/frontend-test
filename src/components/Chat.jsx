@@ -15,46 +15,49 @@ function Chat() {
     chatBottomRef?.current?.scrollIntoView({
       behavior: "smooth",
     });
-  },[channel]);
+  }, [channel]);
 
   return (
     <ChatContainer>
-      <>
-        <Header>
-          <HeaderLeft>
-            <h4>
-              <strong>#{channel?.name}</strong>
-            </h4>
-            <StarBorderIcon />
-          </HeaderLeft>
-          <HeaderRight>
-            <p>
-              <InfoOutlinedIcon /> Details
-            </p>
-          </HeaderRight>
-        </Header>
+      {channel && (
+        <>
+          <Header>
+            <HeaderLeft>
+              <h4>
+                <strong>#{channel?.name}</strong>
+              </h4>
+              <StarBorderIcon />
+            </HeaderLeft>
+            <HeaderRight>
+              <p>
+                <InfoOutlinedIcon /> Details
+              </p>
+            </HeaderRight>
+          </Header>
 
-        <ChatMessages>
-          {/* List out the messages */}
-          {channel?.messages.map((message) => {
-            return (
-              <Message
-                key={message.id}
-                message={message.message}
-                timestamp={message.date}
-                user={message.user}
-                userImage={message.userImage}
-              />
-            );
-          })};
-          <ChatBottom ref={chatBottomRef}/>
-        </ChatMessages>
-        <ChatInput
-          // ChannelName
-          channelId={channel?.id}
-          channelName={channel?.name}
-        />
-      </>
+          <ChatMessages>
+            {/* List out the messages */}
+            {channel?.messages.map((message) => {
+              return (
+                <Message
+                  key={message.id}
+                  message={message.message}
+                  timestamp={message.date}
+                  user={message.user}
+                  userImage={message.userImage}
+                />
+              );
+            })}
+            ;
+            <ChatBottom ref={chatBottomRef} />
+          </ChatMessages>
+          <ChatInput
+            // ChannelName
+            channelId={channel?.id}
+            channelName={channel?.name}
+          />
+        </>
+      )};
     </ChatContainer>
   );
 }
