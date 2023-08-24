@@ -2,14 +2,19 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import SidebarOption from "./SidebarOption";
 import { Add, ExpandMore } from "@mui/icons-material";
-import { fetchChannelsAsync, selectChannels, selectUsers, fetchUsersAsync } from "../features/appSlice";
+import {
+  fetchChannelsAsync,
+  selectChannels,
+  selectUsers,
+  fetchUsersAsync,
+} from "../features/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Sidebar() {
   const users = useSelector(selectUsers);
   const channels = useSelector(selectChannels);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchChannelsAsync());
     dispatch(fetchUsersAsync());
@@ -20,9 +25,16 @@ function Sidebar() {
       <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
       <SidebarOption Icon={Add} addChannelOption title="Add channel" />
-      {channels?.map((channel) => (
-        <SidebarOption key={channel.id} id={channel.id} title={channel.name} />
-      ))}
+      {channels?.map(
+        (channel) =>
+          !("username" in channel) && (
+            <SidebarOption
+              key={channel.id}
+              id={channel.id}
+              title={channel.name}
+            />
+          )
+      )}
       <hr />
       <SidebarOption Icon={ExpandMore} title="Users" />
       {users?.map((user) => (
