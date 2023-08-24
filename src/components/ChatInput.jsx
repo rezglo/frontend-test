@@ -12,7 +12,7 @@ function ChatInput(props) {
   const sendMessage = (e) => {
     e.preventDefault(); // Prevents refresh
 
-    if (!props.channelId) {
+    if (!props.channelId || input === "") {
       return false;
     }
     const message = {

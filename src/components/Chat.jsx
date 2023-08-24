@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -9,6 +9,13 @@ import Message from "./Message";
 
 function Chat() {
   const channel = useSelector(selectChannel);
+  const chatBottomRef = useRef(null);
+
+  useEffect(() => {
+    chatBottomRef?.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  },[channel]);
 
   return (
     <ChatContainer>
@@ -39,8 +46,8 @@ function Chat() {
                 userImage={message.userImage}
               />
             );
-          })}
-          ;
+          })};
+          <ChatBottom ref={chatBottomRef}/>
         </ChatMessages>
         <ChatInput
           // ChannelName
@@ -59,6 +66,10 @@ const Header = styled.div`
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid lightgray;
+`;
+
+const ChatBottom = styled.div`
+  padding-bottom: 200px;
 `;
 
 const HeaderLeft = styled.div`
