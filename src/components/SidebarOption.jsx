@@ -31,20 +31,26 @@ function SidebarOption(props) {
   };
 
   return (
-    <SidebarOptionContainer
-      onClick={props.addChannelOption ? addChannel : selectChannel}
-    >
-      {props.Icon && <props.Icon fontSize="small" style={{ padding: 10 }} />}
-      {props.Icon ? (
-        <h3>{props.title}</h3>
-      ) : (
-        <SidebarOptionChannel>
-          <span>#</span> {props.title}
-          {props.channel && <IconButton size="small" className="optionButton">
+    <SidebarOptionContainer>
+      <LeftSidebarOption
+        onClick={props.addChannelOption ? addChannel : selectChannel}
+      >
+        {props.Icon && <props.Icon fontSize="small" style={{ padding: 10 }} />}
+        {props.Icon ? (
+          <h3>{props.title}</h3>
+        ) : (
+          <SidebarOptionChannel>
+            <span>#</span> {props.title}
+          </SidebarOptionChannel>
+        )}
+      </LeftSidebarOption>
+      <Toolbar>
+        {props.channel && (
+          <IconButton size="small" className="optionButton">
             <DeleteIcon className="optionIcon" fontSize="inherit" />
-          </IconButton>}
-        </SidebarOptionChannel>
-      )}
+          </IconButton>
+        )}
+      </Toolbar>
     </SidebarOptionContainer>
   );
 }
@@ -53,10 +59,7 @@ export default SidebarOption;
 
 const SidebarOptionContainer = styled.div`
   display: flex;
-  font-size: 12px;
-  align-items: center;
-  padding-left: 2px;
-  cursor: pointer;
+  justify-content: space-between;
 
   :hover {
     opacity: 0.9;
@@ -66,16 +69,24 @@ const SidebarOptionContainer = styled.div`
   .optionButton {
     color: white;
     display: none;
-    margin-left: 80px;
     background: none;
-    height: 12px;
-    width: 12px;
-    padding: 0;
+    margin-right: 5px;
+    height: 30px;
+    width: 30px;
   }
 
   &:hover .optionButton {
     display: inline-flex;
   }
+`;
+
+const LeftSidebarOption = styled.div`
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  padding-left: 2px;
+  width: 80%;
+  cursor: pointer;
 
   > h3 {
     font-weight: 500;
@@ -84,6 +95,11 @@ const SidebarOptionContainer = styled.div`
   > h3 > span {
     padding: 15px;
   }
+`;
+
+const Toolbar = styled.div`
+  display: grid;
+  place-content: center;
 `;
 
 const SidebarOptionChannel = styled.h3`
