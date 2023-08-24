@@ -1,24 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import { postChannelAsync, enterChannel, fetchChannelByIdAsync } from "../features/appSlice";
+import {
+  postChannelAsync,
+  enterChannel,
+  fetchChannelByIdAsync,
+} from "../features/appSlice";
 import { useDispatch } from "react-redux";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function SidebarOption(props) {
   const dispatch = useDispatch();
-  
+
   const addChannel = () => {
     const channel = prompt("Please provide a channel");
     const data = {
       name: channel,
       messages: [],
     };
-    if(channel){
+    if (channel) {
       dispatch(postChannelAsync(data));
-    } 
+    }
   };
 
   const selectChannel = () => {
-    if(props.id){
+    if (props.id) {
       dispatch(enterChannel(props.id));
       dispatch(fetchChannelByIdAsync(props.id));
     }
@@ -34,6 +40,9 @@ function SidebarOption(props) {
       ) : (
         <SidebarOptionChannel>
           <span>#</span> {props.title}
+          {props.channel && <IconButton size="small" className="optionButton">
+            <DeleteIcon className="optionIcon" fontSize="inherit" />
+          </IconButton>}
         </SidebarOptionChannel>
       )}
     </SidebarOptionContainer>
@@ -52,6 +61,20 @@ const SidebarOptionContainer = styled.div`
   :hover {
     opacity: 0.9;
     background-color: #340e36;
+  }
+
+  .optionButton {
+    color: white;
+    display: none;
+    margin-left: 80px;
+    background: none;
+    height: 12px;
+    width: 12px;
+    padding: 0;
+  }
+
+  &:hover .optionButton {
+    display: inline-flex;
   }
 
   > h3 {

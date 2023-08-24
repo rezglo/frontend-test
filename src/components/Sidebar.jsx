@@ -29,6 +29,7 @@ function Sidebar() {
         (channel) =>
           !("username" in channel) && (
             <SidebarOption
+              channel
               key={channel.id}
               id={channel.id}
               title={channel.name}
