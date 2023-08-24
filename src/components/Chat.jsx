@@ -3,12 +3,13 @@ import styled from "styled-components";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { useSelector } from "react-redux";
-import { selectChannel } from "../features/appSlice"
+import { selectChannel } from "../features/appSlice";
 import ChatInput from "./ChatInput";
+import Message from "./Message";
 
 function Chat() {
   const channel = useSelector(selectChannel);
-  
+
   return (
     <ChatContainer>
       <>
@@ -26,17 +27,25 @@ function Chat() {
           </HeaderRight>
         </Header>
 
-        <ChatMessages>{/* List out the messages */
-        <ul>
-          {channel?.messages.map((message) => (
-            <li key={message.id}>{message.message}</li>
-          ))}
-        </ul>
-        }</ChatMessages>
-        <ChatInput 
+        <ChatMessages>
+          {/* List out the messages */}
+          {channel?.messages.map((message) => {
+            return (
+              <Message
+                key={message.id}
+                message={message.message}
+                timestamp={message.date}
+                user={message.user}
+                userImage={message.userImage}
+              />
+            );
+          })}
+          ;
+        </ChatMessages>
+        <ChatInput
           // ChannelName
-          channelId = {channel?.id}
-          channelName = {channel?.name}
+          channelId={channel?.id}
+          channelName={channel?.name}
         />
       </>
     </ChatContainer>
