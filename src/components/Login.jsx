@@ -16,6 +16,7 @@ function Login() {
       const user = {
         username: username,
         password: password,
+        name: "Angel Dario",
       };
       dispatch(loginUser(user));
     } else {
