@@ -23,3 +23,9 @@ export function updateChannel(id, data){
 export function fetchUsers(){
   return axios.get("http://localhost:3001/users");
 }
+
+export function deleteChannel(id){
+  return axios.delete(`http://localhost:3001/channels/${id}`).then(() => {
+    return axios.get("http://localhost:3001/channels");
+  });
+}

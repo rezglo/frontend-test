@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { deleteChannelAsync } from "../features/appSlice";
 
 function SidebarOption(props) {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ function SidebarOption(props) {
       dispatch(postChannelAsync(data));
     }
   };
+
+  const deleteChannel = () => {
+    dispatch(deleteChannelAsync(props.id));
+  }
 
   const selectChannel = () => {
     if (props.id) {
@@ -46,7 +51,7 @@ function SidebarOption(props) {
       </LeftSidebarOption>
       <Toolbar>
         {props.channel && (
-          <IconButton size="small" className="optionButton">
+          <IconButton onClick={deleteChannel} size="small" className="optionButton">
             <DeleteIcon className="optionIcon" fontSize="inherit" />
           </IconButton>
         )}

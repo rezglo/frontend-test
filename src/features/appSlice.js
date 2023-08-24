@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchChannels, postChannel, updateChannel, fetchChannelById, fetchUsers } from "./api";
+import { fetchChannels, postChannel, updateChannel, fetchChannelById, fetchUsers, deleteChannel } from "./api";
 
 const initialState = {
   channels: [],
@@ -49,6 +49,14 @@ export const fetchChannelByIdAsync = createAsyncThunk(
   }
 );
 
+export const deleteChannelAsync = createAsyncThunk(
+  "counter/deleteChannel",
+  async (data) => {
+    const response = await deleteChannel(data);
+    return response.data;
+  }
+);
+
 export const fetchUsersAsync = createAsyncThunk(
   "counter/fetchUsers",
   async () => {
@@ -88,6 +96,10 @@ export const appSlice = createSlice({
       })
       .addCase(fetchUsersAsync.fulfilled, (state, action) => {
         state.users = action.payload;
+      })
+      .addCase(deleteChannelAsync.fulfilled, (state, action) => {
+        state.channels = action.payload;
+        state.channel = null;
       });
   },
 });
