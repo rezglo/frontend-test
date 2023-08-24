@@ -4,17 +4,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
+import Login from "./components/Login";
 
 function App() {
+  const user = null;
   return (
     <div className="app">
       <Router>
-        <AppBoddy>
-          <Sidebar />
-          <Routes>
-            <Route path="/" element={<Chat />}></Route>
-          </Routes>
-        </AppBoddy>
+        {!user ? (
+          <Login />
+        ) : (
+          <AppBoddy>
+            <Sidebar />
+            <Routes>
+              <Route path="/" element={<Chat />}></Route>
+            </Routes>
+          </AppBoddy>
+        )}
+        ;
       </Router>
     </div>
   );
