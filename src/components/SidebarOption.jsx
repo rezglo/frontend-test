@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { postChannelAsync, enterChannel } from "../features/appSlice";
+import { postChannelAsync, enterChannel, fetchChannelByIdAsync } from "../features/appSlice";
 import { useDispatch } from "react-redux";
 
 function SidebarOption(props) {
@@ -9,7 +9,8 @@ function SidebarOption(props) {
   const addChannel = () => {
     const channel = prompt("Please provide a channel");
     const data = {
-      name: channel
+      name: channel,
+      messages: [],
     };
     if(channel){
       dispatch(postChannelAsync(data));
@@ -19,6 +20,7 @@ function SidebarOption(props) {
   const selectChannel = () => {
     if(props.id){
       dispatch(enterChannel(props.id));
+      dispatch(fetchChannelByIdAsync(props.id));
     }
   };
 

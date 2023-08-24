@@ -35,7 +35,7 @@ export const putChannelAsync = createAsyncThunk(
     let channel = await fetchChannelById(data.id);
     channel.data.messages.push(data.message);
     const response = await updateChannel(channel.data.id, channel.data);
-    return response.data;
+    return [response.data, channel.data];
   }
 );
 
@@ -67,7 +67,8 @@ export const appSlice = createSlice({
         state.channels = action.payload;
       })
       .addCase(putChannelAsync.fulfilled, (state, action) => {
-        state.channels = action.payload;
+        state.channels = action.payload[0];
+        state.channel = action.payload[1];
       })
       .addCase(fetchChannelByIdAsync.fulfilled, (state, action) => {
         state.channel = action.payload;

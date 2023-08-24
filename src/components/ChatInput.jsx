@@ -37,7 +37,7 @@ function ChatInput(props) {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={`Message #CHANNEL`}
+          placeholder={`Message #${props.channelName}`}
         />
         <Button hidden type="submit" onClick={sendMessage}>
           SEND
