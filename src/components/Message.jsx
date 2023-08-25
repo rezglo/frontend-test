@@ -32,6 +32,27 @@ function Message({ id, message, timestamp, user, userImage }) {
     dispatch(updateChannelAsync(data));
   };
 
+  const updateMessage = () => {
+    const newMessage = prompt("Please, write the new message");
+    const cloneChannel = _.cloneDeep(channel); //Deep clone the channel to update message
+
+    if (newMessage === "") {
+      return false;
+    }
+
+    for (let i = 0; i < channel.messages.length; i++) {
+      if (channel.messages[i].id === id) {
+        cloneChannel.messages[i].message = newMessage; //Update message
+        break;
+      }
+    }
+    const data = {
+      id: channel.id,
+      channel: cloneChannel,
+    };
+    dispatch(updateChannelAsync(data));
+  };
+
   return (
     <MessageContainer>
       <img src={userImage} alt="" />
@@ -44,6 +65,7 @@ function Message({ id, message, timestamp, user, userImage }) {
           <MessageToolBar>
             {currentUser.name === user && (
               <IconButton
+                onClick={updateMessage}
                 className="editButton"
                 size="small"
                 aria-label="update"
