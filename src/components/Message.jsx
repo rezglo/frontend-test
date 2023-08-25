@@ -36,7 +36,7 @@ function Message({ id, message, timestamp, user, userImage }) {
     const newMessage = prompt("Please, write the new message");
     const cloneChannel = _.cloneDeep(channel); //Deep clone the channel to update message
 
-    if (newMessage === "") {
+    if (newMessage === "" || newMessage == null) {
       return false;
     }
 
