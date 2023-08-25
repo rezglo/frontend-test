@@ -41,6 +41,7 @@ function Chat() {
               return (
                 <Message
                   key={message.id}
+                  id={message.id}
                   message={message.message}
                   timestamp={message.date}
                   user={message.user}

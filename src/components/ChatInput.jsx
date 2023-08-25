@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "@mui/material";
-import { putChannelAsync } from "../features/appSlice";
+import { pushMessageToChannelAsync } from "../features/appSlice";
 import { useDispatch } from "react-redux";
 import moment from "moment/moment";
 
@@ -28,7 +28,7 @@ function ChatInput(props) {
       id: props.channelId,
       message: message,
     }
-    dispatch(putChannelAsync(data));
+    dispatch(pushMessageToChannelAsync(data));
     setInput("");
   };
 

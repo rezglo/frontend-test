@@ -3,11 +3,35 @@ import styled from "styled-components";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/appSlice";
+import { useDispatch, useSelector } from "react-redux";
+import * as _ from "lodash";
+import {
+  selectChannel,
+  selectUser,
+  updateChannelAsync,
+} from "../features/appSlice";
 
-function Message({ message, timestamp, user, userImage }) {
+function Message({ id, message, timestamp, user, userImage }) {
   const currentUser = useSelector(selectUser);
+  const channel = useSelector(selectChannel);
+  const dispatch = useDispatch();
+
+  const deleteMessage = () => {
+    const messagesLength = channel.messages.length;
+    const cloneChannel = _.cloneDeep(channel); //Deep clone the channel to delete message
+    for (let i = 0; i < messagesLength; i++) {
+      if (channel.messages[i].id === id) {
+        cloneChannel.messages.splice(i, 1); //Delete message
+        break;
+      }
+    }
+    const data = {
+      id: channel.id,
+      channel: cloneChannel,
+    };
+    dispatch(updateChannelAsync(data));
+  };
+
   return (
     <MessageContainer>
       <img src={userImage} alt="" />
@@ -22,12 +46,16 @@ function Message({ message, timestamp, user, userImage }) {
               <IconButton
                 className="editButton"
                 size="small"
-                aria-label="delete"
+                aria-label="update"
               >
                 <EditIcon fontSize="inherit" />
               </IconButton>
             )}
-            <IconButton size="small" aria-label="delete">
+            <IconButton
+              onClick={deleteMessage}
+              size="small"
+              aria-label="delete"
+            >
               <DeleteIcon fontSize="inherit" />
             </IconButton>
           </MessageToolBar>

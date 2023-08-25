@@ -31,13 +31,21 @@ export const postChannelAsync = createAsyncThunk(
   }
 );
 
-export const putChannelAsync = createAsyncThunk(
-  "counter/putChannel",
+export const pushMessageToChannelAsync = createAsyncThunk(
+  "counter/pushMessageToChannel",
   async (data) => {
     let channel = await fetchChannelById(data.id);
     channel.data.messages.push(data.message);
     const response = await updateChannel(channel.data.id, channel.data);
     return [response.data, channel.data];
+  }
+);
+
+export const updateChannelAsync = createAsyncThunk(
+  "counter/updateChannel",
+  async (data) => {
+    const response = await updateChannel(data.id, data.channel);
+    return [response.data, data.channel];
   }
 );
 
@@ -87,7 +95,7 @@ export const appSlice = createSlice({
       .addCase(postChannelAsync.fulfilled, (state, action) => {
         state.channels = action.payload;
       })
-      .addCase(putChannelAsync.fulfilled, (state, action) => {
+      .addCase(pushMessageToChannelAsync.fulfilled, (state, action) => {
         state.channels = action.payload[0];
         state.channel = action.payload[1];
       })
@@ -100,6 +108,10 @@ export const appSlice = createSlice({
       .addCase(deleteChannelAsync.fulfilled, (state, action) => {
         state.channels = action.payload;
         state.channel = null;
+      })
+      .addCase(updateChannelAsync.fulfilled, (state, action) => {
+        state.channels = action.payload[0];
+        state.channel = action.payload[1];
       });
   },
 });
