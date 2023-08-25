@@ -4,7 +4,7 @@ Front-end [Slack](https://slack.com/) clone
 Author: Angel Dario Ladron de Guevara Gomez   
 Email: [dariogomez1011@gmail.com]
 
-## Important instrucions for mock-data usage with mockoon
+## Important instructions for mock-data usage with mockoon
 In order to load the app data it is necessary to mount the mock-server that hosts the mock-data.json file. The mock-data.json file is located at project-root/src/mock/.
 
 To install the mockoon CLI you can go to [mockoon](https://github.com/mockoon/mockoon/tree/main/packages/cli#installation) and follow the CLI installation instructions or:
