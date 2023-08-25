@@ -1,22 +1,30 @@
-Front-end engineer challenge
+Front-end [Slack](https://slack.com/) clone
 ============================
-This challenge has been designed to assess the ability of a front-end candidate to solve
-real-world problems using our current technology stack. While the difficulties
-arising during this project are real, the project itself is a mock and will not
-be used by us for business purposes.
+Author: Angel Dario Ladron de Guevara Gomez
+Email: [dariogomez1011@gmail.com]
 
-## Submission instructions
-1. Fork this repository on github.
-2. Complete the project as described below within your fork.
-3. Keep the commit history - don't squash.
-4. Push all of your changes to your fork on github and work with descriptive pull request.
-5. A cup of ☕ or 🍵.
+## Important instrucions for mock-data usage with mockoon
+In order to load the app data it is necessary to mount the mock-server that hosts the mock-data.json file. The mock-data.json file is located at project-root/src/mock/.
+
+To install the mockoon CLI you can go to [mockoon](https://github.com/mockoon/mockoon/tree/main/packages/cli#installation) and follow the CLI installation instructions or:
+1. $ npm install -g @mockoon/cli
+2. Go to the mock-data.json directory at project-root/src/mock/.
+3. Open a terminal
+4. $ mockoon-cli start --data mock-data.json --port 3001
+5. You should see a message containing "Server started on port 3001"
+6. Done! Now you can use and test the app.
+
+## Instructions to run the app
+1. Go to the project root 
+2. Open a terminal
+3. $ npm install
+4. $ npm start
 
 ## Project description
-Make a simplified slack clone.
+Simplified slack clone.
 
 Structure:
-1. system login (only sign in and use fake data user)
+1. system login (only sign in) username: dariolggomez password: 1234
 2. sidebar on the left:
   + list of channels
     + add / remove button
@@ -31,30 +39,11 @@ Structure:
       + edit / remove button
   + comment box
 
-## Implementation instructions:
-1. use placeholders (both UI elements and actions / reducers) in place of features you didn't have time to implement - overall code organization and project structure are more important than implementation details;
-2. simplistic design will be completely acceptable - don't waste much time on it
-3. mock channels and users
-4. mock short history of conversations in channels / direct messages
-5. store everything in memory only (no need to persist data), but mock ajax calls and make these calls asyncrounous
-6. strive for [good commit messages](https://github.com/erlang/otp/wiki/writing-good-commit-messages)
-
 ## Essential technology stack
-1. [react](https://facebook.github.io/react) (+ jsx)
-2. [redux](http://redux.js.org), [MobX](https://mobx.js.org), [zustand](https://github.com/pmndrs/zustand) or [React Context API](https://es.reactjs.org/docs/context.html) (+ storage)
+1. [react](https://react.dev/) (+ jsx)
+2. [redux](https://redux.js.org/) (+ state-management)
 3. [react-router](https://github.com/reactjs/react-router) (+ route)
-4. [Moment](https://momentjs.com/docs/), [date-fns](https://date-fns.org/), etc. (+ date)
-5. Any UI Framework as [Antd](https://ant.design/docs/react/introduce), [Material](https://mui.com/material-ui/getting-started/installation/), ect.
+4. [mockoon](https://mockoon.com/) (+ mock-data)
+5. [Moment](https://momentjs.com/docs/) (+ date)
+6. [styled-components](https://styled-components.com/), [Material](https://mui.com/material-ui/getting-started/installation/).
 
-## Remarks:
-+ Use [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for ajax. No need to implement backend - mock response data and simulate latency (e.g. with `setTimeout`)
-+ The correct use of hooks (or custom hooks) will be valued if used
-+ Use correct spelling
-
-## Evaluation criteria (in order of importance)
-1. Code organization
-2. Code readability (including comments)
-3. Stick to the tech stack described above
-4. Commit history - structure and quality
-5. Completeness
-6. Test coverage
