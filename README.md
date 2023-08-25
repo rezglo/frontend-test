@@ -1,5 +1,6 @@
 Front-end [Slack](https://slack.com/) clone
 ============================
+![Screenshot](/public/appScreenshot.jpg)   
 Author: Angel Dario Ladron de Guevara Gomez   
 Email: [dariogomez1011@gmail.com]
 
