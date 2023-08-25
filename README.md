@@ -1,6 +1,6 @@
 Front-end [Slack](https://slack.com/) clone
 ============================
-Author: Angel Dario Ladron de Guevara Gomez
+Author: Angel Dario Ladron de Guevara Gomez   
 Email: [dariogomez1011@gmail.com]
 
 ## Important instrucions for mock-data usage with mockoon
