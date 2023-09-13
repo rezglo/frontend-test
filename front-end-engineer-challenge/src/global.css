@@ -67,10 +67,22 @@
 }
 
 @layer base {
+  html,
+  body,
+  :root {
+    @apply h-full;
+  }
+
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .sidebarItem {
+    @apply rounded p-1 hover:bg-secondary cursor-pointer;
   }
 }

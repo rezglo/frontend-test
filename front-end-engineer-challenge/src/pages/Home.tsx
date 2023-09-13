@@ -1,10 +1,12 @@
+import ChatWindow from "@/components/ChatWindow";
+import Sidebar from "@/components/Sidebar";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <Link to="/landing">Logout</Link>
+    <div className="flex h-screen">
+      <Sidebar />
+      <ChatWindow />
     </div>
   );
 };
