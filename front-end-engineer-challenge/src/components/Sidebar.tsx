@@ -1,5 +1,11 @@
-import React from "react";
-import { ChevronDown, Plus, User as UserIcon } from "lucide-react";
+import React, { useContext } from "react";
+import clsx from "clsx";
+import { Link } from "react-router-dom";
+import { ChevronDown, Plus, User as ContactIcon } from "lucide-react";
+
+import { User } from "@/types";
+import useUser from "@/hooks/useUser";
+import { GlobalContext } from "@/context/globalContext";
 
 import {
   Collapsible,
@@ -14,9 +20,13 @@ import {
   ContextMenuTrigger,
 } from "./ui/context-menu";
 import { Separator } from "./ui/separator";
-import clsx from "clsx";
 
 const Sidebar: React.FC = () => {
+  const user = useUser();
+  const { users, channels } = useContext(GlobalContext);
+
+  const contacts = users.filter((contact) => contact.id !== user.id);
+
   return (
     <aside className="h-full bg-primary text-primary-foreground/70 p-3 w-52">
       <div className="py-2">
@@ -28,9 +38,11 @@ const Sidebar: React.FC = () => {
       <SectionSeparator />
 
       <SidebarSection title="Channels">
-        <Channel>channel1</Channel>
-        <Channel>channel2</Channel>
-        <Channel>channel3</Channel>
+        {channels.map((channel) => (
+          <Channel key={channel.id} channelId={channel.id}>
+            {channel.name}
+          </Channel>
+        ))}
 
         <AddButton className="text-inherit font-normal">Add channels</AddButton>
       </SidebarSection>
@@ -38,9 +50,9 @@ const Sidebar: React.FC = () => {
       <SectionSeparator />
 
       <SidebarSection title="Direct messages">
-        <User />
-        <User />
-        <User />
+        {contacts.map((contact) => (
+          <Contact key={contact.id} contact={contact} />
+        ))}
 
         <AddButton className="font-bold">Add coworkers</AddButton>
       </SidebarSection>
@@ -76,11 +88,17 @@ const SectionSeparator: React.FC = () => {
   return <Separator className="bg-primary-foreground/10 my-3" />;
 };
 
-const Channel: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Channel: React.FC<{ children: React.ReactNode; channelId: string }> = ({
+  children,
+  channelId,
+}) => {
+
   return (
     <ContextMenu>
       <ContextMenuTrigger>
-        <div className="sidebarItem">#{children}</div>
+        <Link to={`/app/room/${channelId}`}>
+          <div className="sidebarItem w-full">#{children}</div>
+        </Link>
       </ContextMenuTrigger>
 
       <ContextMenuContent>
@@ -92,18 +110,26 @@ const Channel: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-const User: React.FC = () => {
+const Contact: React.FC<{ contact: User }> = ({ contact }) => {
+  const user = useUser();
+
+  const conversationId = user.conversations.filter((conversationId) =>
+    contact.conversations.includes(conversationId)
+  )[0];
+
   return (
-    <div className="sidebarItem">
-      <div className="flex items-center gap-1">
-        <UserIcon
-          fill="white"
-          size={20}
-          className="flex-shrink-0 rounded bg-secondary"
-        />
-        <span className="truncate">Nelson Javier Aldazabal Hernandez</span>
+    <Link to={`/app/room/${conversationId}`}>
+      <div className="sidebarItem">
+        <div className="flex items-center gap-1">
+          <ContactIcon
+            fill="white"
+            size={20}
+            className="flex-shrink-0 rounded bg-secondary"
+          />
+          <span className="truncate">{contact.name}</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
