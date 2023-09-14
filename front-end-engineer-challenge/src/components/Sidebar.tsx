@@ -92,6 +92,12 @@ const Channel: React.FC<{ children: React.ReactNode; channelId: string }> = ({
   children,
   channelId,
 }) => {
+  const { channels, setChannels } = useContext(GlobalContext);
+
+  const handleClick = () => {
+    const newChannels = channels.filter((channel) => channel.id !== channelId);
+    setChannels(newChannels);
+  };
 
   return (
     <ContextMenu>
@@ -102,7 +108,10 @@ const Channel: React.FC<{ children: React.ReactNode; channelId: string }> = ({
       </ContextMenuTrigger>
 
       <ContextMenuContent>
-        <ContextMenuItem className="text-destructive focus:bg-destructive focus:text-destructive-foreground">
+        <ContextMenuItem
+          className="text-destructive focus:bg-destructive focus:text-destructive-foreground"
+          onClick={handleClick}
+        >
           Leave channel
         </ContextMenuItem>
       </ContextMenuContent>
