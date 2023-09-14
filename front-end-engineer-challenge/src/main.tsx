@@ -7,8 +7,7 @@ import Home from "./pages/Home.tsx";
 import "./global.css";
 import SignIn from "./pages/SignIn.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
-import { action as chatAction } from "./components/ChatWindow.tsx";
-import { action as signInAction } from "./pages/SignIn.tsx";
+import { signInAction, chatAction } from "@/lib/actions.ts";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +21,9 @@ const router = createBrowserRouter([
     action: signInAction,
   },
   {
-    path: "/landing",
-    element: <LandingPage />,
+    path: "/app",
+    element: <Home />,
+    action: chatAction,
   },
 ]);
 

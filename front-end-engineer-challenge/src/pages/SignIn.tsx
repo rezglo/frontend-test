@@ -2,12 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/ui/logo";
 import React, { useState } from "react";
-import { Form, redirect } from "react-router-dom";
-
-export const action = async () => {
-  alert("User sign in");
-  return redirect("/");
-};
 
 const SignIn: React.FC = () => {
   return (

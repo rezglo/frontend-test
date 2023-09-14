@@ -4,11 +4,6 @@ import { Form } from "react-router-dom";
 import { Button } from "./ui/button";
 import { SendHorizontal, User } from "lucide-react";
 
-export const action = async () => {
-  alert("Form submitted");
-  return {};
-};
-
 const ChatWindow: React.FC = () => {
   return (
     <section className="flex-1 py-3">
