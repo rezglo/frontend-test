@@ -3,22 +3,29 @@ import { Separator } from "./ui/separator";
 import { Form } from "react-router-dom";
 import { Button } from "./ui/button";
 import { SendHorizontal, User } from "lucide-react";
+import useChat from "@/hooks/useChat";
+import { Message as IMessage } from "@/types";
+import format from "date-fns/format";
 
 const ChatWindow: React.FC = () => {
+  const chat = useChat();
+
+  if (!chat) return;
+
   return (
     <section className="flex-1 py-3">
       <div className="flex flex-col h-full">
         <header className="py-2 px-5">
-          <h3 className="text-lg font-bold">#channelName</h3>
+          <h3 className="text-lg font-bold">{chat.name}</h3>
         </header>
 
         <Separator className="my-3" />
 
         <div className="flex-1">
           <div className="flex flex-col justify-end gap-2 h-full p-5">
-            <Message />
-            <Message />
-            <Message />
+            {chat.messages.map((message) => (
+              <Message key={message.id} message={message} />
+            ))}
           </div>
         </div>
 
@@ -30,7 +37,8 @@ const ChatWindow: React.FC = () => {
   );
 };
 
-const Message: React.FC = () => {
+const Message: React.FC<{ message: IMessage }> = ({ message }) => {
+  const time = format(message.createdAt, "p");
   return (
     <div className="flex items-center gap-3">
       <User
@@ -40,10 +48,10 @@ const Message: React.FC = () => {
       />
       <div className="flex flex-col justify-between">
         <div className="flex items-center gap-3">
-          <span className="font-bold">Nelson Javier Aldazabal Hernandez</span>
-          <small className="text-gray-500">12:43 pm</small>
+          <span className="font-bold">{message.sender.name}</span>
+          <small className="text-gray-500">{time}</small>
         </div>
-        <span>Hello, team!</span>
+        <span>{message.body}</span>
       </div>
     </div>
   );
