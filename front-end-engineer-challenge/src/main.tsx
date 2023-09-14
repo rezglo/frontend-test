@@ -9,6 +9,7 @@ import "./global.css";
 import SignIn from "./pages/SignIn.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import { signInAction, chatAction } from "@/lib/actions.ts";
+import ChatWindow from "./components/ChatWindow.tsx";
 import GlobalContextProvider from "./context/globalContext.tsx";
 
 const cookies = new Cookies();
@@ -30,6 +31,12 @@ const router = createBrowserRouter([
     path: "/app",
     element: <Home />,
     action: chatAction,
+    children: [
+      {
+        path: "room/:roomId",
+        element: <ChatWindow />,
+      },
+    ],
   },
 ]);
 
