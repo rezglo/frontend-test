@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 import Home from "./pages/Home.tsx";
 
@@ -9,10 +10,14 @@ import SignIn from "./pages/SignIn.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import { signInAction, chatAction } from "@/lib/actions.ts";
 
+const cookies = new Cookies();
+
+const isAuthenticated = cookies.get("authenticated");
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: isAuthenticated ? <Home /> : <LandingPage />,
     action: chatAction,
   },
   {

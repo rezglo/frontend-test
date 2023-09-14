@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/ui/logo";
+import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
+import { Form, useNavigation } from "react-router-dom";
 
 const SignIn: React.FC = () => {
   return (
@@ -23,21 +25,32 @@ const SignIn: React.FC = () => {
 };
 
 const SignInForm: React.FC = () => {
-  const [email, setEmail] = useState("test@email.com");
+  const [email, setEmail] = useState("test@mail.com");
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Form method="post" className="w-full space-y-4">
       <Input
+        name="email"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
         placeholder="name@work-email.com"
         type="email"
         className="w-full focus-visible:ring-0 focus-visible:outline-[#bbe1f1] focus-visible:outline-offset-0 focus-visible:border-blue-900"
         required
+        disabled={isSubmitting}
       />
-      <Button className="w-full" type="submit">
-        Sign In With Email
-      </Button>
+      {isSubmitting ? (
+        <Button className="w-full" disabled>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Please wait
+        </Button>
+      ) : (
+        <Button className="w-full" type="submit">
+          Sign In With Email
+        </Button>
+      )}
     </Form>
   );
 };
