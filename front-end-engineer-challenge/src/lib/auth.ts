@@ -1,4 +1,5 @@
 import Cookies from "universal-cookie";
+import { users } from "@/utils/data";
 
 const cookies = new Cookies();
 
@@ -9,12 +10,15 @@ const authenticate = async ({ email }: { email: string }) => {
     }, 1000);
   });
 
-  if (email === "test@mail.com") {
-    cookies.set("authenticated", true);
+  const authenticatedUser = users.filter((user) => user.email === email)[0];
+
+  if (authenticatedUser) {
+    cookies.set("authenticated", authenticatedUser.id);
     await fakeDelay;
     return true;
   }
 
+  alert("Invalid email");
   return false;
 };
 
