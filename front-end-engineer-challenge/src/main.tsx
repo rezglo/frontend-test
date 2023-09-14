@@ -9,6 +9,7 @@ import "./global.css";
 import SignIn from "./pages/SignIn.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import { signInAction, chatAction } from "@/lib/actions.ts";
+import GlobalContextProvider from "./context/globalContext.tsx";
 
 const cookies = new Cookies();
 
@@ -34,6 +35,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GlobalContextProvider>
+      <RouterProvider router={router} />
+    </GlobalContextProvider>
   </React.StrictMode>
 );
