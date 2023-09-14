@@ -8,6 +8,7 @@ import "./global.css";
 import SignIn from "./pages/SignIn.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import { action as chatAction } from "./components/ChatWindow.tsx";
+import { action as signInAction } from "./pages/SignIn.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignIn />,
+    action: signInAction,
   },
   {
     path: "/landing",
