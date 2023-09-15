@@ -13,7 +13,10 @@ const SignOutButton: React.FC = () => {
     <Button
       onClick={() => {
         cookies.remove("authenticated");
-        navigate("/");
+
+        setTimeout(() => {
+          navigate("/");
+        }, 200);
       }}
     >
       Sign out
