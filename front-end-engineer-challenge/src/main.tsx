@@ -11,6 +11,7 @@ import LandingPage from "./pages/LandingPage.tsx";
 import { signInAction, chatAction } from "@/lib/actions.ts";
 import ChatWindow from "./components/ChatWindow.tsx";
 import GlobalContextProvider from "./context/globalContext.tsx";
+import EmptyState from "./components/EmptyState.tsx";
 
 const cookies = new Cookies();
 
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         path: "room/:roomId",
         element: <ChatWindow />,
       },
+      { index: true, element: <EmptyState /> },
     ],
   },
 ]);
