@@ -20,6 +20,7 @@ import {
   ContextMenuTrigger,
 } from "./ui/context-menu";
 import { Separator } from "./ui/separator";
+import AddChannel from "./ui/addChannel";
 
 const Sidebar: React.FC = () => {
   const user = useUser();
@@ -44,7 +45,7 @@ const Sidebar: React.FC = () => {
           </Channel>
         ))}
 
-        <AddButton className="text-inherit font-normal">Add channels</AddButton>
+        <AddChannel />
       </SidebarSection>
 
       <SectionSeparator />
@@ -156,7 +157,8 @@ const AddButton: React.FC<{
 }> = ({ children, className }) => {
   return (
     <Button className={clsx("justify-start px-0", className)} size="sm">
-      <Plus className="h-5 w-5 p-1 rounded mr-2 bg-secondary" /> {children}
+      <Plus className="sidebarIcon" />
+      {children}
     </Button>
   );
 };

@@ -89,4 +89,8 @@
   .sidebarActiveItem {
     @apply block w-full rounded p-1 bg-accent text-white font-semibold cursor-pointer;
   }
+
+  .sidebarIcon {
+    @apply h-5 w-5 p-1 rounded mr-2 bg-secondary;
+  }
 }
