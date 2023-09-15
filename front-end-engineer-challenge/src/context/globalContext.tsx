@@ -11,7 +11,7 @@ import {
   conversations as conversationsData,
 } from "@/utils/data";
 import { Channel, Conversation, User } from "@/types";
-import { getChannels, getConversations, getUsers } from "@/lib/api";
+import { getChannels, getConversations, getUsers } from "@/services/api";
 
 export const GlobalContext = createContext<{
   users: User[];
