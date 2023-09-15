@@ -11,6 +11,7 @@ import { Button } from "./ui/button";
 import useUser from "@/hooks/useUser";
 import { sendMessage } from "@/services/post";
 import useFocus from "@/hooks/useFocus";
+import useScrollToBottom from "@/hooks/useScrollToBottom";
 
 const ChatWindow: React.FC = () => {
   const chat = useChat();
@@ -26,13 +27,11 @@ const ChatWindow: React.FC = () => {
 
         <Separator className="mt-3" />
 
-        <div className="p-5 pt-0 w-full overflow-y-auto h-full">
-          <div className="flex flex-col justify-end min-h-full">
-            {chat.messages.map((item) => (
-              <Message key={item.id} messageData={item} />
-            ))}
-          </div>
-        </div>
+        <MessageList>
+          {chat.messages.map((item) => (
+            <Message key={item.id} messageData={item} />
+          ))}
+        </MessageList>
 
         <div className="px-5">
           <MessageInput key={chat.name} />
@@ -58,6 +57,16 @@ const Message: React.FC<{ messageData: IMessage }> = ({ messageData }) => {
         </div>
         <span>{messageData.body}</span>
       </div>
+    </div>
+  );
+};
+
+const MessageList: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const divRef = useScrollToBottom();
+
+  return (
+    <div ref={divRef} className="p-5 pt-0 w-full overflow-y-auto h-full">
+      <div className="flex flex-col justify-end min-h-full">{children}</div>
     </div>
   );
 };
