@@ -34,7 +34,7 @@ const ChatWindow: React.FC = () => {
         </div>
 
         <div className="px-5">
-          <MessageInput />
+          <MessageInput key={chat.name} />
         </div>
       </div>
     </section>
