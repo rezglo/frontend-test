@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Separator } from "./ui/separator";
-import { Form } from "react-router-dom";
-import { Button } from "./ui/button";
-import { SendHorizontal, User } from "lucide-react";
+import { Loader2, SendHorizontal, User } from "lucide-react";
+import format from "date-fns/format";
+import { v4 as uuid4 } from "uuid";
+
 import useChat from "@/hooks/useChat";
 import { Message as IMessage } from "@/types";
-import format from "date-fns/format";
+
+import { Separator } from "./ui/separator";
+import { Button } from "./ui/button";
+import useUser from "@/hooks/useUser";
+import { sendMessage } from "@/services/post";
 
 const ChatWindow: React.FC = () => {
   const chat = useChat();
@@ -23,8 +27,8 @@ const ChatWindow: React.FC = () => {
 
         <div className="flex-1">
           <div className="flex flex-col justify-end gap-2 h-full p-5">
-            {chat.messages.map((message) => (
-              <Message key={message.id} message={message} />
+            {chat.messages.map((item) => (
+              <Message key={item.id} messageData={item} />
             ))}
           </div>
         </div>
@@ -37,8 +41,8 @@ const ChatWindow: React.FC = () => {
   );
 };
 
-const Message: React.FC<{ message: IMessage }> = ({ message }) => {
-  const time = format(message.createdAt, "p");
+const Message: React.FC<{ messageData: IMessage }> = ({ messageData }) => {
+  const time = format(messageData.createdAt, "p");
   return (
     <div className="flex items-center gap-3">
       <User
@@ -48,42 +52,75 @@ const Message: React.FC<{ message: IMessage }> = ({ message }) => {
       />
       <div className="flex flex-col justify-between">
         <div className="flex items-center gap-3">
-          <span className="font-bold">{message.sender.name}</span>
+          <span className="font-bold">{messageData.sender.name}</span>
           <small className="text-gray-500">{time}</small>
         </div>
-        <span>{message.body}</span>
+        <span>{messageData.body}</span>
       </div>
     </div>
   );
 };
 
 const MessageInput: React.FC = () => {
-  const [message, setMessage] = useState("");
+  const [messageText, setMessageText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const chat = useChat();
+  const user = useUser();
+
+  if (!chat) return;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const newMessage: IMessage = {
+      id: uuid4(),
+      body: messageText,
+      sender: user,
+      createdAt: new Date(),
+    };
+
+    try {
+      await sendMessage(newMessage);
+
+      chat.setMessage(newMessage);
+      setMessageText("");
+    } catch (error) {
+      alert(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
+    setMessageText(e.target.value);
   };
 
   return (
-    <Form method="post">
+    <form onSubmit={handleSubmit}>
       <div className="flex items-center gap-4">
         <input
           className="w-full border p-2 focus:outline-gray-400"
           placeholder="Message #channel"
           type="text"
           onChange={handleChange}
-          value={message}
+          value={messageText}
+          disabled={isLoading}
         />
         <Button
           className="bg-green-700 transition hover:bg-green-700/80 disabled:bg-gray-500"
           type="submit"
           size="icon"
-          disabled={!message.length}
+          disabled={!messageText.length || isLoading}
         >
-          <SendHorizontal absoluteStrokeWidth />
+          {isLoading ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            <SendHorizontal absoluteStrokeWidth />
+          )}
         </Button>
       </div>
-    </Form>
+    </form>
   );
 };
 
