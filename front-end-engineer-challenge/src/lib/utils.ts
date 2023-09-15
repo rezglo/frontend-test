@@ -44,3 +44,9 @@ export const deleteMessage = ({
   const index = list.indexOf(element);
   setFunction([...list.slice(0, index), newElement, ...list.slice(index + 1)]);
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const fakeFetch = (data: any) =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(data), 1000);
+  });
