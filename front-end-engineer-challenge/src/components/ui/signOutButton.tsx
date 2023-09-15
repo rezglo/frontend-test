@@ -1,21 +1,20 @@
 import React from "react";
-import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 
 import { Button } from "./button";
-
-const cookies = new Cookies();
+import { cookies } from "@/lib/auth";
 
 const SignOutButton: React.FC = () => {
   const navigate = useNavigate();
+
   return (
     <Button
       onClick={() => {
         cookies.remove("authenticated");
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/signin");
         }, 200);
       }}
     >

@@ -1,9 +1,7 @@
 import { useContext } from "react";
-import Cookies from "universal-cookie";
 
 import { GlobalContext } from "@/context/globalContext";
-
-const cookies = new Cookies();
+import { cookies } from "@/lib/auth";
 
 const useUser = () => {
   const { users } = useContext(GlobalContext);

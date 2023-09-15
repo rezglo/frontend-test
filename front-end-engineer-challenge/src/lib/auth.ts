@@ -1,7 +1,7 @@
 import Cookies from "universal-cookie";
 import { users } from "@/utils/data";
 
-const cookies = new Cookies();
+export const cookies = new Cookies(null, { path: "/" });
 
 const authenticate = async ({ email }: { email: string }) => {
   const fakeDelay = new Promise<void>((resolve) => {

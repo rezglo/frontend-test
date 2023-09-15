@@ -1,26 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Cookies from "universal-cookie";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 
+import { signInAction, chatAction } from "@/lib/actions.ts";
 import Home from "./pages/Home.tsx";
-
-import "./global.css";
 import SignIn from "./pages/SignIn.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
-import { signInAction, chatAction } from "@/lib/actions.ts";
 import ChatWindow from "./components/ChatWindow.tsx";
 import GlobalContextProvider from "./context/globalContext.tsx";
 import EmptyState from "./components/EmptyState.tsx";
+import { cookies } from "./lib/auth.ts";
 
-const cookies = new Cookies();
+import "./global.css";
 
 const isAuthenticated = cookies.get("authenticated");
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: isAuthenticated ? <Home /> : <LandingPage />,
+    element: isAuthenticated ? <Navigate to="/app" replace /> : <LandingPage />,
     action: chatAction,
   },
   {
