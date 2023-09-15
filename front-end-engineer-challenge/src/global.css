@@ -83,6 +83,10 @@
 
 @layer components {
   .sidebarItem {
-    @apply rounded p-1 hover:bg-secondary cursor-pointer;
+    @apply block w-full rounded p-1 hover:bg-secondary cursor-pointer;
+  }
+
+  .sidebarActiveItem {
+    @apply block w-full rounded p-1 bg-accent text-white font-semibold cursor-pointer;
   }
 }

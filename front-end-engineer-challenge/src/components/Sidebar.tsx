@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ChevronDown, Plus, User as ContactIcon } from "lucide-react";
 
 import { User } from "@/types";
@@ -102,9 +102,14 @@ const Channel: React.FC<{ children: React.ReactNode; channelId: string }> = ({
   return (
     <ContextMenu>
       <ContextMenuTrigger>
-        <Link to={`/app/room/${channelId}`}>
-          <div className="sidebarItem w-full">#{children}</div>
-        </Link>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "sidebarActiveItem" : "sidebarItem"
+          }
+          to={`/app/room/${channelId}`}
+        >
+          #{children}
+        </NavLink>
       </ContextMenuTrigger>
 
       <ContextMenuContent>
@@ -127,18 +132,21 @@ const Contact: React.FC<{ contact: User }> = ({ contact }) => {
   )[0];
 
   return (
-    <Link to={`/app/room/${conversationId}`}>
-      <div className="sidebarItem">
-        <div className="flex items-center gap-1">
-          <ContactIcon
-            fill="white"
-            size={20}
-            className="flex-shrink-0 rounded bg-secondary"
-          />
-          <span className="truncate">{contact.name}</span>
-        </div>
+    <NavLink
+      className={({ isActive }) =>
+        isActive ? "sidebarActiveItem" : "sidebarItem"
+      }
+      to={`/app/room/${conversationId}`}
+    >
+      <div className="flex items-center gap-1">
+        <ContactIcon
+          fill="white"
+          size={20}
+          className="flex-shrink-0 rounded bg-secondary"
+        />
+        <span className="truncate">{contact.name}</span>
       </div>
-    </Link>
+    </NavLink>
   );
 };
 
@@ -152,4 +160,5 @@ const AddButton: React.FC<{
     </Button>
   );
 };
+
 export default Sidebar;
