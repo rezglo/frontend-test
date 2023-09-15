@@ -21,6 +21,7 @@ import {
 } from "./ui/context-menu";
 import { Separator } from "./ui/separator";
 import AddChannel from "./ui/addChannel";
+import SignOutButton from "./ui/signOutButton";
 
 const Sidebar: React.FC = () => {
   const user = useUser();
@@ -57,6 +58,10 @@ const Sidebar: React.FC = () => {
 
         <AddButton className="font-bold">Add coworkers</AddButton>
       </SidebarSection>
+
+      <SectionSeparator />
+
+      <SignOutButton />
     </aside>
   );
 };

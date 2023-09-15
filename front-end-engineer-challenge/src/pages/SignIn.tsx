@@ -25,7 +25,7 @@ const SignIn: React.FC = () => {
 };
 
 const SignInForm: React.FC = () => {
-  const [email, setEmail] = useState("test@mail.com");
+  const [email, setEmail] = useState("user1@mail.com");
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
 
