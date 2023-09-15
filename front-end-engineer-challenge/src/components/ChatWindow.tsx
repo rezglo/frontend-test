@@ -24,10 +24,10 @@ const ChatWindow: React.FC = () => {
           <h3 className="text-lg font-bold">{chat.name}</h3>
         </header>
 
-        <Separator className="my-3" />
+        <Separator className="mt-3" />
 
-        <div className="flex-1">
-          <div className="flex flex-col justify-end gap-2 h-full p-5">
+        <div className="p-5 pt-0 w-full overflow-y-auto h-full">
+          <div className="flex flex-col justify-end min-h-full">
             {chat.messages.map((item) => (
               <Message key={item.id} messageData={item} />
             ))}
