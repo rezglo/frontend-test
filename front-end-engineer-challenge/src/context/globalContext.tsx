@@ -3,6 +3,7 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react";
 import {
   users as usersData,
@@ -10,32 +11,61 @@ import {
   conversations as conversationsData,
 } from "@/utils/data";
 import { Channel, Conversation, User } from "@/types";
+import { getChannels, getConversations, getUsers } from "@/lib/api";
 
 export const GlobalContext = createContext<{
   users: User[];
   channels: Channel[];
   conversations: Conversation[];
-  authenticatedUser: User | object;
   setChannels: Dispatch<SetStateAction<Channel[]>>;
   setConversations: Dispatch<SetStateAction<Conversation[]>>;
-  setAuthenticatedUser: Dispatch<SetStateAction<User>>;
 }>({
   users: [],
   channels: [],
   conversations: [],
-  authenticatedUser: {},
   setChannels: () => {},
   setConversations: () => {},
-  setAuthenticatedUser: () => {},
 });
 
 const GlobalContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [users] = useState(usersData);
+  const [users, setUsers] = useState(usersData);
   const [channels, setChannels] = useState(channelsData);
   const [conversations, setConversations] = useState(conversationsData);
-  const [authenticatedUser, setAuthenticatedUser] = useState({});
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchChannels = async () => {
+      try {
+        const data = await getChannels();
+        setChannels(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchConversations = async () => {
+      try {
+        const data = await getConversations();
+        setConversations(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUsers();
+    fetchChannels();
+    fetchConversations();
+  }, []);
 
   return (
     <GlobalContext.Provider
@@ -43,10 +73,8 @@ const GlobalContextProvider: React.FC<{ children: React.ReactNode }> = ({
         users,
         channels,
         conversations,
-        authenticatedUser,
         setChannels,
         setConversations,
-        setAuthenticatedUser,
       }}
     >
       {children}
