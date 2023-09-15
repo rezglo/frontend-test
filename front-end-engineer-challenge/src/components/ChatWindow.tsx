@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Loader2, SendHorizontal, User } from "lucide-react";
+import { Loader2, Pencil, SendHorizontal, Trash2, User } from "lucide-react";
 import format from "date-fns/format";
 import { v4 as uuid4 } from "uuid";
 
@@ -42,20 +42,38 @@ const ChatWindow: React.FC = () => {
 };
 
 const Message: React.FC<{ messageData: IMessage }> = ({ messageData }) => {
+  const chat = useChat();
+
+  if (!chat) return;
+
   const time = format(messageData.createdAt, "p");
   return (
-    <div className="flex items-center gap-3">
-      <User
-        fill="white"
-        size={36}
-        className="flex-shrink-0 rounded bg-primary text-primary-foreground"
-      />
-      <div className="flex flex-col justify-between">
-        <div className="flex items-center gap-3">
-          <span className="font-bold">{messageData.sender.name}</span>
-          <small className="text-gray-500">{time}</small>
+    <div className="flex items-start justify-between group rounded hover:bg-gray-200 p-2">
+      <div className="flex items-start gap-3 max-w-[60%]">
+        <User
+          fill="white"
+          size={48}
+          className="flex-shrink-0 rounded bg-primary text-primary-foreground"
+        />
+
+        <div className="flex flex-col justify-between">
+          <div className="flex items-center gap-3">
+            <span className="font-bold">{messageData.sender.name}</span>
+            <small className="text-gray-500">{time}</small>
+          </div>
+
+          <span>{messageData.body}</span>
         </div>
-        <span>{messageData.body}</span>
+      </div>
+
+      <div className="hidden group-hover:flex items-center gap-4">
+        <button>
+          <Pencil size={16} />
+        </button>
+
+        <button onClick={() => chat.deleteMessage(messageData.id)}>
+          <Trash2 size={16} />
+        </button>
       </div>
     </div>
   );
@@ -66,7 +84,9 @@ const MessageList: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <div ref={divRef} className="p-5 pt-0 w-full overflow-y-auto h-full">
-      <div className="flex flex-col justify-end min-h-full">{children}</div>
+      <div className="flex flex-col justify-end min-h-full gap-4">
+        {children}
+      </div>
     </div>
   );
 };

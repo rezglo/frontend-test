@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { GlobalContext } from "@/context/globalContext";
 import { Message } from "@/types";
-import { setMessage } from "@/lib/utils";
+import { deleteMessage, setMessage } from "@/lib/utils";
 
 import useUser from "./useUser";
 
@@ -28,7 +28,7 @@ const useChat = () => {
 
     const messages = conversation.messages;
 
-    const outerFunction = (newMessage: Message) => {
+    const setMessageWrapper = (newMessage: Message) => {
       setMessage({
         list: conversations,
         element: conversation,
@@ -37,14 +37,28 @@ const useChat = () => {
       });
     };
 
-    return { name, messages, setMessage: outerFunction };
+    const deleteMessageWrapper = (messageId: string) => {
+      deleteMessage({
+        list: conversations,
+        element: conversation,
+        messageId,
+        setFunction: setConversations,
+      });
+    };
+
+    return {
+      name,
+      messages,
+      setMessage: setMessageWrapper,
+      deleteMessage: deleteMessageWrapper,
+    };
   }
 
   if (channel) {
     const name = `#${channel.name}`;
     const messages = channel.messages;
 
-    const outerFunction = (newMessage: Message) => {
+    const setMessageWrapper = (newMessage: Message) => {
       setMessage({
         list: channels,
         element: channel,
@@ -53,7 +67,21 @@ const useChat = () => {
       });
     };
 
-    return { name, messages, setMessage: outerFunction };
+    const deleteMessageWrapper = (messageId: string) => {
+      deleteMessage({
+        list: channels,
+        element: channel,
+        messageId,
+        setFunction: setChannels,
+      });
+    };
+
+    return {
+      name,
+      messages,
+      setMessage: setMessageWrapper,
+      deleteMessage: deleteMessageWrapper,
+    };
   }
 };
 
