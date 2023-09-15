@@ -10,6 +10,7 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import useUser from "@/hooks/useUser";
 import { sendMessage } from "@/services/post";
+import useFocus from "@/hooks/useFocus";
 
 const ChatWindow: React.FC = () => {
   const chat = useChat();
@@ -67,6 +68,8 @@ const MessageInput: React.FC = () => {
   const chat = useChat();
   const user = useUser();
 
+  const inputRef = useFocus();
+
   if (!chat) return;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -84,6 +87,7 @@ const MessageInput: React.FC = () => {
       await sendMessage(newMessage);
 
       chat.setMessage(newMessage);
+
       setMessageText("");
     } catch (error) {
       alert(error);
@@ -100,6 +104,7 @@ const MessageInput: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <div className="flex items-center gap-4">
         <input
+          ref={inputRef}
           className="w-full border p-2 focus:outline-gray-400"
           placeholder="Message #channel"
           type="text"
