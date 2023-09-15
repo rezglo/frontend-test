@@ -1,6 +1,7 @@
-import { GlobalContext } from "@/context/globalContext";
 import { useContext } from "react";
 import Cookies from "universal-cookie";
+
+import { GlobalContext } from "@/context/globalContext";
 
 const cookies = new Cookies();
 
