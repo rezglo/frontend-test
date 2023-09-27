@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* Custom variables */
+  --color-base: #3e103f;
+  --color-separator: #777;
+}
+
+.arroba, .hash, .email, .url {
+  @apply cursor-pointer pointer-events-auto z-10;
+}
+
+.arroba {
+  @apply text-green-600;
+}
+
+.hash {
+  @apply text-violet-700;
+}
+
+.email {
+  @apply text-orange-400;
+}
+
+.url {
+  @apply text-blue-400;
+}
