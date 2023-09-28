@@ -56,6 +56,19 @@ export default function SignIn() {
     setIsFormValid(Object.keys(errorsForm).length === 0)
   }
 
+  const validFieldForm = (nameField: string) => {
+    if (
+      !isFormValid &&
+      submit &&
+      errors[nameField] !== undefined &&
+      errors[nameField] !== ''
+    ) {
+      return errors[nameField]
+    } else {
+      return ''
+    }
+  }
+
   const send = () => {
     setSubmit(true)
     if (isFormValid) {
@@ -93,6 +106,8 @@ export default function SignIn() {
           }}
           value={email}
           autoFocus
+          error={validFieldForm('email') !== ''}
+          helperText={validFieldForm('email')}
         />
         <TextField
           margin="normal"
@@ -107,6 +122,8 @@ export default function SignIn() {
             setPassword(e.target.value)
           }}
           value={password}
+          error={validFieldForm('password') !== ''}
+          helperText={validFieldForm('password')}
         />
         <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}

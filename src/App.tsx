@@ -7,10 +7,11 @@ import DefaultLayout from 'layout/DefaultLayout'
 import AuthLayout from 'layout/AuthLayout'
 
 import SignIn from 'pages/signIn'
-import Chanel from 'pages/chanel'
+import Channels from 'pages/channels'
 import { CssBaseline } from '@mui/material'
 
 import { useAppSelector } from '_redux/hooks'
+import Dashboard from 'pages/dashboard'
 
 const theme = createTheme({
   palette: {
@@ -32,7 +33,8 @@ const App: React.FC = () => {
             </Route>
             {user.login && (
               <Route path="/slack" element={<DefaultLayout />}>
-                <Route index element={<Chanel />} />
+                <Route index element={<Dashboard />} />
+                <Route path="channels" element={<Channels />} />
               </Route>
             )}
             <Route

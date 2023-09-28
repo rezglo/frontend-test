@@ -24,6 +24,9 @@ import Typography from '@mui/material/Typography'
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import Collapse from '@mui/material/Collapse'
 
 import Colors from '_global/colors'
 
@@ -86,6 +89,7 @@ export default function DefaultLayout() {
   const theme = useTheme()
 
   const [open, setOpen] = useState(true)
+  const [menuOpen, setMenuOpen] = useState<string[]>([])
   const [menuUser, setMenuUser] = useState<null | HTMLElement>(null)
   const openMenuUser = Boolean(menuUser)
 
@@ -232,14 +236,8 @@ export default function DefaultLayout() {
           <ListItem
             disablePadding
             onClick={() => {
-              navigate('/')
+              navigate('/slack')
             }}
-            sx={
-              {
-                /*   backgroundColor:
-                   route.path === '/' ? Colors.identityPrimary2 : undefined */
-              }
-            }
           >
             <ListItemButton>
               <ListItemIcon>
@@ -248,6 +246,40 @@ export default function DefaultLayout() {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
+
+          <ListItem
+            disablePadding
+            onClick={() => {
+              if (menuOpen.includes('chanels')) {
+                setMenuOpen(menuOpen.filter((item) => item !== 'chanels'))
+              } else {
+                setMenuOpen([...menuOpen, 'chanels'])
+              }
+            }}
+          >
+            <ListItemButton>
+              <ListItemText primary={'Chanels'} />
+
+              {menuOpen.includes('chanels') ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+          </ListItem>
+
+          <Collapse
+            in={menuOpen.includes('chanels')}
+            timeout="auto"
+            unmountOnExit
+          >
+            <ListItem
+              disablePadding
+              onClick={() => {
+                navigate('test')
+              }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemText primary={'sub'} />
+              </ListItemButton>
+            </ListItem>
+          </Collapse>
         </List>
         <Divider />
       </Drawer>
