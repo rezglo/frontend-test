@@ -19,8 +19,16 @@ import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import DashboardIcon from '@mui/icons-material/Dashboard'
+import PersonIcon from '@mui/icons-material/Person'
+import Typography from '@mui/material/Typography'
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 
 import Colors from '_global/colors'
+
+import { useAppDispatch, useAppSelector } from '_redux/hooks'
+import { logout } from '_redux/slices/signInSlice'
 
 const drawerWidth = 300
 
@@ -78,8 +86,13 @@ export default function DefaultLayout() {
   const theme = useTheme()
 
   const [open, setOpen] = useState(true)
+  const [menuUser, setMenuUser] = useState<null | HTMLElement>(null)
+  const openMenuUser = Boolean(menuUser)
 
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  const user = useAppSelector((state) => state.signIn.result)
 
   const handleDrawerOpen = (): void => {
     setOpen(!open)
@@ -89,10 +102,16 @@ export default function DefaultLayout() {
     setOpen(false)
   }
 
+  const ListItemIconStyle = { color: Colors.white }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        sx={{ backgroundColor: Colors.gray }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -103,7 +122,80 @@ export default function DefaultLayout() {
           >
             <MenuIcon />
           </IconButton>
-          <Toolbar></Toolbar>
+          {user.login && (
+            <Box
+              display="flex"
+              flexDirection="row"
+              justifyContent="flex-end"
+              alignItems="center"
+              sx={{ marginLeft: 'auto' }}
+            >
+              <PersonIcon fontSize="large" sx={{ mr: 1, color: 'grey.200' }} />
+              <Box>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ marginBottom: 0, padding: 0 }}
+                >
+                  {user.name}
+                </Typography>
+                {user?.rol !== '' && (
+                  <div style={{ marginTop: '-6px' }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: 'grey.500', textTransform: 'capitalize' }}
+                    >
+                      {user.rol}
+                    </Typography>
+                  </div>
+                )}
+              </Box>
+              <IconButton
+                color="inherit"
+                id="basic-button"
+                aria-controls={openMenuUser ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={openMenuUser ? 'true' : undefined}
+                onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                  setMenuUser(event.currentTarget)
+                }}
+              >
+                <MoreVertRoundedIcon fontSize="medium" />
+              </IconButton>
+              <Menu
+                id="basic-menu"
+                anchorEl={menuUser}
+                open={openMenuUser}
+                PaperProps={{
+                  style: {
+                    left: '50%',
+                    transform: 'translateX(-6%) translateY(18%)',
+                    borderTopRightRadius: 0,
+                    borderTopLeftRadius: 0
+                  }
+                }}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                  style: {
+                    padding: 0
+                  }
+                }}
+                onClose={() => setMenuUser(null)}
+              >
+                <MenuItem onClick={() => setMenuUser(null)}>
+                  My Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    setMenuUser(null)
+                    dispatch(logout())
+                    navigate(`/sign-in`)
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
 
@@ -151,7 +243,7 @@ export default function DefaultLayout() {
           >
             <ListItemButton>
               <ListItemIcon>
-                <DashboardIcon />
+                <DashboardIcon sx={ListItemIconStyle} />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItemButton>
@@ -163,13 +255,6 @@ export default function DefaultLayout() {
       <Main open={open}>
         <DrawerHeader />
 
-        {/* } {route.name !== '' && (
-          <Typography variant="h5" mb={1} component="h1">
-            {route.name}
-          </Typography>
-        )}
-        {routesElem}
-       */}
         <Outlet />
       </Main>
     </Box>

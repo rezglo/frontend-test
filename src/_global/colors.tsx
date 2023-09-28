@@ -1,6 +1,8 @@
 const Colors = {
   identityPrimary: '#7C3381',
-  identityPrimary2: '#09192A'
+  identitySecoundary: '#5AA1A6',
+  gray: '#585858',
+  white: '#FFFFFF'
 }
 
 export default Colors

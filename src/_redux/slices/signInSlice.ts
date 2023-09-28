@@ -10,12 +10,9 @@ interface DataRequest {
 }
 export interface Data {
   login: boolean
-  uid?: string
   name?: string
-  lastName?: string
-  phone?: string
   email?: string
-  role?: string
+  rol?: string
 }
 interface InitialState {
   loading: boolean
@@ -30,11 +27,25 @@ const initialState: InitialState = {
 
 export const fetch = createAsyncThunk(
   'signIn/fetch',
-  async ({ email, password }: DataRequest) => {
-    try {
-      //
-    } catch (error) {
-      return { error: String(error) }
+  async (
+    { email, password }: DataRequest,
+    { fulfillWithValue, rejectWithValue }
+  ) => {
+    let resp = false
+    await new Promise((resolve) => {
+      setTimeout(resolve, 2000)
+      resp = true
+    })
+    if (resp) {
+      if (email === 'admin@slack.com' && password === '123456') {
+        return fulfillWithValue({
+          email,
+          name: 'User Test',
+          rol: 'Administrator'
+        })
+      } else {
+        return rejectWithValue({})
+      }
     }
   }
 )
@@ -53,26 +64,18 @@ const signInSlice = createSlice({
     })
     builder.addCase(fetch.fulfilled, (state, action: PayloadAction<any>) => {
       state.loading = false
-      if (action.payload?.uid !== undefined) {
-        state.result = {
-          login: true,
-          uid: action.payload?.uid,
-          email: action.payload?.email,
-          name: action.payload?.name,
-          lastName: action.payload?.lastName,
-          phone: action.payload?.phone,
-          role: action.payload?.role
-        }
-        state.error = ''
-      } else {
-        state.result = initialState.result
-        state.error = action.payload?.error ?? 'Something went wrong'
+      state.result = {
+        login: true,
+        email: action.payload?.email,
+        name: action.payload?.name,
+        rol: action.payload?.rol
       }
+      state.error = ''
     })
     builder.addCase(fetch.rejected, (state, action) => {
       state.loading = false
       state.result = initialState.result
-      state.error = action.error.message ?? 'Something went wrong'
+      state.error = 'The email address or password is incorrect.'
     })
   }
 })

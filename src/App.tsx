@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
 import './App.css'
@@ -10,6 +10,8 @@ import SignIn from 'pages/signIn'
 import Chanel from 'pages/chanel'
 import { CssBaseline } from '@mui/material'
 
+import { useAppSelector } from '_redux/hooks'
+
 const theme = createTheme({
   palette: {
     mode: 'light'
@@ -17,6 +19,8 @@ const theme = createTheme({
 })
 
 const App: React.FC = () => {
+  const user = useAppSelector((state) => state.signIn.result)
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -26,18 +30,19 @@ const App: React.FC = () => {
             <Route path="/sign-in" element={<AuthLayout />}>
               <Route index element={<SignIn />} />
             </Route>
-            <Route path="/" element={<DefaultLayout />}>
-              <Route index element={<Chanel />} />
-            </Route>
+            {user.login && (
+              <Route path="/slack" element={<DefaultLayout />}>
+                <Route index element={<Chanel />} />
+              </Route>
+            )}
+            <Route
+              path="*"
+              element={
+                <Navigate to={user.login ? '/slack' : '/sign-in'} replace />
+              }
+            />
           </Routes>
         </BrowserRouter>
-        {/* <BrowserRouter>
-          <Suspense fallback={loading}>
-            <Routes>
-              <Route path="*" element={<DefaultLayout />} />
-            </Routes>
-          </Suspense>
-  </BrowserRouter> */}
       </ThemeProvider>
     </>
   )
