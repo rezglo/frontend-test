@@ -139,7 +139,7 @@ export default function SignIn() {
         >
           {signIn.loading ? (
             <>
-              <CircularProgress size={16} />
+              <CircularProgress size={28} />
             </>
           ) : (
             'Sign In'

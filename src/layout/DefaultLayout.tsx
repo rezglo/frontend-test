@@ -32,7 +32,7 @@ import Colors from '_global/colors'
 
 import { useAppDispatch, useAppSelector } from '_redux/hooks'
 import { logout } from '_redux/slices/signInSlice'
-import MenuChannels from 'components/menuChannels'
+import SubMenu from 'components/subMenu'
 
 const drawerWidth = 300
 
@@ -90,7 +90,7 @@ export default function DefaultLayout() {
   const theme = useTheme()
 
   const [open, setOpen] = useState(true)
-  const [menuOpen, setMenuOpen] = useState<string[]>(['Channels', 'Users'])
+  const [menuOpen, setMenuOpen] = useState<string[]>(['channel', 'user'])
   const [menuUser, setMenuUser] = useState<null | HTMLElement>(null)
   const openMenuUser = Boolean(menuUser)
 
@@ -109,27 +109,27 @@ export default function DefaultLayout() {
 
   const ListItemIconStyle = { color: Colors.white }
 
-  const showMenu = (label: 'Channels' | 'Users') => {
+  const showMenu = (type: 'channel' | 'user') => {
     return (
       <>
         <ListItem
           disablePadding
           onClick={() => {
-            if (menuOpen.includes(label)) {
-              setMenuOpen(menuOpen.filter((item) => item !== label))
+            if (menuOpen.includes(type)) {
+              setMenuOpen(menuOpen.filter((item) => item !== type))
             } else {
-              setMenuOpen([...menuOpen, label])
+              setMenuOpen([...menuOpen, type])
             }
           }}
         >
           <ListItemButton>
-            <ListItemText primary={label} />
-            {menuOpen.includes(label) ? <ExpandLess /> : <ExpandMore />}
+            <ListItemText primary={type === 'channel' ? 'Channels' : 'Users'} />
+            {menuOpen.includes(type) ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
         </ListItem>
 
-        <Collapse in={menuOpen.includes(label)} timeout="auto" unmountOnExit>
-          {label === 'Channels' && <MenuChannels />}
+        <Collapse in={menuOpen.includes(type)} timeout="auto" unmountOnExit>
+          <SubMenu type={type} />
         </Collapse>
       </>
     )
@@ -273,8 +273,8 @@ export default function DefaultLayout() {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
-          {showMenu('Channels')}
-          {showMenu('Users')}
+          {showMenu('channel')}
+          {showMenu('user')}
         </List>
         <Divider />
       </Drawer>

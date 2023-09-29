@@ -14,15 +14,27 @@ import Button from '@mui/material/Button'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 import { useAppDispatch, useAppSelector } from '_redux/hooks'
-import { addItem, removeItem } from '_redux/slices/channelsSlice'
+import {
+  addItem as addItemChannel,
+  removeItem as removeItemChannel
+} from '_redux/slices/channelsSlice'
+import {
+  addItem as addItemUser,
+  removeItem as removeItemUser
+} from '_redux/slices/usersSlice'
 import DialogDelete from 'components/dialogDelete/DialogDelete'
 
-export interface ItemSel {
+interface ItemSel {
   action: 'new' | 'delete'
   id?: string
 }
 
-export default function MenuChannels() {
+interface Props {
+  type: 'channel' | 'user'
+}
+
+const SubMenu: React.FC<Props> = ({ type }) => {
+  const label = type === 'channel' ? 'Channels' : 'Users'
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -35,13 +47,14 @@ export default function MenuChannels() {
 
   const [itemSel, setItemSel] = useState<ItemSel>()
 
-  const channels = useAppSelector((state) => state.channels)
+  const data = useAppSelector((state) =>
+    type === 'channel' ? state.channels : state.users
+  )
 
   useEffect(() => {
     setShowModal(false)
-    setName('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channels])
+  }, [data])
 
   useEffect(() => {
     validateForm()
@@ -71,17 +84,25 @@ export default function MenuChannels() {
   }
 
   const modal = () => {
+    const nameDelete =
+      itemSel?.id !== undefined &&
+      data.result.find((item) => item.id === itemSel.id)?.name
     return (
       <>
         {itemSel?.action === 'delete' ? (
           <DialogDelete
-            description={`Channel: ${itemSel.id ?? ''}`}
+            description={`${type}: ${String(nameDelete)}`}
             showModal={showModal}
             onActionHide={() => {
               setShowModal(false)
             }}
             onActionDelete={() => {
-              itemSel.id !== undefined && dispatch(removeItem(itemSel.id))
+              itemSel.id !== undefined &&
+                dispatch(
+                  type === 'channel'
+                    ? removeItemChannel(itemSel.id)
+                    : removeItemUser(itemSel.id)
+                )
             }}
           />
         ) : (
@@ -92,7 +113,7 @@ export default function MenuChannels() {
             onClose={() => setShowModal(false)}
           >
             <DialogTitle>
-              {itemSel?.action === 'new' ? 'Add' : 'Edit'} Channel
+              {itemSel?.action === 'new' ? 'Add' : 'Edit'} {label}
             </DialogTitle>
             <DialogContent>
               <TextField
@@ -118,7 +139,11 @@ export default function MenuChannels() {
                 onClick={() => {
                   setSubmit(true)
                   if (isFormValid) {
-                    dispatch(addItem(name))
+                    dispatch(
+                      type === 'channel'
+                        ? addItemChannel(name)
+                        : addItemUser(name)
+                    )
                   }
                 }}
               >
@@ -134,7 +159,7 @@ export default function MenuChannels() {
   return (
     <>
       {modal()}
-      {channels.result?.map((item, index) => (
+      {data.result?.map((item, index) => (
         <ListItem key={index} disablePadding>
           <ListItemButton sx={{ px: 4 }}>
             <Box
@@ -145,7 +170,7 @@ export default function MenuChannels() {
               alignItems="center"
             >
               <ListItemText
-                primary={'#' + item.name}
+                primary={`${type === 'channel' ? '#' : ''}${item.name}`}
                 onClick={() => {
                   navigate('test')
                 }}
@@ -168,6 +193,8 @@ export default function MenuChannels() {
         disablePadding
         onClick={() => {
           setShowModal(true)
+          setSubmit(false)
+          setName('')
           setItemSel({
             action: 'new'
           })
@@ -177,9 +204,10 @@ export default function MenuChannels() {
           <ListItemIcon sx={{ minWidth: '40px', color: 'white' }}>
             <AddCircleIcon />
           </ListItemIcon>
-          <ListItemText primary={'Add channel'} />
+          <ListItemText primary={`Add ${label}`} />
         </ListItemButton>
       </ListItem>
     </>
   )
 }
+export default SubMenu
