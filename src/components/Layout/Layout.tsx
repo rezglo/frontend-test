@@ -10,7 +10,7 @@ interface Props {
 function Layout ({ children }: Props) {
   return (
     <section>
-       <Box sx={{ display: 'flex' }}>
+       <Box sx={{ display: 'flex', height: '100vh' }}>
         <Header />
         <SideBar />
         {children}

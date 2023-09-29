@@ -40,7 +40,7 @@ function Login () {
   return (
     <section className='login'>
       <div className='login-inner'>
-        <img src={logo} alt="" />
+        <img src={logo} alt="slack logo" />
         <Typography variant='subtitle1'>Sign in to Slack</Typography>
         <form action="" className='login-form' onSubmit={handleSubmit}>
           <Input name='email' type='email' onChange={handleChange} placeholder='Email' />
