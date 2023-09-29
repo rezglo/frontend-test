@@ -7,7 +7,7 @@ import DefaultLayout from 'layout/DefaultLayout'
 import AuthLayout from 'layout/AuthLayout'
 
 import SignIn from 'pages/signIn'
-import Channels from 'pages/channels'
+import Chat from 'pages/chat'
 import { CssBaseline } from '@mui/material'
 
 import { useAppSelector } from '_redux/hooks'
@@ -34,7 +34,11 @@ const App: React.FC = () => {
             {user.login && (
               <Route path="/slack" element={<DefaultLayout />}>
                 <Route index element={<Dashboard />} />
-                <Route path="channels/:id" element={<Channels />} />
+                <Route
+                  path="channels/:id"
+                  element={<Chat typeChat="channel" />}
+                />
+                <Route path="persons/:id" element={<Chat typeChat="user" />} />
               </Route>
             )}
             <Route

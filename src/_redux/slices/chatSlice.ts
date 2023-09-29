@@ -9,10 +9,43 @@ import { v4 as uuidv4 } from 'uuid'
 
 const data: Message[] = [
   {
+    id: '0e16944c-3191-431b-9d90-74198f756cce',
+    type: 'channel',
+    typeId: 'project',
+    user: 'Maria Monique',
+    text: 'Proin sapien tortor, fermentum eu ante vel, faucibus euismod tellus. Aenean pretium mauris id velit elementum, eu scelerisque metus condimentum. Vivamus suscipit dolor in nisi dapibus fermentum. Mauris tortor augue, commodo sit amet ipsum ac, porttitor aliquet augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus facilisis ornare justo, sed faucibus quam ornare ac. In hac habitasse platea dictumst. Proin vitae ligula ut enim gravida viverra. Etiam purus leo, consequat ut congue a, posuere eu quam. Aenean vitae consequat elit. Pellentesque id ultricies ante, vel feugiat ipsum. Aenean pulvinar tincidunt neque, eget rhoncus nulla congue ut. Donec nulla urna, maximus ut tellus in, accumsan mollis sem.',
+    unixTime: 1696026310
+  },
+  {
+    id: 'f7bfc091-1a2c-48c2-9097-772cda34258b',
+    type: 'channel',
+    typeId: 'project',
+    user: 'Forest Liddy',
+    text: 'Vivamus eget tempus libero. Nam facilisis, turpis sed finibus venenatis, sem dolor cursus libero, id hendrerit eros enim ut eros. In rhoncus ante at lacus maximus, at gravida velit viverra. Aliquam lobortis cursus erat quis dapibus. Phasellus blandit vestibulum elit, vitae tincidunt dui maximus nec. Cras hendrerit pellentesque nunc id gravida. Phasellus non turpis lacinia, vehicula diam sit amet, mattis enim.',
+    unixTime: 1696026310
+  },
+  {
+    id: 'd528cc57-5bd0-4d9c-ad94-13570d01757d',
+    type: 'channel',
+    typeId: 'scrum',
+    user: 'Forest Liddy',
+    text: 'Nulla facilisi. Aliquam imperdiet bibendum nisi vitae condimentum. Suspendisse eleifend nibh in enim ornare, id tempus orci dapibus. Proin sed scelerisque neque. Vestibulum blandit mi quis leo euismod faucibus. Vestibulum eget libero eget nibh sodales vehicula vitae ut est. Integer vel commodo massa, eget imperdiet sapien. Mauris auctor elementum nibh, ac vehicula leo pellentesque quis. Cras pulvinar ipsum vulputate.',
+    unixTime: 1696026310
+  },
+  {
+    id: '92b0514d-8b89-435c-8949-5718ac5f5864',
     type: 'channel',
     typeId: 'class',
-    user: 'temp',
-    text: 'Vivamus eget tempus libero. Nam facilisis, turpis sed finibus venenatis, sem dolor cursus libero, id hendrerit eros enim ut eros. In rhoncus ante at lacus maximus, at gravida velit viverra. Aliquam lobortis cursus erat quis dapibus. Phasellus blandit vestibulum elit, vitae tincidunt dui maximus nec. Cras hendrerit pellentesque nunc id gravida. Phasellus non turpis lacinia, vehicula diam sit amet, mattis enim.',
+    user: 'Maria Monique',
+    text: 'In pulvinar ullamcorper lectus, id venenatis magna tincidunt eu. Etiam maximus blandit lacinia. Quisque malesuada auctor posuere. Donec iaculis ante in arcu hendrerit euismod. Mauris vel tincidunt risus. In bibendum, nisl nec aliquet blandit, neque nulla semper enim, ac mattis ligula ante ac tellus. Fusce maximus, turpis ut facilisis interdum, quam nisl mollis diam, quis commodo dui est a est',
+    unixTime: 1696026310
+  },
+  {
+    id: 'dacaedf5-fa96-4261-bab1-ef3d6d02600e',
+    type: 'user',
+    typeId: 'maria_monique',
+    user: 'Maria Monique',
+    text: 'In pulvinar ullamcorper lectus, id venenatis magna tincidunt eu. Etiam maximus blandit lacinia. Quisque malesuada auctor posuere. Donec iaculis ante in arcu hendrerit euismod. Mauris vel tincidunt risus. In bibendum, nisl nec aliquet blandit, neque nulla semper enim, ac mattis ligula ante ac tellus. Fusce maximus, turpis ut facilisis interdum, quam nisl mollis diam, quis commodo dui est a est',
     unixTime: 1696026310
   }
 ]
@@ -20,7 +53,7 @@ const data: Message[] = [
 interface DataRequest {
   text: string
   user: string
-  type: 'channel' | 'person'
+  type: 'channel' | 'user'
   typeId: string
 }
 

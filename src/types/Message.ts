@@ -1,6 +1,6 @@
 export interface Message {
-  id?: number
-  type: 'channel' | 'person'
+  id?: string
+  type: 'channel' | 'user'
   typeId: string
   user: string
   text: string

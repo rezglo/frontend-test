@@ -8,9 +8,9 @@ interface InitialState {
 
 const initialState: InitialState = {
   result: [
+    { id: 'maria_monique', name: 'Maria Monique' },
     { id: 'forest_liddy', name: 'Forest Liddy' },
-    { id: 'sully_creighton', name: 'Sully Creighton' },
-    { id: 'maria_monique', name: 'Maria Monique' }
+    { id: 'sully_creighton', name: 'Sully Creighton' }
   ]
 }
 

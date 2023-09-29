@@ -13,15 +13,21 @@ import Box from '@mui/material/Box'
 import { Channel } from 'types/Channel'
 import ChatElement from 'components/chatElement'
 
-export default function Chanel() {
+interface Props {
+  typeChat: 'channel' | 'user'
+}
+
+const Chat: React.FC<Props> = ({ typeChat }) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const [channelSel, setChannelSel] = useState<Channel>()
+  const [elemSel, setElemSel] = useState<Channel>()
   const [comment, setComment] = useState('')
   const { id } = useParams()
 
   const channels = useAppSelector((state) => state.channels)
+  const users = useAppSelector((state) => state.users)
+
   const chat = useAppSelector((state) => state.chat)
   const user = useAppSelector((state) => state.signIn.result)
 
@@ -62,9 +68,12 @@ export default function Chanel() {
   }
 
   useEffect(() => {
-    const sel = channels.result.find((item) => item.id === id)
+    const sel =
+      typeChat === 'channel'
+        ? channels.result.find((item) => item.id === id)
+        : users.result.find((item) => item.id === id)
     if (id !== '' && sel != null) {
-      setChannelSel(sel)
+      setElemSel(sel)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
@@ -80,34 +89,59 @@ export default function Chanel() {
   const send = () => {
     setSubmit(true)
     if (isFormValid) {
-      channelSel?.id !== undefined &&
+      elemSel?.id !== undefined &&
         dispatch(
           chatFetch({
             text: comment,
-            user: user?.name ?? '',
-            type: 'channel',
-            typeId: channelSel.id
+            user: user?.name ?? 'test',
+            type: typeChat,
+            typeId: elemSel.id
           })
         )
     }
   }
 
-  if (channelSel === undefined) {
+  if (elemSel === undefined) {
     return <>Error access</>
   }
 
+  const chatFilter = chat.result?.filter(
+    (item) => item.type === typeChat && item.typeId === elemSel.id
+  )
   return (
     <>
       <Box>
         <Typography variant="h4" mb={1} component="h2">
-          Channel: #{channelSel.name}
+          {typeChat === 'channel' ? 'Channel' : 'User'}:{' '}
+          {typeChat === 'channel' ? '#' : ''}
+          {elemSel.name}
         </Typography>
         <Box>
-          {chat.result
-            ?.filter(
-              (item) => item.type === 'channel' && item.typeId === channelSel.id
-            )
-            .map((item, index) => <ChatElement key={index} item={item} />)}
+          {(chatFilter.length === 0 || chatFilter === null) && (
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{
+                backgroundColor: 'grey.100',
+                borderRadius: 3,
+                py: 4,
+                mb: 2
+              }}
+            >
+              <Typography
+                variant="body1"
+                display="block"
+                sx={{ color: 'grey.400' }}
+              >
+                Not exist comments
+              </Typography>
+            </Box>
+          )}
+          {chatFilter.map((item, index) => (
+            <ChatElement key={index} item={item} />
+          ))}
         </Box>
         <Box>
           <Box
@@ -164,3 +198,4 @@ export default function Chanel() {
     </>
   )
 }
+export default Chat
