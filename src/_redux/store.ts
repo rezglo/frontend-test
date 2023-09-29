@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import signInReducer from '_redux/slices/signInSlice'
+import channelsReducer from '_redux/slices/channelsSlice'
 
 const store = configureStore({
   reducer: {
-    signIn: signInReducer
+    signIn: signInReducer,
+    channels: channelsReducer
   }
 })
 

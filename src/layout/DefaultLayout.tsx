@@ -32,6 +32,7 @@ import Colors from '_global/colors'
 
 import { useAppDispatch, useAppSelector } from '_redux/hooks'
 import { logout } from '_redux/slices/signInSlice'
+import MenuChannels from 'components/menuChannels'
 
 const drawerWidth = 300
 
@@ -89,7 +90,7 @@ export default function DefaultLayout() {
   const theme = useTheme()
 
   const [open, setOpen] = useState(true)
-  const [menuOpen, setMenuOpen] = useState<string[]>([])
+  const [menuOpen, setMenuOpen] = useState<string[]>(['Channels', 'Users'])
   const [menuUser, setMenuUser] = useState<null | HTMLElement>(null)
   const openMenuUser = Boolean(menuUser)
 
@@ -107,6 +108,32 @@ export default function DefaultLayout() {
   }
 
   const ListItemIconStyle = { color: Colors.white }
+
+  const showMenu = (label: 'Channels' | 'Users') => {
+    return (
+      <>
+        <ListItem
+          disablePadding
+          onClick={() => {
+            if (menuOpen.includes(label)) {
+              setMenuOpen(menuOpen.filter((item) => item !== label))
+            } else {
+              setMenuOpen([...menuOpen, label])
+            }
+          }}
+        >
+          <ListItemButton>
+            <ListItemText primary={label} />
+            {menuOpen.includes(label) ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+        </ListItem>
+
+        <Collapse in={menuOpen.includes(label)} timeout="auto" unmountOnExit>
+          {label === 'Channels' && <MenuChannels />}
+        </Collapse>
+      </>
+    )
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -246,40 +273,8 @@ export default function DefaultLayout() {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
-
-          <ListItem
-            disablePadding
-            onClick={() => {
-              if (menuOpen.includes('chanels')) {
-                setMenuOpen(menuOpen.filter((item) => item !== 'chanels'))
-              } else {
-                setMenuOpen([...menuOpen, 'chanels'])
-              }
-            }}
-          >
-            <ListItemButton>
-              <ListItemText primary={'Chanels'} />
-
-              {menuOpen.includes('chanels') ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-          </ListItem>
-
-          <Collapse
-            in={menuOpen.includes('chanels')}
-            timeout="auto"
-            unmountOnExit
-          >
-            <ListItem
-              disablePadding
-              onClick={() => {
-                navigate('test')
-              }}
-            >
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary={'sub'} />
-              </ListItemButton>
-            </ListItem>
-          </Collapse>
+          {showMenu('Channels')}
+          {showMenu('Users')}
         </List>
         <Divider />
       </Drawer>
