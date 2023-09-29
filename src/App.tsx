@@ -34,7 +34,7 @@ const App: React.FC = () => {
             {user.login && (
               <Route path="/slack" element={<DefaultLayout />}>
                 <Route index element={<Dashboard />} />
-                <Route path="channels" element={<Channels />} />
+                <Route path="channels/:id" element={<Channels />} />
               </Route>
             )}
             <Route

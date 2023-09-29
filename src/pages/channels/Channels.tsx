@@ -22,8 +22,8 @@ export default function Chanel() {
   const { id } = useParams()
 
   const channels = useAppSelector((state) => state.channels)
-
   const chat = useAppSelector((state) => state.chat)
+  const user = useAppSelector((state) => state.signIn.result)
 
   const [submit, setSubmit] = useState(false)
   const [errors, setErrors] = useState({})
@@ -84,7 +84,7 @@ export default function Chanel() {
         dispatch(
           chatFetch({
             text: comment,
-            user: 'Administrator',
+            user: user?.name ?? '',
             type: 'channel',
             typeId: channelSel.id
           })
@@ -103,9 +103,11 @@ export default function Chanel() {
           Channel: #{channelSel.name}
         </Typography>
         <Box>
-          {chat.result?.map((item, index) => (
-            <ChatElement key={index} item={item} />
-          ))}
+          {chat.result
+            ?.filter(
+              (item) => item.type === 'channel' && item.typeId === channelSel.id
+            )
+            .map((item, index) => <ChatElement key={index} item={item} />)}
         </Box>
         <Box>
           <Box
