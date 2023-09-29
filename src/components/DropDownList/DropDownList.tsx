@@ -8,7 +8,7 @@ import TagIcon from '@mui/icons-material/Tag'
 
 import DropDownListItem from '../DropDownListItem/DropDownListItem'
 import { type User, type Channel } from '../../store/types'
-import ChannelModal from '../Modal/Modal'
+import ModalChannel from '../ModalChannel/ModalChannel'
 
 interface Props {
   title: string
@@ -64,7 +64,7 @@ function DropDownList ({ title, list }: Props) {
                     <ListItemIcon sx={{ color: 'inherit' }}>
                       <Add fontSize='small' />
                     </ListItemIcon>
-                    <ChannelModal />
+                    <ModalChannel />
                 </ListItemButton>
                 )
               : (

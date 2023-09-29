@@ -33,8 +33,9 @@ export default function MenuListComposition () {
     if (event.target.title === 'logout') {
       logoutUser()
       navigate('/sign-in')
+    } else if (event.target.title === 'home') {
+      navigate('/')
     }
-    navigate('/')
   }
 
   function handleListKeyDown (event: React.KeyboardEvent) {

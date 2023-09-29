@@ -9,3 +9,7 @@
   max-width: 360px; 
   overflow-y: scroll;
 }
+
+.alternative-info{
+  text-align: center;
+}

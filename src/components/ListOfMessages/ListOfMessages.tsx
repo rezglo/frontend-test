@@ -10,13 +10,13 @@ interface Props {
 }
 
 function ListOfMessages ({ messages }: Props) {
-  const anyMessage = messages === undefined
+  const anyMessage = messages === undefined || messages.length === 0
   return (
       <div id='list-container'>
         <List disablePadding sx={{ width: '100%', maxWidth: 700, bgcolor: 'background.paper' }}>
           {
             anyMessage
-              ? <p>No Han escrito aun</p>
+              ? <p className='alternative-info'>No hay mensajes en el Canal</p>
               : messages.map(message => (
                 <Fragment key={message.id}>
                   <Message
