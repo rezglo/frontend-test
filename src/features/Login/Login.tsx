@@ -4,12 +4,14 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { type ChangeEvent, type FormEvent, useState, useEffect } from 'react'
 import { useUserStore } from '../../store/users'
 import { type InputUser } from '../../store/types'
+import { useChannelStore } from '../../store/channels'
 import './Login.css'
 
 function Login () {
   const [form, setForm] = useState<InputUser>({} as InputUser)
   const getUsers = useUserStore(state => state.getUsers)
   const signInUser = useUserStore(state => state.signInUser)
+  const getChannelById = useChannelStore(state => state.getChannelById)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -28,6 +30,7 @@ function Login () {
     e.preventDefault()
     try {
       signInUser(form)
+      getChannelById(form.email)
       const newPath = location?.state?.location?.pathname ?? '/'
       navigate(newPath)
     } catch (error) {

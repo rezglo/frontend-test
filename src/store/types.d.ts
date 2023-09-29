@@ -12,3 +12,28 @@ export interface InputUser {
   email: string
   password: string
 }
+
+export interface Channel {
+  id: UUID
+  owner: User
+  members?: User[]
+  name: string
+  messages?: Message[]
+}
+
+export interface InputChannel {
+  owner: User
+  name: string
+}
+
+export interface Message {
+  id: UUID
+  author: User
+  timestamp: string
+  message: string
+}
+
+export interface inputMessage {
+  author: User
+  message: string
+}

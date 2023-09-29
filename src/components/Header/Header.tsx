@@ -12,7 +12,7 @@ function Header () {
         <AccessTime />
       </div>
       <div className='header-search-bar'>
-        <input placeholder='Busca en Room' />
+        <input placeholder='Busca en Room' type='text' />
         <TuneRoundedIcon />
         <Search />
       </div>
