@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { type ChangeEvent, type FormEvent, useState } from 'react'
 import { useUserStore } from '../../store/users'
 import { type InputUser } from '../../store/types'
+import './Login.css'
 
 function Login () {
   const [form, setForm] = useState<InputUser>({} as InputUser)

@@ -1,0 +1,20 @@
+.login{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.login-inner{
+  padding: 128px;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+  background-color: #fff;
+  text-align: center;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
