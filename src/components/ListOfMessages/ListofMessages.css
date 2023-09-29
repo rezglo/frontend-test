@@ -1,0 +1,11 @@
+
+#list-container::-webkit-scrollbar{
+  width: 0;
+}
+
+#list-container{
+  width: 100%;
+  height: 364px; 
+  max-width: 360px; 
+  overflow-y: scroll;
+}

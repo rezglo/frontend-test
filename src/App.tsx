@@ -4,6 +4,7 @@ import HomePage from './features/Home/HomePage'
 import Login from './features/Login/Login'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Layout from './components/Layout/Layout'
+import Chat from './features/Chat/Chat'
 
 function App () {
   return (
@@ -18,6 +19,15 @@ function App () {
               </Layout>
             </ProtectedRoute>
           }
+        />
+        <Route
+          path='/channels/:id'
+          element={
+          <ProtectedRoute>
+            <Layout>
+              <Chat />
+            </Layout>
+          </ProtectedRoute> }
         />
         <Route path='/sign-in' element={<Login />} />
         <Route path='*' element={<Page404 />} />
