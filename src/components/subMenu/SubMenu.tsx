@@ -172,7 +172,8 @@ const SubMenu: React.FC<Props> = ({ type }) => {
               <ListItemText
                 primary={`${type === 'channel' ? '#' : ''}${item.name}`}
                 onClick={() => {
-                  navigate('test')
+                  // navigate(`/channels/${item.id}`)
+                  navigate(`channels/${item.id}`)
                 }}
               />
               <DeleteIcon

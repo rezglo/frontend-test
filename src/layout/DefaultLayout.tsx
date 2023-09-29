@@ -281,7 +281,6 @@ export default function DefaultLayout() {
 
       <Main open={open}>
         <DrawerHeader />
-
         <Outlet />
       </Main>
     </Box>
