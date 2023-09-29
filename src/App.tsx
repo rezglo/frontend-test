@@ -3,12 +3,22 @@ import Page404 from './features/404/Page404'
 import HomePage from './features/Home/HomePage'
 import Login from './features/Login/Login'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import Layout from './components/Layout/Layout'
 
 function App () {
   return (
     <>
       <Routes>
-        <Route path='/' element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+        <Route
+          path='/'
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <HomePage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
         <Route path='/sign-in' element={<Login />} />
         <Route path='*' element={<Page404 />} />
       </Routes>
