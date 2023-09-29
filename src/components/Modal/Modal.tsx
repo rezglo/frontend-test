@@ -68,21 +68,22 @@ export default function ChannelModal () {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems: 'center'
+                gap: 3,
+                alignItems: 'center',
+                border: 'none'
               }}
-              noValidate
               autoComplete="off"
               onSubmit={handleSubmit}
             >
               <TextField
                 onChange={handleChange}
                 name='name'
-                label="Nombre"
+                label="Nombre del Canal"
                 type="text"
                 variant="standard"
               />
-              <Button type='submit' variant="contained" color="success">
-                Success
+              <Button type='submit' variant="contained" color="info">
+                Crear canal
               </Button>
             </Box>
           </Box>

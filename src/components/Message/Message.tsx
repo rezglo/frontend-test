@@ -1,4 +1,4 @@
-import { Avatar, Badge, IconButton, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
+import { Avatar, Chip, IconButton, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import EditNoteIcon from '@mui/icons-material/EditNote'
 import { Delete } from '@mui/icons-material'
 import { type UUID } from '../../store/types'
@@ -40,7 +40,7 @@ function Message ({ id, author, photo, message, timestamp }: Props) {
                   >
                     {author}
                   </Typography>
-                  <Badge color='secondary' variant='dot' sx={{ fontSize: '12px', color: '#222' }} >{setDate(timestamp)}</Badge>
+                  <Chip label={setDate(timestamp)} variant="outlined" size="small" />
                 </>
               }
               secondary={
