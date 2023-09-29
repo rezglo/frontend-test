@@ -25,7 +25,7 @@ import {
 import DialogDelete from 'components/dialogDelete/DialogDelete'
 
 interface ItemSel {
-  action: 'new' | 'delete'
+  action: 'new' | 'remove'
   id?: string
 }
 
@@ -89,7 +89,7 @@ const SubMenu: React.FC<Props> = ({ type }) => {
       data.result.find((item) => item.id === itemSel.id)?.name
     return (
       <>
-        {itemSel?.action === 'delete' ? (
+        {itemSel?.action === 'remove' ? (
           <DialogDelete
             description={`${type}: ${String(nameDelete)}`}
             showModal={showModal}
@@ -182,7 +182,7 @@ const SubMenu: React.FC<Props> = ({ type }) => {
                 onClick={() => {
                   setShowModal(true)
                   setItemSel({
-                    action: 'delete',
+                    action: 'remove',
                     id: item.id
                   })
                 }}

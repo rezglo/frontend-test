@@ -9,9 +9,10 @@ import moment from 'moment'
 
 interface Props {
   item: Message
+  onAction: (action: 'remove' | 'edit', elem: Message) => void
 }
 
-const ChatElement: React.FC<Props> = ({ item }) => {
+const ChatElement: React.FC<Props> = ({ item, onAction }) => {
   return (
     <Box
       sx={{
@@ -58,7 +59,7 @@ const ChatElement: React.FC<Props> = ({ item }) => {
               underline="hover"
               variant="body1"
               onClick={() => {
-                alert('edit')
+                onAction('edit', item)
               }}
               sx={{ cursor: 'pointer', mr: 2 }}
             >
@@ -68,7 +69,7 @@ const ChatElement: React.FC<Props> = ({ item }) => {
               underline="hover"
               variant="body1"
               onClick={() => {
-                alert('delete')
+                onAction('remove', item)
               }}
               sx={{ cursor: 'pointer' }}
             >

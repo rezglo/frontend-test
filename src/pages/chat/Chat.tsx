@@ -5,16 +5,30 @@ import SendIcon from '@mui/icons-material/Send'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
 
 import { useAppDispatch, useAppSelector } from '_redux/hooks'
-import { fetch as chatFetch } from '_redux/slices/chatSlice'
+import {
+  fetch as chatFetch,
+  fetchRemove as chatFetchRemove,
+  fetchEdit as chatFetchEdit
+} from '_redux/slices/chatSlice'
 
 import Box from '@mui/material/Box'
 import { Channel } from 'types/Channel'
 import ChatElement from 'components/chatElement'
+import DialogDelete from 'components/dialogDelete'
 
 interface Props {
   typeChat: 'channel' | 'user'
+}
+
+interface ItemSel {
+  action: 'edit' | 'remove'
+  id?: string
 }
 
 const Chat: React.FC<Props> = ({ typeChat }) => {
@@ -23,6 +37,8 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
 
   const [elemSel, setElemSel] = useState<Channel>()
   const [comment, setComment] = useState('')
+  const [commentEdit, setCommentEdit] = useState('')
+
   const { id } = useParams()
 
   const channels = useAppSelector((state) => state.channels)
@@ -34,6 +50,9 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
   const [submit, setSubmit] = useState(false)
   const [errors, setErrors] = useState({})
   const [isFormValid, setIsFormValid] = useState(false)
+
+  const [showModal, setShowModal] = useState(false)
+  const [itemSel, setItemSel] = useState<ItemSel>()
 
   useEffect(() => {
     setComment('')
@@ -80,6 +99,7 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
 
   useEffect(() => {
     if (!chat.loading) {
+      setShowModal(false)
       setSubmit(false)
       setComment('')
     }
@@ -101,6 +121,80 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
     }
   }
 
+  const modal = () => {
+    const nameDelete =
+      itemSel?.id !== undefined &&
+      chat.result.find((item) => item.id === itemSel.id)?.text
+    return (
+      <>
+        {itemSel?.action === 'remove' ? (
+          <DialogDelete
+            loading={chat.loading}
+            description={`Comment: ${String(nameDelete)}`}
+            showModal={showModal}
+            onActionHide={() => {
+              setShowModal(false)
+            }}
+            onActionDelete={() => {
+              itemSel.id !== undefined &&
+                dispatch(chatFetchRemove({ id: itemSel.id }))
+            }}
+          />
+        ) : (
+          <Dialog
+            open={showModal}
+            maxWidth={'sm'}
+            fullWidth={true}
+            onClose={() => setShowModal(false)}
+          >
+            <DialogTitle>Edit Comment</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Comment"
+                type="text"
+                fullWidth
+                variant="standard"
+                onChange={(e) => {
+                  setCommentEdit(e.target.value)
+                }}
+                value={commentEdit}
+                error={validFieldForm('name') !== ''}
+                helperText={validFieldForm('name')}
+                multiline={true}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setShowModal(false)}>Cancel</Button>
+              <Button
+                variant="contained"
+                disabled={chat.loading}
+                onClick={() => {
+                  if (commentEdit !== '') {
+                    itemSel?.id !== undefined &&
+                      dispatch(
+                        chatFetchEdit({ id: itemSel.id, text: commentEdit })
+                      )
+                  }
+                }}
+              >
+                {chat.loading ? (
+                  <>
+                    <CircularProgress size={28} />
+                  </>
+                ) : (
+                  'Send'
+                )}
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+      </>
+    )
+  }
+
   if (elemSel === undefined) {
     return <>Error access</>
   }
@@ -110,6 +204,7 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
   )
   return (
     <>
+      {modal()}
       <Box>
         <Typography variant="h4" mb={1} component="h2">
           {typeChat === 'channel' ? 'Channel' : 'User'}:{' '}
@@ -140,7 +235,26 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
             </Box>
           )}
           {chatFilter.map((item, index) => (
-            <ChatElement key={index} item={item} />
+            <ChatElement
+              key={index}
+              item={item}
+              onAction={(action, elem) => {
+                if (action === 'remove') {
+                  setShowModal(true)
+                  setItemSel({
+                    action: 'remove',
+                    id: item.id
+                  })
+                } else if (action === 'edit') {
+                  setShowModal(true)
+                  setCommentEdit(item.text)
+                  setItemSel({
+                    action: 'edit',
+                    id: item.id
+                  })
+                }
+              }}
+            />
           ))}
         </Box>
         <Box>
@@ -178,12 +292,12 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
             <Box>
               <Button
                 variant="contained"
-                endIcon={!chat.loading ? <SendIcon /> : null}
-                disabled={chat.loading}
+                endIcon={<SendIcon />}
+                disabled={chat.loading && !showModal}
                 sx={{ ml: 2, mt: 2 }}
                 onClick={send}
               >
-                {chat.loading ? (
+                {chat.loading && !showModal ? (
                   <>
                     <CircularProgress size={28} />
                   </>

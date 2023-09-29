@@ -93,6 +93,49 @@ export const fetch = createAsyncThunk(
     }
   }
 )
+export const fetchRemove = createAsyncThunk(
+  'chat/remove',
+  async ({ id }: { id: string }, { fulfillWithValue, rejectWithValue }) => {
+    let resp = false
+    await new Promise((resolve) => {
+      setTimeout(resolve, 2000)
+      resp = true
+    })
+    if (resp) {
+      if (id !== '') {
+        return fulfillWithValue({
+          id
+        })
+      } else {
+        return rejectWithValue({})
+      }
+    }
+  }
+)
+
+export const fetchEdit = createAsyncThunk(
+  'chat/edit',
+  async (
+    { id, text }: { id: string; text: string },
+    { fulfillWithValue, rejectWithValue }
+  ) => {
+    let resp = false
+    await new Promise((resolve) => {
+      setTimeout(resolve, 2000)
+      resp = true
+    })
+    if (resp) {
+      if (id !== '' && text !== '') {
+        return fulfillWithValue({
+          id,
+          text
+        })
+      } else {
+        return rejectWithValue({})
+      }
+    }
+  }
+)
 
 const chatSlice = createSlice({
   name: 'chat',
@@ -121,6 +164,48 @@ const chatSlice = createSlice({
       state.error = ''
     })
     builder.addCase(fetch.rejected, (state, action) => {
+      state.loading = false
+      state.error = 'Something went wrong'
+    })
+
+    builder.addCase(fetchRemove.pending, (state) => {
+      state.loading = true
+      state.error = ''
+    })
+    builder.addCase(
+      fetchRemove.fulfilled,
+      (state, action: PayloadAction<any>) => {
+        state.loading = false
+        state.result = state.result.filter(
+          (item) => item.id !== action.payload.id
+        )
+        state.error = ''
+      }
+    )
+    builder.addCase(fetchRemove.rejected, (state, action) => {
+      state.loading = false
+      state.error = 'Something went wrong'
+    })
+
+    builder.addCase(fetchEdit.pending, (state) => {
+      state.loading = true
+      state.error = ''
+    })
+    builder.addCase(
+      fetchEdit.fulfilled,
+      (state, action: PayloadAction<any>) => {
+        state.loading = false
+        state.result = state.result.map((item) => {
+          return {
+            ...item,
+            text:
+              action.payload.id === item.id ? action.payload.text : item.text
+          }
+        })
+        state.error = ''
+      }
+    )
+    builder.addCase(fetchEdit.rejected, (state, action) => {
       state.loading = false
       state.error = 'Something went wrong'
     })

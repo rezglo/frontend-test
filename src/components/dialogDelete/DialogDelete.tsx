@@ -48,7 +48,7 @@ const DialogDelete: React.FC<Props> = ({
             onActionDelete()
           }}
         >
-          {loading ? <CircularProgress size={28} /> : 'Delete'}
+          {loading ? <CircularProgress size={28} /> : 'Remove'}
         </Button>
       </DialogActions>
     </Dialog>
