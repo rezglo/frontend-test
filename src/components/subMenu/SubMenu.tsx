@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { ListItem, ListItemButton, ListItemText } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -23,6 +23,7 @@ import {
   removeItem as removeItemUser
 } from '_redux/slices/usersSlice'
 import DialogDelete from 'components/dialogDelete/DialogDelete'
+import Colors from '_global/colors'
 
 interface ItemSel {
   action: 'new' | 'remove'
@@ -37,6 +38,8 @@ const SubMenu: React.FC<Props> = ({ type }) => {
   const label = type === 'channel' ? 'Channels' : 'Users'
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const allPath = pathname.split('/')
 
   const [showModal, setShowModal] = useState(false)
   const [name, setName] = useState('')
@@ -160,8 +163,17 @@ const SubMenu: React.FC<Props> = ({ type }) => {
     <>
       {modal()}
       {data.result?.map((item, index) => (
-        <ListItem key={index} disablePadding>
-          <ListItemButton sx={{ px: 4 }}>
+        <ListItem
+          key={index}
+          disablePadding
+          sx={{
+            backgroundColor:
+              allPath[2] === type + 's' && allPath[3] === item.id
+                ? Colors.identityPrimaryDark
+                : undefined
+          }}
+        >
+          <ListItemButton sx={{ pl: 4 }}>
             <Box
               flex={1}
               display="flex"
@@ -173,7 +185,7 @@ const SubMenu: React.FC<Props> = ({ type }) => {
                 primary={`${type === 'channel' ? '#' : ''}${item.name}`}
                 onClick={() => {
                   navigate(
-                    `${type === 'channel' ? 'channels' : 'persons'}/${item.id}`
+                    `${type === 'channel' ? 'channels' : 'users'}/${item.id}`
                   )
                 }}
               />

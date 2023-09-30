@@ -27,6 +27,8 @@ import MenuItem from '@mui/material/MenuItem'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse'
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 
 import Colors from '_global/colors'
 
@@ -123,6 +125,13 @@ export default function DefaultLayout() {
           }}
         >
           <ListItemButton>
+            <ListItemIcon>
+              {type === 'channel' ? (
+                <QuestionAnswerIcon sx={ListItemIconStyle} />
+              ) : (
+                <PeopleAltIcon sx={ListItemIconStyle} />
+              )}
+            </ListItemIcon>
             <ListItemText primary={type === 'channel' ? 'Channels' : 'Users'} />
             {menuOpen.includes(type) ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>

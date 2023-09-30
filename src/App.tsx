@@ -38,7 +38,7 @@ const App: React.FC = () => {
                   path="channels/:id"
                   element={<Chat typeChat="channel" />}
                 />
-                <Route path="persons/:id" element={<Chat typeChat="user" />} />
+                <Route path="users/:id" element={<Chat typeChat="user" />} />
               </Route>
             )}
             <Route
