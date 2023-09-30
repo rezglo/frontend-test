@@ -29,12 +29,28 @@ export default function MenuListComposition () {
       return
     }
     setOpen(false)
-    if (event.target.title === 'logout') {
-      logoutUser()
-      navigate('/sign-in')
-    } else if (event.target.title === 'home') {
-      navigate('/')
+  }
+  const handleCloseLogout = (event: Event | React.SyntheticEvent) => {
+    if (
+      (anchorRef.current != null) &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return
     }
+    logoutUser()
+    navigate('/sign-in')
+    setOpen(false)
+  }
+
+  const handleCloseHome = (event: Event | React.SyntheticEvent) => {
+    if (
+      (anchorRef.current != null) &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return
+    }
+    navigate('/')
+    setOpen(false)
   }
 
   function handleListKeyDown (event: React.KeyboardEvent) {
@@ -87,9 +103,9 @@ export default function MenuListComposition () {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem title='home' onClick={handleClose}>Home</MenuItem>
-                    <MenuItem title='profile' onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem title='logout' onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem className='home' onClick={handleCloseHome}>Home</MenuItem>
+                    <MenuItem className='profile' onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem className='logout' onClick={handleCloseLogout}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

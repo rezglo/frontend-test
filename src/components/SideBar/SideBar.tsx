@@ -30,7 +30,6 @@ export default function ResponsiveDrawer () {
   const users = useUserStore(state => state.users)
   const listOfUsers = users.filter(user => user.id !== perfil?.id)
   const channels = useChannelStore(state => state.channels)
-  console.log(channels)
 
   return (
         <Drawer
