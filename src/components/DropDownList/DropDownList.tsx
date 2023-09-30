@@ -81,10 +81,26 @@ function DropDownList ({ title, list }: Props) {
           {
             displayChannels
               ? list.map((item) => (
-                <DropDownListItem key={item.id} icon={<TagIcon fontSize='small' />} label={item.name} id={item.id} />
+                <DropDownListItem
+                  key={item.id}
+                  icon={<TagIcon fontSize='small' />}
+                  label={item.name}
+                  id={item.id}
+                />
               ))
               : list.map(item => (
-                <DropDownListItem key={item.id} icon={<Avatar src={item.photo} alt={item.username} variant='rounded' sx={{ width: 24, height: 24 }}/>} label={item.username} id={item.id} />
+                <DropDownListItem
+                  key={item.id}
+                  icon={
+                    <Avatar
+                      src={item.photo}
+                      alt={item.username}
+                      variant='rounded'
+                      sx={{ width: 24, height: 24 }}
+                      />
+                    }
+                  label={item.username}
+                  id={item.id} />
               ))
           }
         </>

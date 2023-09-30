@@ -26,7 +26,7 @@ function InputChat () {
     <form className='chat-form' onSubmit={handleSubmit}>
       <input value={input} onChange={handleChange} type="text" placeholder={`Enviar un mensaje a #${currentChannel?.name}`}/>
       <Button hidden type='submit' sx={{ display: 'none' }}>
-        SEND
+        Enviar
       </Button>
     </form>
   )
