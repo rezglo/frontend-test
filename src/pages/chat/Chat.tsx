@@ -230,7 +230,7 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
                 display="block"
                 sx={{ color: 'grey.400' }}
               >
-                Not exist comments
+                Not exist messages
               </Typography>
             </Box>
           )}
@@ -275,7 +275,7 @@ const Chat: React.FC<Props> = ({ typeChat }) => {
               <TextField
                 margin="dense"
                 id="address"
-                label="Comments"
+                label="Message"
                 required
                 type="text"
                 fullWidth

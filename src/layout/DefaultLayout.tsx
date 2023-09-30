@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet, useLocation } from 'react-router-dom'
 import { styled, useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
@@ -98,6 +98,7 @@ export default function DefaultLayout() {
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const { pathname } = useLocation()
 
   const user = useAppSelector((state) => state.signIn.result)
 
@@ -273,6 +274,10 @@ export default function DefaultLayout() {
             disablePadding
             onClick={() => {
               navigate('/slack')
+            }}
+            sx={{
+              backgroundColor:
+                pathname === '/slack' ? Colors.identityPrimaryDark : undefined
             }}
           >
             <ListItemButton>
