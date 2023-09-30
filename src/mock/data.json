@@ -1,0 +1,148 @@
+{
+  "channels": [
+    {
+      "id": "ssd-4r4f-54gwagfg-5ywsy-23e21e",
+      "owner": {
+        "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+        "username": "samudev",
+        "email": "samudev1234@gmail.com",
+        "password": "1234",
+        "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+      },
+      "members": [],
+      "name": "awesome-react",
+      "messages": [
+        {
+          "id": "daasdjyu-dr56456vmda-d312rh6a-,i8o9liufaw-wsQEA3W",
+          "author": {
+            "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+            "username": "samudev",
+            "email": "samudev1234@gmail.com",
+            "password": "1234",
+            "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+          },
+          "timestamp": "2022-09-29T13:34:32.770Z",
+          "message": "esto es solo una prueba"
+        },
+        {
+          "id": "dewrewfw-dfsdfftw-8i7i23-r4fAER-78KJIYR",
+          "author": {
+            "id": "xq2354-dsadada-dsada-b3243b-bhnfgh458",
+            "username": "beatriz",
+            "email": "beatriz1234@gmail.com",
+            "password": "1234",
+            "photo": "https://randomuser.me/api/portraits/thumb/women/23.jpg"
+          },
+          "timestamp": "2023-06-29T13:34:32.770Z",
+          "message": "esto es solo una prueba"
+        },
+        {
+          "id": "dE12Eu-dr56NBVcZR-d312rh6a-5T43o9liufaw-HT6SAS",
+          "author": {
+            "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+            "username": "samudev",
+            "email": "samudev1234@gmail.com",
+            "password": "1234",
+            "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+          },
+          "timestamp": "2023-08-29T13:34:32.770Z",
+          "message": "esto es solo una prueba"
+        }
+      ]
+    },
+    {
+      "id": "dafsdfsda-dsfsdfsdfada-dsa78oi789kikl79oda-bl8943b-gfdwq",
+      "owner": {
+        "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+        "username": "samudev",
+        "email": "samudev1234@gmail.com",
+        "password": "1234",
+        "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+      },
+      "members": [],
+      "name": "fronted-mentors",
+      "messages": [
+        {
+          "id": "dhsrysjyu-dATRETA54a-TQATRAa-GREQAufaw-GGARGF",
+          "author": {
+            "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+            "username": "samudev",
+            "email": "samudev1234@gmail.com",
+            "password": "1234",
+            "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+          },
+          "timestamp": "2022-09-29T13:34:32.770Z",
+          "message": "esto es solo una prueba"
+        },
+        {
+          "id": "faefefjyu-dfsefsefmda-d312gtha-dfthxsthfaw-wsQEA3W",
+          "author": {
+            "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+            "username": "samudev",
+            "email": "samudev1234@gmail.com",
+            "password": "1234",
+            "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+          },
+          "timestamp": "2023-06-29T13:34:32.770Z",
+          "message": "esto es solo una prueba"
+        }
+      ]
+    },
+    {
+      "id": "s3232sd-4rbncwaf4f-5lp9l4gwagfg-5231wsy-vdver31e",
+      "owner": {
+        "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+        "username": "samudev",
+        "email": "samudev1234@gmail.com",
+        "password": "1234",
+        "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+      },
+      "members": [],
+      "name": "web-dev channel",
+      "messages": []
+    },
+    {
+      "id": "s432e23d-t5t54f-5gwy6yg-5nmbnmbsy-236ib21e",
+      "owner": {
+        "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+        "username": "samudev",
+        "email": "samudev1234@gmail.com",
+        "password": "1234",
+        "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+      },
+      "members": [],
+      "name": "ai devs",
+      "messages": []
+    }
+  ],
+  "users": [
+    {
+      "id": "dadmgba-lhkmghda-dsada-b3243b-gfdgd",
+      "username": "samudev",
+      "email": "samudev1234@gmail.com",
+      "password": "1234",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+    },
+    {
+      "id": "dadsdsa-dsadada-dsada-b3243b-gfdgd",
+      "username": "elias",
+      "email": "elias1234@gmail.com",
+      "password": "1234",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/7.jpg"
+    },
+    {
+      "id": "da1123ewd-rt3fewf-dsada-l90loi-gfdgd",
+      "username": "eros",
+      "email": "eros1234@gmail.com",
+      "password": "1234",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/5.jpg"
+    },
+    {
+      "id": "xq2354-dsadada-dsada-b3243b-bhnfgh458",
+      "username": "beatriz",
+      "email": "beatriz1234@gmail.com",
+      "password": "1234",
+      "photo": "https://randomuser.me/api/portraits/thumb/women/23.jpg"
+    }
+  ]
+}
