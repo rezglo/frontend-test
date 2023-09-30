@@ -1,6 +1,9 @@
 function Page404 () {
   return (
-    <div>404</div>
+    <section>
+      <h1>404</h1>
+      <p>Page Not Found</p>
+    </section>
   )
 }
 

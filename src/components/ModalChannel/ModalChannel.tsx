@@ -5,11 +5,13 @@ import ModalDefault from '../Modal/Modal'
 
 import { type ChangeEvent, useState, type FormEvent } from 'react'
 import { type InputChannel } from '../../store/types'
+import useModal from '../../utils/hooks/useModal'
 
 function ModalChannel () {
   const perfil = useUserStore(state => state.perfil)
   const addChannel = useChannelStore(state => state.addChannel)
   const [form, setForm] = useState({ name: '', owner: perfil } as InputChannel)
+  const { setOpen } = useModal()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm(prevState => {
@@ -22,7 +24,7 @@ function ModalChannel () {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     addChannel(form)
-    /* setOpen(false) */
+    setOpen(false)
   }
   return (
     <ModalDefault label="Añadir canal">

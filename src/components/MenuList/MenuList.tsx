@@ -6,16 +6,15 @@ import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
 import MenuItem from '@mui/material/MenuItem'
 import MenuList from '@mui/material/MenuList'
-import { useState, useRef, useEffect } from 'react'
 import { Avatar } from '@mui/material'
 import { useUserStore } from '../../store/users'
 import { useNavigate } from 'react-router-dom'
+import { useMenu } from '../../utils/hooks/useMenu'
 
 export default function MenuListComposition () {
   const perfil = useUserStore(state => state.perfil)
   const logoutUser = useUserStore(state => state.logoutUser)
-  const [open, setOpen] = useState(false)
-  const anchorRef = useRef<HTMLButtonElement>(null)
+  const { open, setOpen, anchorRef } = useMenu()
   const navigate = useNavigate()
 
   const handleToggle = () => {
@@ -46,17 +45,6 @@ export default function MenuListComposition () {
       setOpen(false)
     }
   }
-
-  const prevOpen = useRef(open)
-  useEffect(() => {
-    if (prevOpen.current && !open) {
-      if (anchorRef.current != null) {
-        anchorRef.current.focus()
-      }
-    }
-
-    prevOpen.current = open
-  }, [open])
 
   return (
     <>

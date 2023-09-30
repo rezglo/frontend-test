@@ -4,7 +4,8 @@ import Modal from '@mui/material/Modal'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 
-import { useState, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
+import useModal from '../../utils/hooks/useModal'
 
 interface Props {
   children: ReactNode
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export default function ModalDefault ({ children, label }: Props) {
-  const [open, setOpen] = useState(false)
+  const { open, setOpen } = useModal()
 
   const handleOpen = () => { setOpen(true) }
   const handleClose = () => { setOpen(false) }

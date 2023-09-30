@@ -11,7 +11,6 @@ function Chat () {
   const removeChannel = useChannelStore(state => state.removeChannel)
   const navigate = useNavigate()
   const membersNumber = currentChannel?.members !== undefined ? currentChannel?.members.length + 1 : 1
-
   const handleRemoveCLick = () => {
     removeChannel(currentChannel?.id as UUID)
     navigate('/')
