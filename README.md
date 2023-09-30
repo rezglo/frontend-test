@@ -1,8 +1,10 @@
 Front-end [Slack](https://slack.com/) clone
 ============================
-![Screenshot](/public/login.jpg)   
-![Screenshot](/public/chat.jpg)   
-![Screenshot](/public/stats.jpg)   
+![login](https://github.com/samuelperezcode/frontend-test-slack-clone/assets/120821348/8e0c9f33-d0a4-486e-bf40-f97e9d22d1e6)
+
+![chat](https://github.com/samuelperezcode/frontend-test-slack-clone/assets/120821348/aa6d9dca-f571-4be2-9416-ce1ea4a93413)
+![stats](https://github.com/samuelperezcode/frontend-test-slack-clone/assets/120821348/64e695ef-fa63-4e0e-8c15-b766c3ea5d0e)
+
 Author: Samuel Perez Mertinez  
 Email: [sambea2103@gmail.com]
 
