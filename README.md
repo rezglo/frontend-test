@@ -1,3 +1,11 @@
+Front-end [Slack](https://slack.com/) clone
+============================
+![Screenshot](/public/login.jpg)   
+![Screenshot](/public/chat.jpg)   
+![Screenshot](/public/stats.jpg)   
+Author: Samuel Perez Mertinez  
+Email: [sambea2103@gmail.com]
+
 # Slack-Clone
 
 Taks:
