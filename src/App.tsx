@@ -1,13 +1,14 @@
 
 
 import './App.css'
+import Bar from './Bar'
 
 function App() {
  
 
   return (
     <>
-     
+      <Bar/>
     </>
   )
 }
