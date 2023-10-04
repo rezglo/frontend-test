@@ -4,12 +4,15 @@ import {
   ArrowLeftOutlined,
   ArrowRightOutlined,
   BellOutlined,
+  CaretRightOutlined,
   /* ClockCircleFilled, */
   ClockCircleOutlined,
+  DownOutlined,
+  FormOutlined,
   HomeFilled,
-  LaptopOutlined,
+  MenuOutlined,
   MessageOutlined,
-  NotificationOutlined,
+  NumberOutlined,
   PlusOutlined,
   QuestionCircleOutlined,
   SmallDashOutlined,
@@ -30,21 +33,22 @@ const { Header, Content, Sider } = Layout;
 });
  */
 const items2: MenuProps["items"] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
+  "Canales",
+  "Mensajes Directos",
+  "Actividad",
+].map((name, index) => {
   const key = String(index + 1);
 
   return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
+    key: `${key}`,
+    icon: React.createElement(CaretRightOutlined),
+    label: `${name}`,
 
     children: new Array(4).fill(null).map((_, j) => {
       const subKey = index * 4 + j + 1;
       return {
         key: subKey,
+        icon: React.createElement(NumberOutlined),
         label: `option${subKey}`,
       };
     }),
@@ -57,7 +61,7 @@ const Bar: React.FC = () => {
   } = theme.useToken();
 
   return (
-      <Layout style={{ height:"100vh"}}>
+    <Layout style={{ height: "100vh" }}>
       <Header
         style={{
           display: "grid",
@@ -92,10 +96,22 @@ const Bar: React.FC = () => {
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb> */}
         <Layout
-          style={{ /* padding: "24px 0", */ background: colorBgContainer, height:"100%"}}
+          style={{
+            /* padding: "24px 0", */ background: colorBgContainer,
+            height: "100%",
+          }}
         >
-          <Sider style={{ backgroundColor: "#642a66",height:"100%" }} width={75}>
-            <div style={{display:"grid", gridTemplateRows:"1fr 1fr",height:"100%"}}>
+          <Sider
+            style={{ backgroundColor: "#642a66", height: "100%" }}
+            width={75}
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateRows: "1fr 1fr",
+                height: "100%",
+              }}
+            >
               <Space direction="vertical">
                 <div className="element">
                   <Button
@@ -126,21 +142,51 @@ const Bar: React.FC = () => {
                   <span style={{ color: "white" }}>Actividad </span>
                 </div>
               </Space>
-              <Space >
-                <div className="element" style={{gap:"20px"}}>
+              <Space>
+                <div className="element" style={{ gap: "20px" }}>
                   <PlusOutlined style={{ color: "white", fontSize: "24px" }} />
                   <UserOutlined style={{ color: "white", fontSize: "24px" }} />
                 </div>
               </Space>
             </div>
           </Sider>
-          <Sider style={{ background: colorBgContainer }} width={200}>
+          <Sider style={{ backgroundColor: "#371638" }} width={300}>
+            <div
+              style={{
+                marginTop: 10,
+                marginLeft: 20,
+                marginBottom: 15,
+                display: "grid",
+                gridTemplateColumns: "2fr 1fr",
+              }}
+            >
+              <div style={{ color: "white" }}>
+                <span style={{ fontSize: 20, fontWeight: "bolder" }}>
+                  EquipoEjemplo
+                </span>
+                <DownOutlined />
+              </div>
+              <div
+                style={{
+                  color: "#999",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "flex-end",
+                  fontSize: 15,
+                  gap: 15,
+                }}
+              >
+                <MenuOutlined />
+                <FormOutlined />
+              </div>
+            </div>
+
             <Menu
               theme="dark"
               mode="inline"
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
-              style={{ height: "100%" }}
+              style={{ backgroundColor: "#371638", height: "100%" }}
               items={items2}
             />
           </Sider>
