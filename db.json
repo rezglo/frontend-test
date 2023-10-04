@@ -1,0 +1,255 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "name": {
+        "first": "Tania Padilla Pujol",
+        "user": "tppujol1234"
+      },
+      "avatar": "tania.png",
+      "email": "tppujol@gmail.com",
+      "phone": 54831025,
+      "isConected": true
+    },
+    {
+      "id": 1,
+      "name": {
+        "first": "Sandra De Armas Padilla",
+        "user": "sdapadilla"
+      },
+      "avatar": "yadira.png",
+      "email": "sdapadilla@gmail.com",
+      "phone": 54316885,
+      "isConected": true
+    },
+    {
+      "id": 2,
+      "name": {
+        "first": "Tomas De Armas Herrera",
+        "user": "tdaherrera"
+      },
+      "avatar": "efren.png",
+      "email": "tdaherrera@gmail.com",
+      "phone": 54355882,
+      "isConected": false
+    },
+    {
+      "id": 3,
+      "name": {
+        "first": "Addiel Velazco Padilla",
+        "user": "avpadilla"
+      },
+      "avatar": "transmitter.png",
+      "email": "avpadilla@gmail.com",
+      "phone": 54316882,
+      "isConected": false
+    },
+    {
+      "id": 4,
+      "name": {
+        "first": "Maiyara Guerra Cardet",
+        "user": "mgcardet"
+      },
+      "avatar": "ivon.png",
+      "email": "mgcardet@gmail.com",
+      "phone": 543164481,
+      "isConected": false
+    },
+    {
+      "id": 5,
+      "name": {
+        "first": "Lukas Velazco Guerra",
+        "user": "lvguerra"
+      },
+      "avatar": "notTransmitter.png",
+      "email": "lvguerra@gmail.com",
+      "phone": 54685984,
+      "isConected": false
+    },
+    {
+      "id": 6,
+      "name": {
+        "first": "Randy Guerra Cardet",
+        "user": "rgcardet"
+      },
+      "avatar": "maykel.png",
+      "email": "rgcardet@gmail.com",
+      "phone": 53689578,
+      "isConected": false
+    }
+  ],
+  "channels": [
+    {
+      "id": 0,
+      "name": "Channel 1",
+      "avatar": "channel1.png",
+      "numberFollowers": 500343400
+    },
+    {
+      "id": 1,
+      "name": "Channel 2",
+      "avatar": "channel2.png",
+      "numberFollowers": 50034340
+    },
+    {
+      "id": 2,
+      "name": "Channel 3",
+      "avatar": "channel3.png",
+      "numberFollowers": 50433400
+    },
+    {
+      "id": 3,
+      "name": "Channel 4",
+      "avatar": "channel4.png",
+      "numberFollowers": 5006760
+    },
+    {
+      "id": 4,
+      "name": "Channel 5",
+      "avatar": "channel5.png",
+      "numberFollowers": 500450
+    },
+    {
+      "id": 5,
+      "name": "Channel 6",
+      "avatar": "channel6.png",
+      "numberFollowers": 5005454
+    },
+    {
+      "id": 6,
+      "name": "Channel 7",
+      "avatar": "channel7.png",
+      "numberFollowers": 500000
+    },
+    {
+      "id": 7,
+      "name": "Channel 8",
+      "avatar": "channel8.png",
+      "numberFollowers": 500058484
+    },
+    {
+      "id": 8,
+      "name": "Channel 9",
+      "avatar": "channel9.png",
+      "numberFollowers": 5007854
+    }
+  ],
+  "isAuthenticated": {
+    "status": true
+  },
+  "login": {
+    "status": true,
+    "message": "User login",
+    "data": {
+      "name": "User Test",
+      "username": "usertest@localhost.com",
+      "avatar": "transmitter.png"
+    }
+  },
+  "logout": {
+    "status": true,
+    "message": "User logout"
+  },
+  "messages": [
+    {
+      "username": "tppujol",
+      "message": "Lorem ipsum dolor sit amet.",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "username": "tppujol",
+      "message": "Lorem ipsum dolor sit amet, consectetur oncusestibulr.",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "username": "sdapadilla",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": false,
+      "avatar": "notTransmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "username": "sdapadilla",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "transmitter": false,
+      "avatar": "notTransmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "username": "sdapadilla",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": false,
+      "avatar": "notTransmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "username": "tppujol",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "username": "tppujol",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    }
+  ],
+  "channelMessages": [
+    {
+      "name": "tppujol",
+      "message": "Lorem ipsum dolor sit amet channelMessages.",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "name": "tppujol",
+      "message": "Lorem ipsum dolor sit amet, consectetur oncusestibulr.",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "name": "sdapadilla",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": false,
+      "avatar": "notTransmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "name": "sdapadilla",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "transmitter": false,
+      "avatar": "notTransmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "name": "sdapadilla",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": false,
+      "avatar": "notTransmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "name": "tppujol",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    },
+    {
+      "name": "tppujol",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
+      "transmitter": true,
+      "avatar": "transmitter.png",
+      "timestamp": 1696446537000
+    }
+  ]
+}
