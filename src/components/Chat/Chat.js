@@ -18,10 +18,8 @@ const Chat = () => {
   let socketInstancia;
   const [form] = Form.useForm();
   const dispatch = useDispatch()
-  const usersList = useSelector((state) => state.usersList.value)
-  const smsList = useSelector((state) => state.smsList.value)
-
- /*  const [usersList, setUsers] = useState([]); */
+  const usersList = useSelector((state) => state.usersList.value);
+  const smsList = useSelector((state) => state.smsList.value);
   const [currentSms, setCurrentSms] = useState("");
   const [listSms, setListSms] = useState([]);
   const [userSelected, setUserSelected] = useState(undefined);

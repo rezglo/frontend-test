@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import io from "socket.io-client";
 import { Row, Form, notification, Tooltip, Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { PlusOutlined } from '@ant-design/icons';
 
 import ChannelsList from './ChannelsList';
@@ -10,13 +11,17 @@ import ChannelChatList from './ChannelChatList';
 import ChannelInfo from './ChannelInfo';
 import { URL_BASE } from '../../constants';
 import { openNotificationSuccess } from '../../utils';
+import { channelsListAction, } from '../../containers/Channels/reducers/channelsListReducer';
+import { smsChannelsListAction } from '../../containers/Channels/reducers/smsChannelsListReducer';
 
 const Channels = () => {
 
   let socketInstancia;
   const [form] = Form.useForm();
+  const dispatch = useDispatch()
 
-  const [channelsList, setChnnels] = useState([]);
+  const channelsList = useSelector((state) => state.channelsList.value);
+  const smsList = useSelector((state) => state.smsChannelsList.value);
   const [currentSms, setCurrentSms] = useState("");
   const [listSms, setListSms] = useState([]);
   const [channelSelected, setChannelSelected] = useState();
@@ -66,9 +71,10 @@ const Channels = () => {
 
     openNotificationSuccess(api, 'bottomRight', "Users loaded correctly.");
     axios.get(`${URL_BASE}/channels`).then((response) => {
-        setTimeout(() => {      
-          setChnnels(response.data);
+        setTimeout(() => {  
+          dispatch(channelsListAction(response.data));
           setIsLoadingChannels(false);
+          openNotificationSuccess(api, 'bottomRight', "Channels loaded correctly.");
       }, 1500);
     }).catch(error => {
           console.log("error", error);
@@ -79,8 +85,9 @@ const Channels = () => {
     setIsLoadingSmsChannel(true);
     
     axios.get(`${URL_BASE}/channelMessages`).then((response) => {
-        setTimeout(() => {      
-          setListSms(response.data);
+        setTimeout(() => {  
+          dispatch(smsChannelsListAction(response.data));     
+          setListSms(smsList);
           setIsLoadingSmsChannel(false);
           openNotificationSuccess(api, 'bottomRight', "Sms channel loaded correctly.");
       }, 1500);
