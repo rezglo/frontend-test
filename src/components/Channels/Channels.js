@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from "moment";
 import io from "socket.io-client";
-import { Row, Form, notification, Tooltip, Button } from 'antd';
+import { Row, Form, notification, Tooltip, Button, Modal, Input, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { PlusOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
@@ -29,6 +29,7 @@ const Channels = () => {
   const [channelSelected, setChannelSelected] = useState();
   const [currentForChatListHeight, setCurrentForChatListHeight] = useState();
   const [currentForChannelsListHeight, setCurrentForChannelsListHeight] = useState();
+  const [nameameNewChannel, setNameNewChannel] = useState();
 
   // Is Loading
   const [isLoadinChannels, setIsLoadingChannels] = useState(false);
@@ -39,6 +40,9 @@ const Channels = () => {
   // Socket IO
   const [socket, setSocket] = useState(undefined);
   const [roomName] = useState("rezglo");
+
+  // Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -181,22 +185,33 @@ const Channels = () => {
     }
   };
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    createChannel({
+      id: uuidv4(),
+      name: nameameNewChannel,
+      avatar: "channel9.png",
+      numberFollowers: 5007854
+    });
+
+    message.success('The channel was successfully created.');    
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>    
       <span id='general-info-channel'>
         Find out the latest news on the topics that interest you.
        
         <Tooltip title="New channel" placement="top">
-          <Button onClick={
-            ()=> 
-              createChannel({
-                id: uuidv4(),
-                name: "New channel",
-                avatar: "channel9.png",
-                numberFollowers: 5007854
-              })
-            }
-          >                 
+          <Button onClick={ ()=> showModal() }>                 
             <PlusOutlined />                 
           </Button>
         </Tooltip> 
@@ -237,6 +252,25 @@ const Channels = () => {
         open={open}
         channelSelected={channelSelected}
       />
+
+      {/* MODAL CREATE CHANNEL */}
+      <Modal title="Create channel" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Form
+          form={form} 
+          className='create-channel-form'
+          name="create-channel-form"
+          layout="inline"
+        >
+          <Form.Item name="nameChannel">
+            <Input 
+              name="nameChannel"
+              placeholder="Name channel"
+              type="text"    
+              onChange={(e)=>setNameNewChannel(e.target.value)}                         
+            />
+          </Form.Item>
+        </Form>
+      </Modal> 
     </>    
   );
 };
