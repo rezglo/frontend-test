@@ -152,6 +152,7 @@
   },
   "messages": [
     {
+      "id": 0,
       "username": "tppujol",
       "message": "Lorem ipsum dolor sit amet.",
       "transmitter": true,
@@ -159,6 +160,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 1,
       "username": "tppujol",
       "message": "Lorem ipsum dolor sit amet, consectetur oncusestibulr.",
       "transmitter": true,
@@ -166,6 +168,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 2,
       "username": "sdapadilla",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
       "transmitter": false,
@@ -173,6 +176,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 3,
       "username": "sdapadilla",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "transmitter": false,
@@ -180,6 +184,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 4,
       "username": "sdapadilla",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
       "transmitter": false,
@@ -187,6 +192,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 5,
       "username": "tppujol",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
       "transmitter": true,
@@ -194,6 +200,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 6,
       "username": "tppujol",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
       "transmitter": true,
@@ -203,13 +210,15 @@
   ],
   "channelMessages": [
     {
+      "id": 0,
       "name": "tppujol",
       "message": "Lorem ipsum dolor sit amet channelMessages.",
       "transmitter": true,
-      "avatar": "transmitter.png",
+      "avatar": "channel1.png",
       "timestamp": 1696446537000
     },
     {
+      "id": 1,
       "name": "tppujol",
       "message": "Lorem ipsum dolor sit amet, consectetur oncusestibulr.",
       "transmitter": true,
@@ -217,27 +226,31 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 2,
       "name": "sdapadilla",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
-      "transmitter": false,
+      "transmitter": true,
       "avatar": "notTransmitter.png",
       "timestamp": 1696446537000
     },
     {
+      "id": 3,
       "name": "sdapadilla",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "transmitter": false,
+      "transmitter": true,
       "avatar": "notTransmitter.png",
       "timestamp": 1696446537000
     },
     {
+      "id": 4,
       "name": "sdapadilla",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
-      "transmitter": false,
+      "transmitter": true,
       "avatar": "notTransmitter.png",
       "timestamp": 1696446537000
     },
     {
+      "id": 5,
       "name": "tppujol",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
       "transmitter": true,
@@ -245,6 +258,7 @@
       "timestamp": 1696446537000
     },
     {
+      "id": 6,
       "name": "tppujol",
       "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean viverra varius rhoncus. Sed lacinia nisi in quam sodales pulvinar. Vestibulum aliquam sagittis augue id malesuada. Integer imperdiet dolor",
       "transmitter": true,

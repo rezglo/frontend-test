@@ -177,7 +177,8 @@ const Channels = () => {
         name: channelsList[0]?.name,  
         message: currentSms, 
         transmitter: true,
-        timestamp: 1696446537000,
+        avatar: channelSelected.avatar,
+        timestamp: 1696446537000        
       }; 
       socket.emit("message", message, roomName);  
       setListSms([...listSms,message]);
