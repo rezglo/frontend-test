@@ -1,15 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import moment from "moment";
 import io from "socket.io-client";
 import { Row, Form, notification } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { getUsers, getSmsUsers } from '../../api/chat';
 
 import UserList from './UserList';
 import ChatList from './ChatList';
 import UserInfo from './UserInfo';
-import { URL_BASE } from '../../constants';
 import { openNotificationSuccess } from '../../utils';
 import { usersListAction, } from '../../containers/Users/reducers/userListReducer';
 import { smsListAction } from '../../containers/Users/reducers/smsListReducer';
@@ -64,44 +63,29 @@ const Chat = () => {
     setCurrentForUserListHeight(heightUserListResult);
   };
 
-  const getUsers = () => {
-    setIsLoadinUsers(true);
-    
-    axios.get(`${URL_BASE}/users`).then((response) => {
-        setTimeout(() => {  
-          dispatch(usersListAction(response.data));
-          setIsLoadinUsers(false);
-          openNotificationSuccess(api, 'bottomRight', "Users loaded correctly.");
-      }, 1500);
-    }).catch(error => {
-          console.log("error", error);
-    });
-  };
-
-  const getSmsUsers = () => {
-    setIsLoadingSms(true);
-    
-    axios.get(`${URL_BASE}/messages`).then((response) => {
-        setTimeout(() => {   
-          dispatch(smsListAction(response.data));    
-          setListSms(smsList);
-          setIsLoadingSms(false);
-          openNotificationSuccess(api, 'bottomRight', "Sms loaded correctly.");
-      }, 1500);
-    }).catch(error => {
-          console.log("error", error);
-    });
-  };
-
   useEffect(() => {
-    getUsers();
+    getUsers(
+      setIsLoadinUsers,
+      dispatch,
+      usersListAction,
+      openNotificationSuccess,
+      api
+    );
     socketInitializer();
     getCalculatedHeightForChatList();
     getCalculatedHeightForUserList();
   }, []);
 
   useEffect(() => {
-    getSmsUsers();
+    getSmsUsers(
+      setIsLoadingSms,
+      dispatch,
+      smsListAction,
+      setListSms,
+      smsList,
+      openNotificationSuccess,
+      api
+    );
   }, [userSelected]);
 
   useEffect(() => {
