@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import moment from "moment";
 import io from "socket.io-client";
 import { Row, Form, notification, Tooltip, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { PlusOutlined } from '@ant-design/icons';
+import { v4 as uuidv4 } from 'uuid';
+import { getChannels, getSmsChannel, createChannel, deleteChannel } from '../../api/channels';
 
 import ChannelsList from './ChannelsList';
 import ChannelChatList from './ChannelChatList';
 import ChannelInfo from './ChannelInfo';
-import { URL_BASE } from '../../constants';
 import { openNotificationSuccess } from '../../utils';
 import { channelsListAction, } from '../../containers/Channels/reducers/channelsListReducer';
 import { smsChannelsListAction } from '../../containers/Channels/reducers/smsChannelsListReducer';
@@ -23,6 +23,7 @@ const Channels = () => {
 
   const channelsList = useSelector((state) => state.channelsList.value);
   const smsList = useSelector((state) => state.smsChannelsList.value);
+
   const [currentSms, setCurrentSms] = useState("");
   const [listSms, setListSms] = useState([]);
   const [channelSelected, setChannelSelected] = useState();
@@ -67,45 +68,29 @@ const Channels = () => {
     setCurrentForChannelsListHeight(heightChannelsListResult);
   };
 
-  const getChannels = () => {
-    setIsLoadingChannels(true);
-
-    openNotificationSuccess(api, 'bottomRight', "Users loaded correctly.");
-    axios.get(`${URL_BASE}/channels`).then((response) => {
-        setTimeout(() => {  
-          dispatch(channelsListAction(response.data));
-          setIsLoadingChannels(false);
-          openNotificationSuccess(api, 'bottomRight', "Channels loaded correctly.");
-      }, 1500);
-    }).catch(error => {
-          console.log("error", error);
-    });
-  };
-
-  const getSmsChannel = () => {
-    setIsLoadingSmsChannel(true);
-    
-    axios.get(`${URL_BASE}/channelMessages`).then((response) => {
-        setTimeout(() => {  
-          dispatch(smsChannelsListAction(response.data));     
-          setListSms(smsList);
-          setIsLoadingSmsChannel(false);
-          openNotificationSuccess(api, 'bottomRight', "Sms channel loaded correctly.");
-      }, 1500);
-    }).catch(error => {
-          console.log("error", error);
-    });
-  };
-
   useEffect(() => {
-    getChannels();
+    getChannels(
+      setIsLoadingChannels, 
+      openNotificationSuccess, 
+      dispatch, 
+      channelsListAction,
+      api,
+    );
     socketInitializer();
     getCalculatedHeightForChatList();
     getCalculatedHeightForChannelsList();
   }, []);
 
   useEffect(() => {
-    getSmsChannel();
+    getSmsChannel(
+      setIsLoadingSmsChannel,
+      dispatch,
+      smsChannelsListAction,
+      setListSms,
+      smsList,
+      openNotificationSuccess,
+      api
+    );
   }, [channelSelected]);
 
   useEffect(() => {
@@ -202,7 +187,16 @@ const Channels = () => {
         Find out the latest news on the topics that interest you.
        
         <Tooltip title="New channel" placement="top">
-          <Button onClick={()=> console.log("New channel")}>                 
+          <Button onClick={
+            ()=> 
+              createChannel({
+                id: uuidv4(),
+                name: "New channel",
+                avatar: "channel9.png",
+                numberFollowers: 5007854
+              })
+            }
+          >                 
             <PlusOutlined />                 
           </Button>
         </Tooltip> 
@@ -216,6 +210,7 @@ const Channels = () => {
           setChannelSelected={setChannelSelected} 
           currentHeight={currentForChannelsListHeight}        
           isLoadinChannels={isLoadinChannels}        
+          deleteChannel={deleteChannel}        
         />
 
         {/* CHAT LIST */}

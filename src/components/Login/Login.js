@@ -25,7 +25,8 @@ const Context = React.createContext({
 
 const Login = () => {
 
-  const [setLogin] = useState();
+  // eslint-disable-next-line no-unused-vars
+  const [login ,setLogin] = useState();
   const [isLogining, setIsLoginig] = useState(false);  
 
   const [api, contextHolder] = notification.useNotification();

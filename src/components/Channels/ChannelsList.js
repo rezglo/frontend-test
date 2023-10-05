@@ -14,7 +14,8 @@ const ChannelList = ({
   channels,
   setChannelSelected, 
   currentHeight,
-  isLoadinChannels
+  isLoadinChannels,
+  deleteChannel
 }) => {
 
   const onLoadChannelSelected = (item) => {
@@ -22,7 +23,7 @@ const ChannelList = ({
   };
 
   const onDeleteChannel = (id) => {
-    console.log("id", id);
+    deleteChannel(id);
   };
 
   return (
