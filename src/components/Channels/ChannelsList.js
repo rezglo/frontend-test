@@ -33,6 +33,10 @@ const ChannelList = ({
     message.success('The channel was successfully deleted.');
   };
 
+  const onFallow = (nameChannel) => {
+    message.success(`You are following the ${nameChannel} channel.`);
+  };
+
   return (
     <> 
         {/* CHANNELS LIST MOBILE*/}
@@ -64,7 +68,7 @@ const ChannelList = ({
                         </Tooltip>
                        
                         <p>{channel.name}</p>
-                        <Button type="primary">Fallow</Button>
+                        <Button type="primary" onClick={()=> onFallow(channel.name)}>Fallow</Button>
 
                         <Popconfirm
                           title="Delete the channel"
