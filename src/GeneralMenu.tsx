@@ -19,9 +19,10 @@ const items2: MenuProps["items"] = [
     children: new Array(4).fill(null).map((_, j) => {
       const subKey = index * 4 + j + 1;
       return {
-        key: subKey,
+        key: `option${subKey}`,
         icon: React.createElement(NumberOutlined),
         label: `option${subKey}`,
+        /* children:<Link to={`option${subKey}`}/> */
       };
     }),
   };
@@ -30,7 +31,7 @@ const items2: MenuProps["items"] = [
 const GeneralMenu: React.FC = () => {
   return (
     <Sider style={{ backgroundColor: "#371638" }} width={300}>
-      <SideMenuHead text="Ejemploproyecto" />
+      <SideMenuHead text="EjemploProyecto" />
       <Menu
         theme="dark"
         mode="inline"
@@ -38,6 +39,9 @@ const GeneralMenu: React.FC = () => {
         defaultOpenKeys={["sub1"]}
         style={{ backgroundColor: "#371638", height: "100%" }}
         items={items2}
+        onSelect={({key}) => {
+           history.pushState(null,"",`${key}`)  
+        }}
       />
     </Sider>
   );
