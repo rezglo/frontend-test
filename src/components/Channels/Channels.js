@@ -254,7 +254,7 @@ const Channels = () => {
       />
 
       {/* MODAL CREATE CHANNEL */}
-      <Modal title="Create channel" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal className='modal-add-channel' title="Create channel" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <Form
           form={form} 
           className='create-channel-form'
