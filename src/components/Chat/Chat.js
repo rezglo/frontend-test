@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import moment from "moment";
 import io from "socket.io-client";
 import { Row, Form, notification } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -183,7 +184,7 @@ const Chat = () => {
         username: usersList[0]?.name?.user,  
         message: currentSms, 
         transmitter: true,
-        timestamp: 1696446537000
+        timestamp: moment() 
       }; 
       socket.emit("message", message, roomName);  
       setListSms([...listSms,message]);

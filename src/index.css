@@ -164,6 +164,9 @@
   overflow-x: hidden;
   width: 100%;
 }
+.container-community-chat .container-chat-list .chat-list .ant-skeleton {
+  padding: 10px;
+}
 .container-community-chat .container-chat-list .ant-list-item {
   border-block-end: none;
 }
