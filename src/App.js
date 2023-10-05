@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux'
 import { Route, Routes } from "react-router-dom";
 import {
   MenuFoldOutlined,
@@ -15,8 +14,6 @@ const { Header, Sider, Content } = Layout;
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
-  
-  const userData = useSelector((state) => state?.loging?.value)
 
   const {
     token: { colorBgContainer },
