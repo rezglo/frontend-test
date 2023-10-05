@@ -209,7 +209,7 @@ const Channels = () => {
 
   return (
     <>    
-      <span id='general-info-channel'>
+      <span id='general-info-channel' data-testid="general-info-channel">
         Find out the latest news on the topics that interest you.
        
         <Tooltip title="New channel" placement="top">

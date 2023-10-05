@@ -1,6 +1,10 @@
 import React from "react";
-import { screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom"
+import {
+  screen,
+  // fireEvent,
+} from "@testing-library/react";
+// import { configureStore } from "@reduxjs/toolkit";
+// import { BrowserRouter } from "react-router-dom"
 
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from "../../../utils/test-utils";
@@ -29,6 +33,14 @@ import Users from "../../../components/Chat/Chat";
 // });
 
 test("Checking than users component is present", () => {
-  renderWithProviders(<Users />, { wrapper: BrowserRouter });
+  renderWithProviders(<Users />);
+  // renderWithProviders(<Users />, { wrapper: BrowserRouter });
   expect(screen.getByTestId("row-community-chat")).toBeInTheDocument();
 });
+
+// test("Sets up initial state state with actions", () => {
+//   const store = configureStore();
+//   store.dispatch(usersListAction([], { payload: { message: "Hola" } }));
+
+//   const { getByText } = renderWithProviders(<Users />, { store });
+// });

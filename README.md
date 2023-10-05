@@ -1,13 +1,6 @@
 # rezglo-frontend-test.
 Demo `Rezglo-Frontend-Test` application developed with React.
 
-# Start App.
-Run the following command from the project root:
-
-`npm start`  
-
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
 # Start Local Server.
 Run the following command from the project root:
 
@@ -31,7 +24,21 @@ Run the following command from the project root:
 
 This allows you to have a socketIO server running on port 3002 for chat and channel messages.
 
-# npm run build.
+# Start App.
+Run the following command from the project root:
+
+`npm start`  
+
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+# Start Test.
+Run the following command from the project root:
+
+`npm test -- --coverage`
+
+# Start build.
+
+`npm run build`
 
 Build the application for production to the `build` folder.\
 Properly package React in production mode and optimize the build for best performance.

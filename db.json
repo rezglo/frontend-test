@@ -142,7 +142,7 @@
     "message": "User login",
     "data": {
       "name": "Addiel Velazco Padilla",
-      "username": "avpadilla@localhost.com",
+      "email": "avpadilla@localhost.com",
       "avatar": "transmitter.png"
     }
   },

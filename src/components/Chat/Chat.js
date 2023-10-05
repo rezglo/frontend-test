@@ -187,7 +187,7 @@ const Chat = () => {
 
   return (
     <>    
-      <Row className='container-community-chat'>  
+      <Row className='container-community-chat' data-testid="row-community-chat">  
         {/* USER LIST */}
         <UserList  
           users={usersList}

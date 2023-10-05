@@ -14,7 +14,7 @@ export const getLogin = (
   setIsLoginig(true);
   
   axios.get(`${URL_BASE}/login`).then((response) => {
-    setTimeout(() => {   
+    setTimeout(() => {
         dispatch(saveLoginData(response.data.data))   
         dispatch(setIsAuthenticated(true));
         setAuthenticatedForCurrentUser({ status: true});

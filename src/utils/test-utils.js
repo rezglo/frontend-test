@@ -3,7 +3,8 @@ import { render } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
-import loginReducer from "../containers/Login/reducer";
+import loginReducer from "../containers/Login/reducers/loginReducer";
+import isAuthenticatedReducer from "../containers/Login/reducers/isAuthenticatedReducer";
 import userListReducer from "../containers/Users/reducers/userListReducer";
 import smsListReducer from "../containers/Users/reducers/smsListReducer";
 import channelsListReducer from "../containers/Channels/reducers/channelsListReducer";
@@ -17,10 +18,13 @@ export function renderWithProviders(
     store = configureStore({
       reducer: {
         loging: loginReducer,
+        isAuthenticated: isAuthenticatedReducer,
         usersList: userListReducer,
         smsList: smsListReducer,
         channelsList: channelsListReducer,
         smsChannelsList: smsChannelsListReducer,
+
+
       },
       preloadedState,
     }),

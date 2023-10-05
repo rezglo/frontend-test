@@ -18,6 +18,7 @@ const { Header, Sider, Content } = Layout;
 const App = () => {
 
   const isAuthenticated = useSelector((state) => state.isAuthenticated.value);
+  const logingUserData = useSelector((state) => state?.loging?.value);
   
   const [collapsed, setCollapsed] = useState(false);
   let navigate = useNavigate();
@@ -56,12 +57,12 @@ const App = () => {
                   verticalAlign: 'middle',
                 }}
                 size="large"
-                src="transmitter.png"
+                src={logingUserData?.avatar}
               >
               </Avatar>
               <span className='user-info'>
-                <Title level={5}>Addiel Velazco Padilla</Title>           
-                <Text type="secondary">avpadilla@localhost.com</Text>         
+                <Title level={5}>{logingUserData?.name}</Title>           
+                <Text type="secondary">{logingUserData?.email}</Text>    
               </span>
   
             </Header>
