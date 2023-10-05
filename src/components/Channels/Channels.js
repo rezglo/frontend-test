@@ -12,7 +12,7 @@ import ChannelsList from './ChannelsList';
 import ChannelChatList from './ChannelChatList';
 import ChannelInfo from './ChannelInfo';
 import { openNotificationSuccess } from '../../utils';
-import { channelsListAction, } from '../../containers/Channels/reducers/channelsListReducer';
+import { channelsListAction, channelAddAction, channelDeleteAction } from '../../containers/Channels/reducers/channelsListReducer';
 import { smsChannelsListAction } from '../../containers/Channels/reducers/smsChannelsListReducer';
 
 const Channels = () => {
@@ -190,12 +190,14 @@ const Channels = () => {
   };
 
   const handleOk = () => {
-    createChannel({
+    const data = {
       id: uuidv4(),
       name: nameameNewChannel,
       avatar: "channel9.png",
       numberFollowers: 5007854
-    });
+    }
+    createChannel(data);
+    dispatch(channelAddAction(data));
 
     message.success('The channel was successfully created.');    
     setIsModalOpen(false);
@@ -226,6 +228,8 @@ const Channels = () => {
           currentHeight={currentForChannelsListHeight}        
           isLoadinChannels={isLoadinChannels}        
           deleteChannel={deleteChannel}        
+          dispatch={dispatch}        
+          channelDeleteAction={channelDeleteAction}        
         />
 
         {/* CHAT LIST */}
