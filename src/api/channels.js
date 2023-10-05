@@ -46,8 +46,6 @@ export const getSmsChannel = (
   };
 
 export const createChannel = (data) => {
-    console.log("data",data);
-
     axios.post(`${URL_BASE}/channels`, data).then((response) => {
         console.log("Channel created correctly.");
     }).catch(error => {

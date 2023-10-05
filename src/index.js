@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     path: '/',
     element: 
       <Provider store={store}>
-        {!isAuthenticated ? <Login /> : <App />}
+         <App />  
       </Provider>,
     children: [
       {
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         path: '/users',
         element: <h1>USERS </h1>,
       },
-    ],   
+    ], 
   },
   {
     path: '/*',
