@@ -141,8 +141,8 @@
     "status": true,
     "message": "User login",
     "data": {
-      "name": "User Test",
-      "username": "usertest@localhost.com",
+      "name": "Addiel Velazco Padilla",
+      "username": "avpadilla@localhost.com",
       "avatar": "transmitter.png"
     }
   },

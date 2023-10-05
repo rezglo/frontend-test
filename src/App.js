@@ -4,12 +4,13 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import { Layout, theme, Avatar } from 'antd';
+import { Layout, theme, Avatar, Typography } from 'antd';
 
 import MenuApp from './components/MenuApp';
 import Channel from './containers/Channels/Channel';
 import Users from './containers/Users/Users';
 
+const { Title, Text } = Typography;
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -41,7 +42,10 @@ const App = () => {
             src="transmitter.png"
           >
           </Avatar>
-          <span className='user-info'>User Test</span>
+          <span className='user-info'>
+            <Title level={5}>Addiel Velazco Padilla</Title>           
+            <Text type="secondary">avpadilla@localhost.com</Text>         
+          </span>
 
         </Header>
         <Content

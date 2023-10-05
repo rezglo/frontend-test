@@ -48,8 +48,13 @@
 }
 .ant-layout-header .user-info {
   float: right;
-  bottom: 5px;
+  bottom: 22px;
   position: relative;
+}
+
+.ant-layout-header .ant-typography-secondary{
+  position: absolute;
+  top: 50px;
 }
 
 /* CHANNELS LIST NOT MOBILE */
@@ -142,6 +147,7 @@
   box-shadow: none;
   background: #f5f5f5;
   padding: 5px;
+  border-radius: 0;
 }
 .container-community-chat .container-user-list-mobile .item-user .ant-badge {
   top: 12px;
