@@ -7,8 +7,10 @@ import {
   Tooltip,
   Skeleton,
   Card,
+  Popconfirm,
+  message
 } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 
 const ChannelList = ({ 
   channels,
@@ -24,6 +26,11 @@ const ChannelList = ({
 
   const onDeleteChannel = (id) => {
     deleteChannel(id);
+  };
+
+  const confirm = (id) => {
+    onDeleteChannel(id);
+    message.success('The channel was successfully deleted.');
   };
 
   return (
@@ -48,12 +55,8 @@ const ChannelList = ({
               <Row>
                 {channels?.map((channel, key) => ( 
                     <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{'marginBottom': '10px' }}>
-                      <Card className='item-channels' style={{ width: 100 }}>
-                        <Tooltip key={key} title="Delete channel" placement="top">
-                          <Button className='item-user' onClick={()=> onDeleteChannel(channel.id)}> 
-                            <CloseOutlined />
-                          </Button>
-                        </Tooltip>
+                      <Card className='item-channels' style={{ width: 100 }}>                       
+                        
                         <Tooltip key={key} title={`${channel.name}`} placement="top">                        
                           <Button className='item-user' onClick={()=> onLoadChannelSelected(channel)}>                 
                               <Avatar size={{xs: 50, sm: 50 }} src={channel.avatar} />
@@ -62,6 +65,21 @@ const ChannelList = ({
                        
                         <p>{channel.name}</p>
                         <Button type="primary">Fallow</Button>
+
+                        <Popconfirm
+                          title="Delete the channel"
+                          description="Are you sure to delete this chnnel?"
+                          onConfirm={()=> confirm(channel.id)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          <Tooltip key={key} title="Delete channel" placement="top">
+                            <Button className='item-user'> 
+                              <DeleteOutlined />
+                            </Button>
+                          </Tooltip>
+                        </Popconfirm>
+
                       </Card>                
                     </Col>
                 ))}
