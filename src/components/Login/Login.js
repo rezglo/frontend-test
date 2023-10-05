@@ -2,8 +2,6 @@
 import React, { useState, useMemo} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
-import axios from "axios";
 import { 
   Col, 
   Row, 
@@ -17,7 +15,7 @@ import {
 
 import { saveLoginData } from '../../containers/Login/reducer'
 import { openNotificationSuccess } from '../../utils';
-import { URL_BASE } from '../../constants';
+import { getLogin } from '../../api/login';
 
 const Context = React.createContext({
   name: 'Default',
@@ -34,37 +32,21 @@ const Login = () => {
   const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    getLogin();
+    getLogin(
+      setIsLoginig,
+      dispatch,
+      saveLoginData,
+      setLogin,
+      openNotificationSuccess,
+      api,
+      navigate
+    );
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-  const getLogin = () => {
-    setIsLoginig(true);
-    
-    axios.get(`${URL_BASE}/login`).then((response) => {
-      setTimeout(() => {   
-          dispatch(saveLoginData(response.data.data))   
-          setAuthenticatedForCurrentUser({ status: true});
-          setLogin(response.data);
-          setIsLoginig(false);
-          openNotificationSuccess(api, 'top', "authenticated user",  "Welcome to the FrontEnd/Test system.");
-          navigate('/')
-        }, 2000);
-    }).catch(error => {
-          console.log("error", error);
-    });
-  };
-
-  const setAuthenticatedForCurrentUser = (data) => {
-    axios.put(`${URL_BASE}/isAuthenticated`, data).then((response) => {
-        console.log("The user is authenticated");
-    }).catch(error => {
-        console.log("error", error);
-    });
-  };
 
   const contextValue = useMemo(
     () => ({
