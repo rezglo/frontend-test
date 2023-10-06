@@ -1,28 +1,9 @@
 import { create } from 'zustand'
-import { AuthUser, DirectMessage, Status } from '../types.d'
+import { AuthUser, DirectMessage, SelectedDirectMessage, UsersDirectMessages } from '../types.d'
 import { addMessageToDirectMessage, getDirectMessages, getDirectMessagesById } from '../services'
 
-interface Sender {
-  id: string
-}
-
-interface Message {
-  sender: Sender
-  text: string
-  sentAt: string
-  id: string
-}
-
-export interface SelectedDirectMessage {
-  id: string
-  avatar: string
-  name: string
-  status: Status
-  messages: Message[]
-}
-
 interface State {
-  directMessages: DirectMessage[]
+  directMessages: UsersDirectMessages[]
   selectedDirectMessage: SelectedDirectMessage | null
   getDirectMessages: () => void
   getDirectMessagesById: (id: string) => void
@@ -73,7 +54,7 @@ export const useDirectMessageStore = create<State>((set, get) => ({
     const selectedDirectMessage = structuredClone(get().selectedDirectMessage)
 
     const messageToEdit = selectedDirectMessage?.messages?.find(
-      (message) => message.id === idMessage,
+      (message: DirectMessage) => message.id === idMessage,
     )
 
     if (!messageToEdit) return
@@ -88,7 +69,7 @@ export const useDirectMessageStore = create<State>((set, get) => ({
 
     const updatedMessages = selectedDirectMessage?.messages?.filter(
       (message) => message.id !== idMessage,
-    ) as Message[]
+    )
 
     const updatedDirectMessage = {
       ...selectedDirectMessage,

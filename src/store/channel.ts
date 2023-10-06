@@ -2,27 +2,7 @@ import { create } from 'zustand'
 
 import { createChannel, getChannels, removeChannel } from '../services'
 import { addMessageToChannel, getChannelById } from '../services/channel'
-import { AuthUser, Channel, Type } from '../types.d'
-
-export interface Sender {
-  id: string
-  name: string
-  avatar: string
-}
-
-export interface Message {
-  sender: Sender
-  text: string
-  sentAt: string
-  id: string
-}
-
-export interface SelectedChannel {
-  id: string
-  name: string
-  type: Type
-  messages: Message[]
-}
+import { AuthUser, Channel, ChannelMessage, SelectedChannel } from '../types.d'
 
 interface State {
   channels: Channel[]
@@ -82,7 +62,9 @@ export const useChannelStore = create<State>((set, get) => ({
   editMessageFromChannel: async ({ idMessage, editedMessage }) => {
     const selectedChannel = structuredClone(get().selectedChannel)
 
-    const messageToEdit = selectedChannel?.messages?.find((message) => message.id === idMessage)
+    const messageToEdit = selectedChannel?.messages?.find(
+      (message: ChannelMessage) => message.id === idMessage,
+    )
 
     if (!messageToEdit) return
 
@@ -93,9 +75,7 @@ export const useChannelStore = create<State>((set, get) => ({
 
   removeMessageFromChannel: async (idMessage) => {
     const selectedChannel = get().selectedChannel
-    const updatedMessages = selectedChannel?.messages?.filter(
-      (message) => message.id !== idMessage,
-    ) as Message[]
+    const updatedMessages = selectedChannel?.messages?.filter((message) => message.id !== idMessage)
 
     const updatedChannel = { ...selectedChannel, messages: updatedMessages } as SelectedChannel
 
