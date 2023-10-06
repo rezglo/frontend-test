@@ -2,28 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import axios from "axios";
 
 import store from './store';
 import './index.css';
 import App from './App';
-import Login from './components/Login/Login';
 import Page404 from './containers/Page404';
 import reportWebVitals from './reportWebVitals';
-import { URL_BASE } from './constants';
-
-let isAuthenticated = true;
-
-const getAuthenticatedForCurrentUser = () => {
-  axios.get(`${URL_BASE}/isAuthenticated`).then((response) => {
-    isAuthenticated =  response?.data?.status;
-  }).catch(error => {
-      console.log("error", error);
-  });
-};
-
- getAuthenticatedForCurrentUser();
-
 const router = createBrowserRouter([
   {
     path: '/',

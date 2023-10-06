@@ -41,10 +41,11 @@ const App = () => {
 
   useEffect(() => {
     openNotificationSuccess(api, 'top', "authenticated user",  "Welcome to the FrontEnd/Test system.");   
-  }, []);
+  }, [api]);
 
   useEffect(() => {
     navigate('/');    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   const onLogout = () => {
