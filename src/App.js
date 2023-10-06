@@ -80,6 +80,7 @@ const App = () => {
                     {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                       className: 'trigger',
                       onClick: () => setCollapsed(!collapsed),
+                      "data-testid": "img-for-collapse",
                     })}
         
                     <Avatar

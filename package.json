@@ -59,7 +59,10 @@
       "<rootDir>/node_modules/"
     ],
     "collectCoverageFrom": [
+      "src/*.{js,jsx,ts,tsx}",
       "src/**/*.{js,jsx,ts,tsx}",
+      "src/**/**/*.{js,jsx,ts,tsx}",
+      "src/**/**/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/"
     ],
     "coverageThreshold": {
