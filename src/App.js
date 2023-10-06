@@ -109,7 +109,6 @@ const App = () => {
                       background: colorBgContainer,
                     }}
                   >
-                    AAA
                     <Routes>
                       <Route path='/channel' element={<Channel />} />
                       <Route path='/users' element={<Users />} />
