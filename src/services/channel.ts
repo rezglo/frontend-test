@@ -1,7 +1,6 @@
 import { mockChannelMessages, mockChannels } from '../constants'
 import { delay } from '../lib/delay'
-import { SelectedChannel } from '../store'
-import { AuthUser, Channel } from '../types'
+import { AuthUser, Channel, SelectedChannel } from '../types.d'
 
 export const getChannels = async () => {
   await delay()
