@@ -1,11 +1,8 @@
-import { useEffect } from 'react'
 import { CircularProgress, IconButton } from '@mui/material'
 import { Close, Send } from '@mui/icons-material'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
-import { Notification } from '../../../components/Notification'
+import { MessageSchema, messageSchema } from '../../../types.d'
+import { useForm } from '../../../hooks/useForm'
 
 interface Props {
   messageToEdit: string
@@ -13,41 +10,18 @@ interface Props {
   onDisableEditMode: () => void
 }
 
-const messageSchema = z.object({
-  message: z.string(),
-})
-
-type MessageSchema = z.infer<typeof messageSchema>
-
 export const EditMessage: React.FC<Props> = ({
   messageToEdit,
   onEditMessage,
   onDisableEditMode,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<MessageSchema>({
-    resolver: zodResolver(messageSchema),
-  })
+  const { register, handleSubmit, reset, isSubmitting } = useForm({ schema: messageSchema })
 
   const onSubmit = async ({ message }: MessageSchema) => {
     onEditMessage(message)
     onDisableEditMode()
     reset()
   }
-
-  useEffect(() => {
-    if (errors == null) return
-
-    const objectMesagges = Object.entries(errors)
-
-    objectMesagges.forEach(([, value]) => {
-      Notification.error(value.message as string)
-    })
-  }, [errors])
 
   return (
     <form

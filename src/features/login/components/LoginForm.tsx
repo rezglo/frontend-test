@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 import {
   Button,
   CircularProgress,
@@ -8,36 +6,20 @@ import {
   OutlinedInput,
 } from '@mui/material'
 import { CheckBox } from '@mui/icons-material'
-import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Notification } from '../../../components/Notification'
-import { type LoginSchema, loginSchema } from '../../../types.d'
+import { LoginSchema, loginSchema } from '../../../types.d'
 import { useUserStore } from '../../../store'
+import { useForm } from '../../../hooks/useForm'
 
 export const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
-  })
+  const { register, handleSubmit, reset, isSubmitting } = useForm({ schema: loginSchema })
 
   const login = useUserStore((state) => state.login)
 
   const onSubmit = async (data: LoginSchema) => {
     await login(data)
+    reset()
   }
-
-  useEffect(() => {
-    if (errors == null) return
-
-    const objectMesagges = Object.entries(errors)
-
-    objectMesagges.forEach(([, value]) => {
-      Notification.error(value.message as string)
-    })
-  }, [errors])
 
   return (
     <form

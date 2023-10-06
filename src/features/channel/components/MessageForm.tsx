@@ -1,46 +1,20 @@
-import { useEffect } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Add, EmojiEmotions, MicNone, Send, Textsms } from '@mui/icons-material'
 import { Button, CircularProgress, IconButton } from '@mui/material'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 
-import { Notification } from '../../../components/Notification'
-
-const messageSchema = z.object({
-  message: z.string(),
-})
-
-type MessageSchema = z.infer<typeof messageSchema>
+import { MessageSchema, messageSchema } from '../../../types.d'
+import { useForm } from '../../../hooks/useForm'
 
 interface Props {
   actionSubmit: (message: string) => Promise<void>
 }
 
 export const MessageForm: React.FC<Props> = ({ actionSubmit }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<MessageSchema>({
-    resolver: zodResolver(messageSchema),
-  })
+  const { register, handleSubmit, reset, isSubmitting } = useForm({ schema: messageSchema })
 
   const onSubmit = async ({ message }: MessageSchema) => {
     await actionSubmit(message)
     reset()
   }
-
-  useEffect(() => {
-    if (errors == null) return
-
-    const objectMesagges = Object.entries(errors)
-
-    objectMesagges.forEach(([, value]) => {
-      Notification.error(value.message as string)
-    })
-  }, [errors])
 
   return (
     <form

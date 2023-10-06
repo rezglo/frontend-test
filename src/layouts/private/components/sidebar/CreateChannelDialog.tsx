@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import {
   Button,
   CircularProgress,
@@ -9,36 +8,21 @@ import {
   RadioGroup,
   TextField,
 } from '@mui/material'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
 import { Notification } from '../../../../components/Notification'
 import { useChannelStore } from '../../../../store'
+import { useForm } from '../../../../hooks/useForm'
+import { AddChannelSchema, addChannelSchema } from '../../../../types.d'
 
 interface Props {
   open: boolean
   handleClose: () => void
 }
 
-export const addChannelSchema = z.object({
-  name: z.string(),
-  status: z.string(),
-})
-
-export type AddChannelSchema = z.infer<typeof addChannelSchema>
-
 export const CreateChannelDialog: React.FC<Props> = ({ open, handleClose }) => {
   const createChannel = useChannelStore((state) => state.createChannel)
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<AddChannelSchema>({
-    resolver: zodResolver(addChannelSchema),
-  })
+  const { register, handleSubmit, reset, isSubmitting } = useForm({ schema: addChannelSchema })
 
   const onSubmit = async (data: AddChannelSchema) => {
     await createChannel(data)
@@ -46,16 +30,6 @@ export const CreateChannelDialog: React.FC<Props> = ({ open, handleClose }) => {
     handleClose()
     Notification.success('Success operation')
   }
-
-  useEffect(() => {
-    if (errors == null) return
-
-    const objectMesagges = Object.entries(errors)
-
-    objectMesagges.forEach(([, value]) => {
-      Notification.error(value.message as string)
-    })
-  }, [errors])
 
   return (
     <Dialog onClose={handleClose} open={open}>
