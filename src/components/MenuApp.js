@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  HomeOutlined,
   ClusterOutlined,
   UsergroupAddOutlined
 } from '@ant-design/icons';
@@ -14,16 +15,23 @@ const MenuApp = () => {
     <Menu
       theme="dark"
       mode="inline"
-      defaultSelectedKeys={['0']}
+      defaultSelectedKeys={['1']}
     >
       <Menu.Item key="1">
+        <Icon component={HomeOutlined} />
+        <span>
+          <Link to={'/'}>HOME</Link>
+        </span>
+      </Menu.Item>  
+
+      <Menu.Item key="2">
         <Icon component={ClusterOutlined} />
         <span>
           <Link to={'/channel'}>Channel</Link>
         </span>
       </Menu.Item>   
 
-      <Menu.Item key="2">
+      <Menu.Item key="3">
         <Icon component={UsergroupAddOutlined} />
         <span>
           <Link to={'/users'}>Users</Link>

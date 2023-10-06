@@ -25,6 +25,12 @@
   margin-right: 10px;
 }
 
+/* CONTENT */
+.ant-layout-content .img-dashboard {
+  width: 100%;
+  height: auto;
+}
+
 /* MODAL */
 .modal-add-channel .ant-form-item {
   width: 100%;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation  } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import {
   MenuFoldOutlined,
@@ -31,6 +31,7 @@ const App = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   let navigate = useNavigate();
+  let location = useLocation();
   const dispatch = useDispatch();
   const [api, contextHolder] = notification.useNotification();
 
@@ -109,6 +110,10 @@ const App = () => {
                       background: colorBgContainer,
                     }}
                   >
+                    {location.pathname === '/' && (
+                      <img className="img-dashboard" src="Dashboard.webp" alt="Dasboard"/>
+                    )}
+
                     <Routes>
                       <Route path='/channel' element={<Channel />} />
                       <Route path='/users' element={<Users />} />
