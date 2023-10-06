@@ -14,7 +14,7 @@ import {
 } from 'antd';
 
 import { saveLoginData } from '../../containers/Login/reducers/loginReducer';
-import { setIsAuthenticated } from '../../containers/Login/reducers/isAuthenticatedReducer';
+import { setIsAuthenticatedAction } from '../../containers/Login/reducers/isAuthenticatedReducer';
 import { openNotificationSuccess } from '../../utils';
 import { getLogin } from '../../api/login';
 
@@ -30,14 +30,14 @@ const Login = () => {
 
   const [api, contextHolder] = notification.useNotification();
   let navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onFinish = (values) => {
     getLogin(
       setIsLoginig,
       dispatch,
       saveLoginData,
-      setIsAuthenticated,
+      setIsAuthenticatedAction,
       setLogin,
       openNotificationSuccess,
       api,

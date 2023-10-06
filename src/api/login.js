@@ -5,7 +5,7 @@ export const getLogin = (
   setIsLoginig,
   dispatch,
   saveLoginData,
-  setIsAuthenticated,
+  setIsAuthenticatedAction,
   setLogin,
   openNotificationSuccess,
   api,
@@ -15,16 +15,16 @@ export const getLogin = (
   
   axios.get(`${URL_BASE}/login`).then((response) => {
     setTimeout(() => {
+        openNotificationSuccess(api, 'top', "authenticated user",  "Welcome to the FrontEnd/Test system.");        
         dispatch(saveLoginData(response.data.data))   
-        dispatch(setIsAuthenticated(true));
+        dispatch(setIsAuthenticatedAction(true));
         setAuthenticatedForCurrentUser({ status: true});
         setLogin(response.data);
         setIsLoginig(false);
-        openNotificationSuccess(api, 'top', "authenticated user",  "Welcome to the FrontEnd/Test system.");        
       }, 2000);
   }).catch(error => {
         console.log("error", error);
-        dispatch(setIsAuthenticated(false));
+        dispatch(setIsAuthenticatedAction(false));
   });
 };
 

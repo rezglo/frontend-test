@@ -7,20 +7,20 @@ const io = require("socket.io")(3002, {
 });
 
 io.on("connection",(socket)=>{
-	console.log("Se conecto un Usuario");
+	console.log("A User connected.");
 	
 	socket.on("message", (message, roomName)=>{
 		socket.broadcast.emit("message", {...message, transmitter:false});
 	});
 	
 	socket.on("disconnect", ()=>{
-		console.log("Se desconecto un usuario");
+		console.log("A user was disconnected.");
 	});
 	
 	socket.on("joinRoom", (roomName)=>{
-		console.log("Se conecto a la sala Aba 4 Love");
+		console.log("He connected to the REZGLO room.");
 		socket.join(roomName);
 	});	
 });
 
-console.log("Canal abierto");
+console.log("Open channel.");

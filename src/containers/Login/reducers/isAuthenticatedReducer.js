@@ -6,14 +6,14 @@ export const isAuthenticatedReducer = createSlice({
     value:false
   },
   reducers: {
-    setIsAuthenticated: (state, action) => {
+    setIsAuthenticatedAction: (state, action) => {
         state.value = action.payload
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setIsAuthenticated } = isAuthenticatedReducer.actions
+export const { setIsAuthenticatedAction } = isAuthenticatedReducer.actions
 
 export default isAuthenticatedReducer.reducer
 

@@ -18,6 +18,13 @@
   max-width: 15rem;
 }
 
+/* HEADER */
+.ant-layout-header .btn-logout {
+  top: 12px;
+  float: right;
+  margin-right: 10px;
+}
+
 /* MODAL */
 .modal-add-channel .ant-form-item {
   width: 100%;
