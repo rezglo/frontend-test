@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { AuthUser, DirectMessage, SelectedDirectMessage, UsersDirectMessages } from '../types.d'
+import { AuthUser, DirectMessage, SelectedDirectMessage, UsersDirectMessages } from '../types'
 import { addMessageToDirectMessage, getDirectMessages, getDirectMessagesById } from '../services'
 
 interface State {

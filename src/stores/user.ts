@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 
-import { getAuthUser, login } from '../services/user'
-import { LoginSchema, AuthUser } from '../types'
-import { storage } from '../lib/storage'
+import { getAuthUser, login } from '@/services/user'
+import { LoginSchema, AuthUser } from '@/types.d'
+import { storage } from '@/utils/storage'
 
 interface State {
   isLogin: boolean
@@ -14,10 +14,17 @@ interface State {
 }
 
 export const useUserStore = create<State>((set) => ({
-  isLogin: false,
+  isLogin: Boolean(storage.getToken()),
   authUser: null,
   getAuthUser: async () => {
     const authUser = await getAuthUser()
+
+    if (!authUser) {
+      storage.removeToken()
+      set({ isLogin: false })
+      return
+    }
+
     set({ authUser })
   },
   login: async (data) => {

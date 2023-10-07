@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import { createChannel, getChannels, removeChannel } from '../services'
 import { addMessageToChannel, getChannelById } from '../services/channel'
-import { AuthUser, Channel, ChannelMessage, SelectedChannel } from '../types.d'
+import { AuthUser, Channel, ChannelMessage, SelectedChannel } from '../types'
 
 interface State {
   channels: Channel[]
