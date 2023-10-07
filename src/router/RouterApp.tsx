@@ -1,25 +1,23 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Loading } from '../components/Loading'
-import { privateRoutes } from './private'
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+
+import { Loading, ErrorBoundary } from '../components'
+import { RootLayout } from '@/layouts/root/Root'
 import { publicRoutes } from './public'
-import { RootBoundary } from '../components/RootBoundary'
-import { RootLayout } from '../layouts/root/Root'
-import { useAuth } from '../hooks/useAuth'
+import { protectedRoutes } from './protected'
+
+const router = createBrowserRouter([
+  {
+    path: '',
+    element: <RootLayout />,
+    errorElement: <ErrorBoundary />,
+    children: [...protectedRoutes, ...publicRoutes],
+  },
+  {
+    path: '*',
+    element: <Navigate to="." />,
+  },
+])
 
 export const RouterApp = () => {
-  const { waitAuthCheck, isLogin } = useAuth()
-  const routes = isLogin ? privateRoutes : publicRoutes
-
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <RootLayout />,
-      errorElement: <RootBoundary />,
-      children: [...routes],
-    },
-  ])
-
-  if (waitAuthCheck) return <Loading />
-
   return <RouterProvider router={router} fallbackElement={<Loading />} />
 }

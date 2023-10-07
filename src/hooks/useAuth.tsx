@@ -1,27 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useUserStore } from '../store'
-import { storage } from '../lib/storage'
+import { useUserStore } from '../stores'
 
 export const useAuth = () => {
-  const [waitAuthCheck, setwaitAuthCheck] = useState(true)
-  const [isLogin, autoLogin] = useUserStore((state) => [state.isLogin, state.autoLogin])
+  const [isLogin, getAuthUser, login] = useUserStore((state) => [
+    state.isLogin,
+    state.getAuthUser,
+    state.login,
+  ])
 
-  const isAuthTokenValid = (token: string) => {
-    return Boolean(token)
-  }
-
-  const handleAuth = useCallback(() => {
-    const token = storage.getToken()
-
-    if (isAuthTokenValid(token)) {
-      autoLogin()
-    }
-  }, [autoLogin])
-
-  useEffect(() => {
-    handleAuth()
-    setwaitAuthCheck(false)
-  }, [handleAuth])
-
-  return { waitAuthCheck, isLogin }
+  return { isLogin, getAuthUser, login }
 }

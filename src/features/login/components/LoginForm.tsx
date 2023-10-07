@@ -7,18 +7,20 @@ import {
 } from '@mui/material'
 import { CheckBox } from '@mui/icons-material'
 
-import { LoginSchema, loginSchema } from '../../../types.d'
-import { useUserStore } from '../../../store'
-import { useForm } from '../../../hooks/useForm'
+import { LoginSchema, loginSchema } from '@/types.d'
+import { useAuth, useForm } from '@/hooks'
 
-export const LoginForm = () => {
+interface Props {
+  onSuccess: () => void
+}
+export const LoginForm: React.FC<Props> = ({ onSuccess }) => {
   const { register, handleSubmit, reset, isSubmitting } = useForm({ schema: loginSchema })
-
-  const login = useUserStore((state) => state.login)
+  const { login } = useAuth()
 
   const onSubmit = async (data: LoginSchema) => {
     await login(data)
     reset()
+    onSuccess()
   }
 
   return (
