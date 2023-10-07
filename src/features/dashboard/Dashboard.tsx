@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material'
 
-export const Home = () => {
+export const Dashboard = () => {
   return (
     <div className="grid place-items-center w-full h-full">
       <div className="px-10 text-center w-full h-full">
