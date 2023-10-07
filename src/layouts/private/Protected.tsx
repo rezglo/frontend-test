@@ -1,16 +1,20 @@
 import { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 
-import { useUserStore } from '../../store'
+import { useAuth } from '@/hooks'
 import { Header } from './components/header/Header'
 import { Sidebar } from './components/sidebar/Sidebar'
 
-export const PrivateLayout = () => {
-  const getAuthUser = useUserStore((state) => state.getAuthUser)
+export const ProtectedLayout = () => {
+  const { isLogin, getAuthUser } = useAuth()
 
   useEffect(() => {
     getAuthUser()
   }, [getAuthUser])
+
+  if (!isLogin) {
+    return <Navigate to="/auth/login" replace={true} />
+  }
 
   return (
     <>
