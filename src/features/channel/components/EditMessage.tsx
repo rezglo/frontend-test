@@ -1,8 +1,8 @@
 import { CircularProgress, IconButton } from '@mui/material'
 import { Close, Send } from '@mui/icons-material'
 
-import { MessageSchema, messageSchema } from '../../../types.d'
-import { useForm } from '../../../hooks/useForm'
+import { MessageSchema, messageSchema } from '@/types.d'
+import { useForm } from '@/hooks/useForm'
 
 interface Props {
   messageToEdit: string

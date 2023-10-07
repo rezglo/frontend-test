@@ -7,7 +7,7 @@ import { MenuChannels } from './MenuChannels'
 import { MenuDirectMessages } from './MenuDirectMessages'
 import { LogoutButton } from './LogoutButton'
 import { MenuOptions } from './MenuOptions'
-import { useUserStore } from '../../../../store'
+import { useUserStore } from '../../../../stores'
 
 export const Sidebar = () => {
   const [authUser, logout] = useUserStore((state) => [state.authUser, state.logout])

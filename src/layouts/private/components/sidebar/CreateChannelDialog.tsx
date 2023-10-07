@@ -9,8 +9,8 @@ import {
   TextField,
 } from '@mui/material'
 
-import { Notification } from '../../../../components/Notification'
-import { useChannelStore } from '../../../../store'
+import { Notification } from '../../../../components/notification'
+import { useChannelStore } from '../../../../stores'
 import { useForm } from '../../../../hooks/useForm'
 import { AddChannelSchema, addChannelSchema } from '../../../../types.d'
 

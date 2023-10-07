@@ -1,6 +1,6 @@
 import { Avatar } from '@mui/material'
 import { AccessTime, HelpOutline, Search } from '@mui/icons-material'
-import { useUserStore } from '../../../../store'
+import { useUserStore } from '../../../../stores'
 
 export const Header = () => {
   const authUser = useUserStore((state) => state.authUser)

@@ -15,7 +15,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Type } from '../../../../types.d'
 import { CreateChannelDialog } from './CreateChannelDialog'
 import { TYPE_CHANNEL_ACTION, useChannel } from '../../../../hooks'
-import { Notification } from '../../../../components/Notification'
+import { Notification } from '../../../../components/notification'
 
 export const MenuChannels = () => {
   const [openCreateChannelDialog, setOpenCreateChannelDialog] = useState(false)

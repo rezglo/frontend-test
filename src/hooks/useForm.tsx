@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Notification } from '../components/Notification'
+import { Notification } from '../components/notification'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useForm as useReactHookForm } from 'react-hook-form'

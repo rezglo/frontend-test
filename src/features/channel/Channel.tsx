@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material'
 import { StarBorderOutlined, Lock, PersonAddOutlined, InfoOutlined } from '@mui/icons-material'
 
-import { Type } from '../../types.d'
+import { TYPE_CHANNEL_ACTION, useChannel } from '@/hooks'
+import { Loading } from '@/components/loading'
+import { Type } from '@/types.d'
 import { MessageForm } from './components'
 import { Message } from './components/Message'
-import { TYPE_CHANNEL_ACTION, useChannel } from '../../hooks/useChannel'
-import { Loading } from '../../components/Loading'
 
 export const Channel = () => {
   const { selectedChannel, isLoading, actionSubmit } = useChannel({

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDirectMessageStore, useUserStore } from '../store'
+import { useDirectMessageStore, useUserStore } from '../stores'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AuthUser } from '../types'
 

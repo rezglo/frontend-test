@@ -2,9 +2,10 @@ import { Avatar, IconButton, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { MoreVert } from '@mui/icons-material'
 
-import { useChannelStore, useUserStore } from '../../../store'
+import { useChannelStore, useUserStore } from '@/stores'
+import { formatToTime } from '@/utils/format'
+import { useFloatMenu } from '@/hooks'
 import { MenuOptions } from './MenuOptions'
-import { useFloatMenu } from '../../../hooks'
 import { EditMessage } from './EditMessage'
 
 interface Props {
@@ -16,8 +17,6 @@ interface Props {
   timestamp: string
 }
 
-const formatDate = (timestamp: string) => new Date(timestamp).toLocaleTimeString('en-US')
-
 export const Message: React.FC<Props> = ({
   idSender,
   idMessage,
@@ -26,7 +25,7 @@ export const Message: React.FC<Props> = ({
   message,
   timestamp,
 }) => {
-  const localeDate = formatDate(timestamp)
+  const localeDate = formatToTime(timestamp)
   const authUser = useUserStore((state) => state.authUser)
   const [removeMessage, editMessageFromChannel] = useChannelStore((state) => [
     state.removeMessageFromChannel,

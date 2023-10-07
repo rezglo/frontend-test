@@ -1,9 +1,10 @@
 import { IconButton, Typography } from '@mui/material'
 import { MoreVert } from '@mui/icons-material'
 
-import { useUserStore } from '../../../store'
-import { useDirectMessageStore } from '../../../store/directMessage'
-import { useFloatMenu } from '../../../hooks'
+import { useUserStore } from '@/stores'
+import { useDirectMessageStore } from '@/stores/directMessage'
+import { useFloatMenu } from '@/hooks'
+import { formatToDate } from '@/utils/format'
 import { MenuOptions } from '../../channel/components/MenuOptions'
 import { EditMessage } from '../../channel/components/EditMessage'
 
@@ -14,17 +15,17 @@ interface Props {
   timestamp: string
 }
 
-const formatDate = (timestamp: string) => new Date(timestamp).toLocaleTimeString('en-US')
-
 export const Message: React.FC<Props> = ({ idSender, message, timestamp, idMessage }) => {
   const authUser = useUserStore((state) => state.authUser)
+
   const [removeMessageFromDirectMessage, editMessageFromDirectMessage] = useDirectMessageStore(
     (state) => [state.removeMessageFromDirectMessage, state.editMessageFromDirectMessage],
   )
   const { floatMenuRef, onOpenMenu, onCloseMenu, isEditMode, disableEditMode, activeEditMode } =
     useFloatMenu()
 
-  const localeDate = formatDate(timestamp)
+  const localeDate = formatToDate(timestamp)
+
   const messageBelongToAuthUser = authUser?.id === idSender
 
   const handleRemoveMessage = () => {

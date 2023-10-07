@@ -1,8 +1,8 @@
 import { Add, EmojiEmotions, MicNone, Send, Textsms } from '@mui/icons-material'
 import { Button, CircularProgress, IconButton } from '@mui/material'
 
-import { MessageSchema, messageSchema } from '../../../types.d'
-import { useForm } from '../../../hooks/useForm'
+import { MessageSchema, messageSchema } from '@/types.d'
+import { useForm } from '@/hooks/useForm'
 
 interface Props {
   actionSubmit: (message: string) => Promise<void>

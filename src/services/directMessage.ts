@@ -1,6 +1,6 @@
-import { mockChatDirectMessages, mockDirectMessages } from '../constants'
-import { delay } from '../lib/delay'
-import { AuthUser, SelectedDirectMessage, UsersDirectMessages } from '../types.d'
+import { mockChatDirectMessages, mockDirectMessages } from '@/constants'
+import { delay } from '@/utils/delay'
+import { AuthUser, SelectedDirectMessage, UsersDirectMessages } from '@/types.d'
 
 export const getDirectMessages = async () => {
   await delay()

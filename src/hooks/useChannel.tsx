@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useChannelStore, useUserStore } from '../store'
+import { useChannelStore, useUserStore } from '../stores'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AuthUser } from '../types'
 

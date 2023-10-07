@@ -1,10 +1,10 @@
 import { Avatar, ListItem, ListItemButton, ListItemIcon } from '@mui/material'
 import { InfoOutlined, FiberManualRecord } from '@mui/icons-material'
 
-import { Status } from '../../types.d'
+import { Status } from '@/types.d'
+import { Loading } from '@/components/loading'
+import { TYPE_DIRECT_MESSAGE_ACTION, useDirectMessage } from '@/hooks'
 import { Message } from './components'
-import { Loading } from '../../components/Loading'
-import { TYPE_DIRECT_MESSAGE_ACTION, useDirectMessage } from '../../hooks'
 import { MessageForm } from '../channel/components'
 
 export const DirectMessage = () => {
