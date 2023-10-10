@@ -1,8 +1,14 @@
 import { create } from 'zustand'
 
-import { createChannel, getChannels, removeChannel } from '../services'
-import { addMessageToChannel, getChannelById } from '../services/channel'
-import { AuthUser, Channel, ChannelMessage, SelectedChannel } from '../types'
+import { Channel, ChannelMessage, SelectedChannel } from '@/features/dashboard/channel/types'
+import { AuthUser } from '@/features/auth/login/types'
+import {
+  addMessageToChannel,
+  createChannel,
+  getChannelById,
+  getChannels,
+  removeChannel,
+} from '@/features/dashboard/channel/services/channel'
 
 interface State {
   channels: Channel[]

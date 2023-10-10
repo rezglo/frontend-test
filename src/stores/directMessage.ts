@@ -1,6 +1,15 @@
 import { create } from 'zustand'
-import { AuthUser, DirectMessage, SelectedDirectMessage, UsersDirectMessages } from '../types'
-import { addMessageToDirectMessage, getDirectMessages, getDirectMessagesById } from '../services'
+import {
+  addMessageToDirectMessage,
+  getDirectMessages,
+  getDirectMessagesById,
+} from '@/features/dashboard/directMessage/services/directMessage'
+import { AuthUser } from '@/features/auth/login/types'
+import {
+  DirectMessage,
+  SelectedDirectMessage,
+  UsersDirectMessages,
+} from '@/features/dashboard/directMessage/types'
 
 interface State {
   directMessages: UsersDirectMessages[]
