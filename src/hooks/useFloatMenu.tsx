@@ -1,25 +1,27 @@
-import { useState } from 'react'
+import { useCallback, useRef } from 'react'
+import { useDisclosure } from '.'
 
 export const useFloatMenu = () => {
-  const [floatMenuRef, setMenu] = useState<HTMLButtonElement | null>(null)
-  const [isEditMode, setEditMode] = useState(false)
+  const { close: onCloseMenu, open: onOpenMenu, isOpen: isShowMenu } = useDisclosure()
+  const { close: onCloseEditMode, open: onActiveEditMode, isOpen: isEditMode } = useDisclosure()
+  const elementRef = useRef(null)
 
-  const activeEditMode = () => {
-    setEditMode(true)
+  const activeEditMode = useCallback(() => {
+    onActiveEditMode()
     onCloseMenu()
-  }
+  }, [onCloseMenu, onActiveEditMode])
 
-  const disableEditMode = () => {
-    setEditMode(false)
-  }
+  const disableEditMode = useCallback(() => {
+    onCloseEditMode()
+  }, [onCloseEditMode])
 
-  const onCloseMenu = () => {
-    setMenu(null)
+  return {
+    isShowMenu,
+    elementRef,
+    onOpenMenu,
+    onCloseMenu,
+    isEditMode,
+    disableEditMode,
+    activeEditMode,
   }
-
-  const onOpenMenu = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    setMenu(event.target as HTMLButtonElement)
-  }
-
-  return { floatMenuRef, onOpenMenu, onCloseMenu, isEditMode, disableEditMode, activeEditMode }
 }
