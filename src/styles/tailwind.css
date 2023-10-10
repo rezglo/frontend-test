@@ -36,40 +36,6 @@
     outline: none;
   }
 
-  /* @keyframes autofill {
-		0%,
-		100% {
-			background: transparent;
-		}
-	}
-	
-	input:-webkit-autofill {
-		animation-delay: 1s;
-		animation-name: autofill !important;
-		animation-fill-mode: both;
-		-webkit-box-shadow: 0 0 0 100px transparent inset !important;
-	}
-	
-	:focus {
-		outline-color: transparent;
-	} */
-
-  #loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgb(255 255 255);
-    border-radius: 50%;
-    border-top-color: #0a8d48;
-    animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
-  }
-
-  #loading:hover {
-    border: 3px solid #0a8d48;
-    border-top-color: rgb(255 255 255);
-  }
-
   @keyframes spin {
     to {
       -webkit-transform: rotate(360deg);
@@ -80,6 +46,7 @@
       -webkit-transform: rotate(360deg);
     }
   }
+
 }
 
 @layer components {
@@ -91,3 +58,33 @@
     scrollbar-gutter: stable;
   }
 }
+
+
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(93, 85, 85, 0.463);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(85, 80, 80);
+    border-radius: 10px;
+  }
+
