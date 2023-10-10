@@ -2,12 +2,12 @@ import { Navigate } from 'react-router-dom'
 
 export const publicRoutes = [
   {
-    path: 'auth',
+    path: 'auth/*',
     children: [
       {
         path: 'login',
         lazy: async () => {
-          const { Login } = await import('../features/login/components/Layout')
+          const { Login } = await import('@/features/auth/login/Login')
           return { Component: Login }
         },
       },

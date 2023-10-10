@@ -1,26 +1,32 @@
 import { Navigate } from 'react-router-dom'
 
-import { Channel } from '@/features/channel'
-import { Dashboard } from '@/features/dashboard'
-import { ProtectedLayout } from '@/layouts/private/Protected'
-import { DirectMessage } from '@/features/directMessage/DirectMessage'
+import { ProtectedLayout } from '@/layouts/Protected'
 
 export const protectedRoutes = [
   {
-    path: '',
+    path: 'dashboard/*',
     element: <ProtectedLayout />,
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        lazy: async () => {
+          const { Dashboard } = await import('@/features/dashboard/dashboard')
+          return { Component: Dashboard }
+        },
       },
       {
         path: 'channel/:channelId',
-        element: <Channel />,
+        lazy: async () => {
+          const { Channel } = await import('@/features/dashboard/channel')
+          return { Component: Channel }
+        },
       },
       {
         path: 'direct-message/:directMessageId',
-        element: <DirectMessage />,
+        lazy: async () => {
+          const { DirectMessage } = await import('@/features/dashboard/directMessage')
+          return { Component: DirectMessage }
+        },
       },
       {
         path: '*',
