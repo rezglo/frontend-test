@@ -1,16 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { AppThemeProvider } from '@/theme'
-import { NotificationProvider } from '@/components/notification'
-import { RouterApp } from '@/router'
 import '@/styles/tailwind.css'
+import { App } from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <NotificationProvider />
-    <AppThemeProvider>
-      <RouterApp />
-    </AppThemeProvider>
+    <App />
   </React.StrictMode>,
 )
