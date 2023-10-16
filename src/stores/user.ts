@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 
 import { storage } from '@/utils/storage'
-import { AuthUser, LoginSchema } from '@/features/auth/login/types'
+import { AuthUser } from '@/features/auth/login/types/index.d'
 import { getAuthUser, login } from '@/features/auth/login/services/login'
+import { LoginSchema } from '@/schemas'
 
 interface State {
   isLogin: boolean
