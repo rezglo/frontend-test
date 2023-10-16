@@ -30,10 +30,11 @@ export const EditMessage: React.FC<Props> = ({
       onSubmit={handleSubmit(onSubmit)}
     >
       <input
-        className="outline-none border-none h-full m-0 w-full bg-transparent text-gray-800 ml-5"
-        defaultValue={messageToEdit}
         autoFocus
+        className="outline-none border-none h-full m-0 w-full bg-transparent text-gray-800 ml-5"
         {...register('message')}
+        defaultValue={messageToEdit}
+        autoComplete="do-not-autofill"
       />
       <IconButton type="submit">
         {isSubmitting ? <CircularProgress size={24} className="text-green-500" /> : <Send />}

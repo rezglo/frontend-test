@@ -26,17 +26,15 @@ export const DirectMessage = () => {
       <HeaderMessage selectedDirectMessage={selectedDirectMessage} />
       <div className="flex flex-col justify-start items-start w-full h-full pt-8 bg-gray-200 px-16 overflow-y-auto">
         {selectedDirectMessage?.messages?.map((message) => (
-          <>
-            <Message
-              idSender={message?.sender.id}
-              idMessage={message?.id}
-              message={message?.text}
-              timestamp={message?.sentAt}
-              key={message?.id}
-            />
-            <div ref={scrollRef}></div>
-          </>
+          <Message
+            idSender={message?.sender.id}
+            idMessage={message?.id}
+            message={message?.text}
+            timestamp={message?.sentAt}
+            key={message?.id}
+          />
         ))}
+        <div ref={scrollRef}></div>
       </div>
       <MessageForm actionSubmit={actionSubmit} />
     </section>

@@ -25,19 +25,17 @@ export const Channel = () => {
       <HeaderMessage selectedChannel={selectedChannel} />
       <div className="flex flex-col justify-start items-start w-full pt-8 bg-gray-200 px-16 h-full overflow-y-auto">
         {selectedChannel?.messages?.map((message) => (
-          <>
-            <Message
-              idSender={message?.sender.id}
-              idMessage={message?.id}
-              name={message.sender?.name}
-              avatar={message.sender?.avatar}
-              message={message?.text}
-              timestamp={message?.sentAt}
-              key={message?.id}
-            />
-            <div ref={scrollRef}></div>
-          </>
+          <Message
+            idSender={message?.sender.id}
+            idMessage={message?.id}
+            name={message.sender?.name}
+            avatar={message.sender?.avatar}
+            message={message?.text}
+            timestamp={message?.sentAt}
+            key={message?.id}
+          />
         ))}
+        <div ref={scrollRef}></div>
       </div>
       <MessageForm actionSubmit={actionSubmit} />
     </section>

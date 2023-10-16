@@ -83,16 +83,16 @@ export const Message: React.FC<Props> = ({
                 onDisableEditMode={disableEditMode}
               />
             )}
-            <MessageMenuOptions
-              isShowMenu={isShowMenu}
-              elementRef={elementRef}
-              onClose={onCloseMenu}
-              onRemove={handleRemoveMessage}
-              onEdit={activeEditMode}
-            />
           </div>
         </div>
       </div>
+      <MessageMenuOptions
+        isShowMenu={isShowMenu}
+        elementRef={elementRef}
+        onClose={onCloseMenu}
+        onRemove={handleRemoveMessage}
+        onEdit={activeEditMode}
+      />
     </div>
   )
 }

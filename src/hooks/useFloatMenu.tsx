@@ -7,8 +7,8 @@ export const useFloatMenu = () => {
   const elementRef = useRef(null)
 
   const activeEditMode = useCallback(() => {
-    onActiveEditMode()
     onCloseMenu()
+    onActiveEditMode()
   }, [onCloseMenu, onActiveEditMode])
 
   const disableEditMode = useCallback(() => {

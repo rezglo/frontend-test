@@ -15,7 +15,7 @@ import { CreateChannelDialog } from './CreateChannelDialog'
 import { useDisclosure } from '@/hooks'
 import { Notification } from '@/components/notification'
 import { TYPE_CHANNEL_ACTION, useChannel } from '@/features/dashboard/channel/hooks'
-import { ChannelType } from '@/features/dashboard/channel/types/index.d'
+import { ChannelType } from '@/features/dashboard/channel/types'
 
 export const MenuChannels = () => {
   const params = useParams()

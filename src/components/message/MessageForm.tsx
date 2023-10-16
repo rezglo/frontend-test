@@ -39,6 +39,8 @@ export const MessageForm: React.FC<Props> = ({ actionSubmit }) => {
         className="outline-none border-none h-full m-0 w-full bg-transparent text-gray-800 ml-5"
         autoFocus
         {...register('message')}
+        placeholder="Type your message"
+        autoComplete="do-not-autofill"
       />
       <Button>
         {isSubmitting ? <CircularProgress size={24} className="text-green-500" /> : <Send />}

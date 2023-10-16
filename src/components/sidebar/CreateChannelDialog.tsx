@@ -13,6 +13,7 @@ import { Notification } from '@/components/notification'
 import { useChannelStore } from '@/stores'
 import { useForm } from '@/hooks/useForm'
 import { addChannelSchema, AddChannelSchema } from '@/schemas'
+import { ChannelType } from '@/features/dashboard/channel/types'
 
 interface Props {
   open: boolean
@@ -26,13 +27,14 @@ export const CreateChannelDialog: React.FC<Props> = ({ open, handleClose }) => {
 
   const onSubmit = async (data: AddChannelSchema) => {
     await createChannel(data)
+
     reset()
     handleClose()
     Notification.success('Success operation')
   }
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} disableRestoreFocus>
       <DialogTitle>Add new channel</DialogTitle>
       <form
         noValidate
@@ -45,10 +47,21 @@ export const CreateChannelDialog: React.FC<Props> = ({ open, handleClose }) => {
           autoFocus
           fullWidth
           placeholder="Channel Name"
+          autoComplete="do-not-autofill"
         />
-        <RadioGroup defaultValue="online" {...register('status')}>
-          <FormControlLabel value="online" control={<Radio />} label="Online" />
-          <FormControlLabel value="offline" control={<Radio />} label="Offline" />
+        <RadioGroup name="use-radio-group" defaultValue={ChannelType.PRIVATE}>
+          <FormControlLabel
+            {...register('type')}
+            value={ChannelType.PRIVATE}
+            control={<Radio />}
+            label="Private"
+          />
+          <FormControlLabel
+            {...register('type')}
+            value={ChannelType.PUBLIC}
+            control={<Radio />}
+            label="Public"
+          />
         </RadioGroup>
         <Button
           disabled={isSubmitting}

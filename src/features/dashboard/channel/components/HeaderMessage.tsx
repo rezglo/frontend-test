@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import { InfoOutlined, PersonAddOutlined, StarBorderOutlined, Lock } from '@mui/icons-material'
 
-import { ChannelType, SelectedChannel } from '../types/index.d'
+import { ChannelType, SelectedChannel } from '../types'
 
 interface Props {
   selectedChannel: SelectedChannel | null

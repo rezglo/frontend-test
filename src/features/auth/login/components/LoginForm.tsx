@@ -1,10 +1,10 @@
-import { FormControlLabel, InputLabel, OutlinedInput } from '@mui/material'
+import { FormControlLabel, InputLabel, TextField } from '@mui/material'
 import { CheckBox } from '@mui/icons-material'
 
 import { useForm } from '@/hooks'
 import { Button } from '@/components'
-import { LoginSchema, loginSchema } from '../types/index.d'
 import { useUserStore } from '@/stores'
+import { LoginSchema, loginSchema } from '@/schemas'
 
 interface Props {
   onSuccess: () => void
@@ -29,21 +29,24 @@ export const LoginForm: React.FC<Props> = ({ onSuccess }) => {
         <InputLabel className="text-black font-medium" htmlFor="email">
           Email
         </InputLabel>
-        <OutlinedInput
+        <TextField
           id="email"
+          variant="outlined"
           {...register('email')}
           className="w-full py-0"
           type="email"
           autoFocus
           placeholder="name@work-email.com"
+          autoComplete="email"
         />
       </div>
       <div className="w-full">
         <InputLabel className="text-black font-medium" htmlFor="password">
           Password
         </InputLabel>
-        <OutlinedInput
+        <TextField
           id="password"
+          variant="outlined"
           {...register('password')}
           className="w-full py-0"
           type="password"
