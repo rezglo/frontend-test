@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --slack-color: #3f0e40;
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    min-height: 100dvh;
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    /* background-color: var(----slack-color); */
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  a[role='button'] {
+    text-decoration: none;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+}
+
+@layer components {
+  .scrollbar-gutter-both-edges {
+    scrollbar-gutter: stable both-edges;
+  }
+
+  .scrollbar-gutter-stable {
+    scrollbar-gutter: stable;
+  }
+}
+
+
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(93, 85, 85, 0.463);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(85, 80, 80);
+    border-radius: 10px;
+  }
+
