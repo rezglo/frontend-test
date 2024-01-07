@@ -6,8 +6,6 @@ export const HomeScreen = () => {
     <div className='flex ' >
         
             <SideBar />
-            
-        
         
     </div>
   )

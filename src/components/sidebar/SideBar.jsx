@@ -1,23 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { ChannelList } from './ChannelList'
+import { MessagesList } from './MessagesList'
 
 export const SideBar = () => {
     return (
-            <div className="drawer lg:drawer-open ">
+            <div className=" drawer-open mr-10 ">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-side h-min-full bg-base-200  text-base-content">
 
-                    <ul className="menu p-4 w-80  ">
-                        <h3 className='' >Channels</h3> <hr />
-                        <li><Link>Sidebar Item 1</Link></li>
-                        <li><Link>Sidebar Item 2</Link></li>
-                    </ul>
+                    <h2 className=' text-2xl ml-3 mb-4 mt-2 ' >Pedro</h2> <hr />
+
+                    <ChannelList />
                     <hr />
-                    <ul className="menu p-4 w-80 ">
-                    <h3 className=''>Direct Messages</h3> <hr />
-                        <li><Link>Sidebar Item 1</Link></li>
-                        <li><Link>Sidebar Item 2</Link></li>
-                    </ul>
+                    <MessagesList />
 
                 </div>
             </div>
