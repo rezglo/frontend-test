@@ -14,6 +14,11 @@ const authSlice = createSlice({
                 ...payload
             }
         },
+        authLogout: (state)=>{
+            return state = {
+                checking: false
+            }
+        },
         authStartChecking: (state)=>{
             state.checking = true;
         },
@@ -23,5 +28,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { authLogin, authStartChecking, authDoneChecking } = authSlice.actions;
+export const { authLogin, authLogout, authStartChecking, authDoneChecking } = authSlice.actions;
 export default authSlice.reducer;
