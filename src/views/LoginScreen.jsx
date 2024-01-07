@@ -1,6 +1,5 @@
 import React from 'react'
 import { useForm } from '../hooks/useForm'
-import { fetchCredentials } from '../helpers/data-fetch';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogin } from '../store/auth/thunks';
 
