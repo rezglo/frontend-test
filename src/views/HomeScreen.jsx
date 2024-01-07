@@ -4,7 +4,7 @@ import { MainContent } from '../components/Main Content'
 
 export const HomeScreen = () => {
   return (
-    <div className='flex ' >
+    <div className='flex overflow-hidden' >
         
             <SideBar />
             <MainContent />

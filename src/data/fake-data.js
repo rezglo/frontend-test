@@ -4,7 +4,7 @@ export const users = [
         uid: 1,
         email: 'pedro@gmail.com',
         password: '123456',
-        avatarURL: '../assets/pedro_avatar.jpg',
+        avatarURL: '../../assets/pedro_avatar.jpg',
         msgs: [
             {
                 senderId: 1,
@@ -97,7 +97,7 @@ export const users = [
         uid: 2,
         email: 'jose@gmail.com',
         password: '123456',
-        avatarURL: '../assets/jose_avatar.jpg',
+        avatarURL: '../../assets/jose_avatar.jpg',
         msgs: [
             {
                 senderId: 1,
@@ -148,7 +148,7 @@ export const users = [
         uid: 3,
         email: 'maria@gmail.com',
         password: '123456',
-        avatarURL: '../assets/maria_avatar.jpg',
+        avatarURL: '../../assets/maria_avatar.jpg',
         msgs: [
             {
                 senderId: 1,
@@ -203,28 +203,32 @@ export const channels = [
         channelTexts: [
             {
                 text: 'Hey, guys this is going to be the main channel',
-                id: 1,
+                messageId: 1,
+                timestamp: new Date(1698003000000).getTime(),
                 user: {
                     uid: 1
                 }
             },
             {
                 text: 'Fantastic',
-                id: 2,
+                messageId: 2,
+                timestamp: new Date(1698004000000).getTime(),
                 user: {
                     uid: 3
                 }
             },
             {
                 text: 'Looking forward to work with you',
-                id: 3,
+                messageId: 3,
+                timestamp: new Date(1698005000000).getTime(),
                 user: {
                     uid: 2
                 }
             },
             {
                 text: 'Yeah, me too',
-                id: 4,
+                messageId: 4,
+                timestamp: new Date(1698006000000).getTime(),
                 user: {
                     uid: 1
                 }
@@ -237,21 +241,24 @@ export const channels = [
         channelTexts: [
             {
                 text: 'Guys, i created this one to talk about the future projects',
-                id: 5,
+                messageId: 5,
+                timestamp: new Date(1698004000000).getTime(),
                 user: {
                     uid: 3
                 }
             },
             {
                 text: 'Awesome',
-                id: 6,
+                messageId: 6,
+                timestamp: new Date(1698005000000).getTime(),
                 user: {
                     uid: 1
                 }
             },
             {
                 text: 'Great',
-                id: 7,
+                messageId: 7,
+                timestamp: new Date(1698006000000).getTime(),
                 user: {
                     uid: 2
                 }

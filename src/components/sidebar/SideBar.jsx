@@ -4,7 +4,7 @@ import { MessagesList } from './MessagesList'
 
 export const SideBar = () => {
     return (
-            <div className=" drawer-open mr-10 ">
+            <div className=" drawer-open ">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-side h-min-full bg-base-200  text-base-content">
 
