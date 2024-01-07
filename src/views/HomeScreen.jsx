@@ -1,7 +1,14 @@
 import React from 'react'
+import { SideBar } from '../components/sidebar/SideBar'
 
 export const HomeScreen = () => {
   return (
-    <div>HomeScreen</div>
+    <div className='flex ' >
+        
+            <SideBar />
+            
+        
+        
+    </div>
   )
 }
