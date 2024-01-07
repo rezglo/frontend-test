@@ -4,7 +4,7 @@ export const users = [
         uid: 1,
         email: 'pedro@gmail.com',
         password: '123456',
-        avatar_url: '../assets/pedro_avatar.jpg',
+        avatarURL: '../assets/pedro_avatar.jpg',
         msgs: [
             {
                 senderId: 1,
@@ -97,7 +97,7 @@ export const users = [
         uid: 2,
         email: 'jose@gmail.com',
         password: '123456',
-        avatar_url: '../assets/jose_avatar.jpg',
+        avatarURL: '../assets/jose_avatar.jpg',
         msgs: [
             {
                 senderId: 1,
@@ -148,7 +148,7 @@ export const users = [
         uid: 3,
         email: 'maria@gmail.com',
         password: '123456',
-        avatar_url: '../assets/maria_avatar.jpg',
+        avatarURL: '../assets/maria_avatar.jpg',
         msgs: [
             {
                 senderId: 1,
