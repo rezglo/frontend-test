@@ -6,7 +6,7 @@ import { startCreatingChannel } from '../../store/chats/thunks';
 
 export const NewChannelModal = () => {
 
-  const [ formValues, handleInputChange, reset ] = useForm({
+  const [ formValues, handleInputChange ] = useForm({
     chatName: ''
   });
   const { chatName } = formValues
