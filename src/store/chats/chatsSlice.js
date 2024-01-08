@@ -22,10 +22,13 @@ const chatsSlice = createSlice({
         },
         setActiveChat: (state, {payload})=>{
             state.activeChat = payload
+        },
+        createChannel: (state, {payload})=>{
+            state.channels.push(payload)
         }
     }
 
 });
 
-export const { loadChannels, loadDms, setActiveChat } = chatsSlice.actions;
+export const { createChannel, loadChannels, loadDms, setActiveChat } = chatsSlice.actions;
 export default chatsSlice.reducer;

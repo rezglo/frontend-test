@@ -1,5 +1,5 @@
 import { fetchChannels, fetchPrivateMessages } from "../../helpers/data-fetch"
-import { loadChannels, loadDms } from "./chatsSlice";
+import { createChannel, loadChannels, loadDms, setActiveChat } from "./chatsSlice";
 
 
 export const startLoadingChats = ()=>{
@@ -23,4 +23,28 @@ export const startLoadingChats = ()=>{
             
         }
     }   
+};
+
+export const startCreatingChannel = (chatName)=>{
+    return(dispatch)=>{
+        
+        const newChannel = {
+            channelName: chatName,
+            channelId: new Date().getTime(),
+            channelTexts: []
+        };
+
+        dispatch(createChannel(newChannel))
+        dispatch(setActiveChat(
+            {
+                info:{
+                    chatName: newChannel.channelName,
+                    chatId: newChannel.channelId,
+                    type: 'channel'
+                },
+                msgs: newChannel.channelTexts
+            }
+        ))
+
+    }
 }
