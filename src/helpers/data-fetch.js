@@ -1,4 +1,4 @@
-import { users } from "../data/fake-data"
+import { channels, users } from "../data/fake-data"
 
 
 // This function "fetches" the users personal data, by first comparing the given email and password
@@ -32,6 +32,36 @@ export const fetchCredentials = (email, password)=>{
             }
         }, 1000)
        })
+};
 
+export const fetchChannels = ()=>{
+    
+    return new Promise((resolve)=>{
+        
+        setTimeout(() => {
+            
+            resolve(
+                channels
+            )
 
-}
+        }, 500);
+    })
+
+};
+
+export const fetchPrivateMessages = (uid)=>{
+    return new Promise((resolve)=>{
+
+        setTimeout(() => {
+            
+            const user = users.filter(user=>user.uid===uid)[0];
+            const restOfUsers = users.filter(user=>user.uid!==uid)
+            resolve({
+                privateMessages: user.msgs,
+                contacts: restOfUsers
+            })
+            
+        }, 500);
+    })
+};
+
