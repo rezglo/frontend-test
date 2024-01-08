@@ -1,5 +1,5 @@
 import { fetchChannels, fetchPrivateMessages } from "../../helpers/data-fetch"
-import { createChannel, loadChannels, loadDms, setActiveChat } from "./chatsSlice";
+import { createChannel, loadChannels, loadDms, sendMessageToChannel, sendPrivateMessage, setActiveChat } from "./chatsSlice";
 
 
 export const startLoadingChats = ()=>{
@@ -45,6 +45,35 @@ export const startCreatingChannel = (chatName)=>{
                 msgs: newChannel.channelTexts
             }
         ))
+
+    }
+};
+
+export const startSendingMessageToChannel = (text, senderId, chatId)=>{
+
+    return (dispatch)=>{
+        const newMessage = {
+            text,
+            messageId: new Date().getTime(),
+            timestamp: new Date().getTime(),
+            senderId,
+        };
+        dispatch(sendMessageToChannel({newMessage, chatId}))
+    }
+
+};
+
+export const startSendingPrivateMessage = ( text, senderId, receiverId )=>{
+    return (dispatch)=>{
+        const newMessage = {
+            text,
+            senderId,
+            receiverId,
+            messageId: new Date().getTime(),
+            timestamp: new Date().getTime()
+        };
+
+        dispatch(sendPrivateMessage(newMessage))
 
     }
 }

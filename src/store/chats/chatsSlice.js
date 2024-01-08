@@ -29,10 +29,21 @@ const chatsSlice = createSlice({
         deleteChannel: (state, {payload})=>{
             state.channels = state.channels.filter(channel=>channel.channelId !== payload);
             state.activeChat={}
+        },
+        sendMessageToChannel: (state, {payload})=>{
+
+            const index = state.channels.findIndex(channel=>channel.channelId === payload.chatId)
+            state.channels[index].channelTexts.push(payload.newMessage)
+            state.activeChat.msgs.push(payload.newMessage)
+            
+        },
+        sendPrivateMessage: (state, {payload})=>{
+            state.dms.privateMessages.push(payload);
+            state.activeChat.msgs.push(payload)
         }
     }
 
 });
 
-export const { createChannel, deleteChannel, loadChannels, loadDms, setActiveChat } = chatsSlice.actions;
+export const { createChannel, deleteChannel, loadChannels, loadDms, sendMessageToChannel, sendPrivateMessage, setActiveChat } = chatsSlice.actions;
 export default chatsSlice.reducer;
