@@ -16,8 +16,12 @@ export const NewChannelModal = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-        dispatch(startCreatingChannel(chatName))
-        dispatch(closeNewChannelModal())
+        if(chatName.length > 0){
+          
+          dispatch(startCreatingChannel(chatName))
+          dispatch(closeNewChannelModal())
+
+        }
 
         
     };
@@ -35,14 +39,15 @@ export const NewChannelModal = () => {
             <form className='flex flex-col space-y-3' method='div' onSubmit={handleSubmit}>
               <input 
                 type="text" 
+                autoComplete='off'
                 className='input input-bordered' 
                 name='chatName'
                 value={chatName}
                 onChange={handleInputChange}
               />
               <div className='flex space-x-4 justify-end'>
-                <button onClick={handleCloseModal} className="btn btn-warning ">Cancel</button>
-                <button className="btn btn-primary">Create</button>
+                <button className={`btn ${ (chatName.length === 0) && 'btn-disabled'} btn-primary`}>Create</button>
+                <button onClick={handleCloseModal} className="btn btn-warning">Cancel</button>
               </div>
             </form>
           </div>
