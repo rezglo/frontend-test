@@ -4,8 +4,9 @@ const initialState = {
     newChannelModal: {
         isOpen: false
     },
-    editTextModal: {
-        isOpen: false
+    editMessageModal: {
+        isOpen: false,
+        messageId: null
     }
 };
 
@@ -17,14 +18,15 @@ const uiSlice = createSlice({
         openNewChannelModal: ( state )=>{
             state.newChannelModal.isOpen = true;
         },
-        openEditTextModal: ( state )=>{
-            state.editTextModal.isOpen = true;
+        openEditTextModal: ( state, {payload} )=>{
+            state.editMessageModal.isOpen = true;
+            state.editMessageModal.messageId = payload;
         },
         closeNewChannelModal: ( state )=>{
             state.newChannelModal.isOpen = false;
         },
         closeEditTextModal: ( state )=>{
-            state.editTextModal.isOpen = false;
+            state.editMessageModal.isOpen = false;
         }
 
     }

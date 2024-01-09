@@ -3,9 +3,10 @@ import { NothingSelected } from './NothingSelected'
 import { ChatsDisplay } from './chats/ChatsDisplay'
 import { useSelector } from 'react-redux'
 import { NewChannelModal } from './modals/NewChannelModal'
+import { EditMessageModal } from './modals/EditMessageModal'
 
 export const MainContent = () => {
-  const { isOpen } = useSelector(state => state.ui.newChannelModal)
+  const { newChannelModal, editMessageModal } = useSelector(state => state.ui)
   const {activeChat} = useSelector(state=>state.chats)
   const isChatSelected = !!activeChat.msgs
 
@@ -15,7 +16,10 @@ export const MainContent = () => {
         (isChatSelected) ? <ChatsDisplay /> : <NothingSelected />
       }
       {
-      isOpen && <NewChannelModal />
+        newChannelModal.isOpen && <NewChannelModal />
+      }
+      { 
+        editMessageModal.isOpen &&  <EditMessageModal /> 
       }
 
     </div>

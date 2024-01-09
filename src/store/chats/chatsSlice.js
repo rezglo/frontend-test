@@ -39,6 +39,24 @@ const chatsSlice = createSlice({
             state.dms.privateMessages = state.dms.privateMessages.filter(text=>text.messageId !== payload);
             state.activeChat.msgs = state.activeChat.msgs.filter(text=> text.messageId !== payload)
         },
+        editMessageInChannel: ( state, {payload} )=>{
+            
+            const channelIndex = state.channels.findIndex(channel=>channel.channelId === state.activeChat.info.chatId);
+            const targetMessageIndex = state.channels[channelIndex].channelTexts.findIndex(message=>message.messageId === payload.messageId);
+            
+
+            state.channels[channelIndex].channelTexts[targetMessageIndex].text = payload.text;
+            
+            state.activeChat.msgs[targetMessageIndex].text = payload.text;
+
+        },
+        editPrivateMessage: ( state, {payload} )=>{
+            const messageIndex = state.dms.privateMessages.findIndex(message => message.messageId === payload.messageId);
+            const messageIndexWhenActive = state.activeChat.msgs.findIndex(message => message.messageId === payload.messageId);
+            
+            state.dms.privateMessages[messageIndex].text = payload.text;
+            state.activeChat.msgs[messageIndexWhenActive].text = payload.text;
+        },
         sendMessageToChannel: (state, {payload})=>{
 
             const index = state.channels.findIndex(channel=>channel.channelId === payload.chatId)
@@ -58,7 +76,9 @@ export const {
     createChannel, 
     deleteChannel,
     deleteMessageInChannel,
-    deletePrivateMessage, 
+    deletePrivateMessage,
+    editMessageInChannel,
+    editPrivateMessage, 
     loadChannels, 
     loadDms, 
     sendMessageToChannel, 
