@@ -2,22 +2,22 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import {LoginView} from '../views/auth/loginView';
 import LoginLayout from '../layout/loginLayout';
-//import Dashboard from '../layout/dashboardLayout';
-//import { Home } from '../views/dashboard/Home';
+import Dashboard from '../layout/dashboardLayout';
+import { ChatView } from '../views/chat/chatView';
 
 const routes =(isLogging) => [
     {
       path: '/app',    
-      //element: isLogging ? <Dashboard/>: <Navigate to="/login"/>,
+      element: isLogging ? <Dashboard/>: <Navigate to="/login" replace/>,
       children: [ 
-         //{ path: 'calendar', element: <CalendarView/> },    
+         { path: 'home', element: <ChatView/> },    
        ]
     },
    {
       path: '/',
-      element: !isLogging ? <LoginLayout /> : <Navigate to="/app"/>,
+      element: !isLogging ? <LoginLayout /> : <Navigate to="/app/home" replace/>,
       children: [
-        { path: '/login', element: <LoginView /> },       
+        { path: 'login', element: <LoginView /> },       
   
       ]
     }
