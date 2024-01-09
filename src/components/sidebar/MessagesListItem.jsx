@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActiveChat } from '../../store/chats/chatsSlice'
+import { closeSidebar } from '../../store/ui/uiSlice'
 
 export const MessagesListItem = ({ username, uid }) => {
 
@@ -17,7 +18,10 @@ export const MessagesListItem = ({ username, uid }) => {
         type: 'private'
       },
       msgs: messagesWithCurrentContact
-    }))
+    }));
+    if (screen.width<1024) {
+      dispatch(closeSidebar())
+    }
   }
 
   return (

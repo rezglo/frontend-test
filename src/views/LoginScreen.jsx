@@ -30,10 +30,10 @@ export const LoginScreen = () => {
 
     return (
         <div className='h-screen w-screen flex justify-center items-center' >
-            <div className='border p-16 border-neutral rounded-md'>
+            <div className='border p-8 lg:p-16 border-neutral rounded-md m-4'>
                 <form className='flex flex-col' onSubmit={handleSignIn}>
 
-                    <label className="form-control w-96  max-w-xs">
+                    <label className="form-control  lg:w-96 max-w-xs ">
                         <div className="label">
                             <span className="label-text">Email</span>
                         </div>
