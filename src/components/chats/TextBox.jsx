@@ -28,7 +28,7 @@ export const TextBox = () => {
     }
 
     return (
-        <form className='flex flex-col flex-1 m-4 mb-24' onSubmit={handleSendText}>
+        <form className='flex flex-col m-4 mb-24' onSubmit={handleSendText}>
             <textarea 
                 style={{ resize: 'none' }} 
                 rows={4} 

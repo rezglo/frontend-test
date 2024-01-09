@@ -13,8 +13,12 @@ export const ChatsDisplay = () => {
             <ChatUpperInfo />
             <hr />
             <div className='flex flex-col h-full '>
-                <MessageThread />
-                <TextBox />
+                <div className='h-3/4 overflow-y-scroll'>
+                    <MessageThread />
+                </div>
+                <div>
+                    <TextBox />
+                </div>
             </div>
             
         </div>

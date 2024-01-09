@@ -11,8 +11,8 @@ export const MessageBubble = ({ username, uid, timestamp, text, avatarURL, messa
     
 
     return (
-        <div className='flex flex-shrink-0'>
-            <div className="chat chat-start flex-shrink-0">
+        <div className='flex mr-8 '>
+            <div className="chat chat-start  max-w-full">
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
                         <img alt="Tailwind CSS chat bubble component" src={avatarURL} />

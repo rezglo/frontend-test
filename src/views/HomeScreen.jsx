@@ -16,7 +16,7 @@ export const HomeScreen = () => {
   
 
   return (
-    <div className='flex overflow-hidden' >
+    <div className='flex h-screen overflow-hidden' >
         
             <SideBar />
             <MainContent />

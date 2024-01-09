@@ -13,7 +13,7 @@ export const SideBar = () => {
     const {username} = useSelector(state=>state.auth)
 
     const handleLogout = ()=>{
-        dispatch(chatsLogout())
+        dispatch(chatsLogout());
         dispatch(authLogout());
     }
 
