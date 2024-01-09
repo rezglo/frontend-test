@@ -23,6 +23,9 @@ const chatsSlice = createSlice({
         setActiveChat: (state, {payload})=>{
             state.activeChat = payload
         },
+        chatsLogout: (state)=>{
+            return state = initialState
+        },
         createChannel: (state, {payload})=>{
             state.channels.push(payload)
         },
@@ -74,6 +77,7 @@ const chatsSlice = createSlice({
 
 export const { 
     createChannel, 
+    chatsLogout,
     deleteChannel,
     deleteMessageInChannel,
     deletePrivateMessage,

@@ -3,6 +3,7 @@ import { ChannelList } from './ChannelList'
 import { MessagesList } from './MessagesList'
 import { useDispatch, useSelector } from 'react-redux'
 import { authLogout } from '../../store/auth/authSlice'
+import { chatsLogout } from '../../store/chats/chatsSlice'
 
 export const SideBar = () => {
 
@@ -12,7 +13,8 @@ export const SideBar = () => {
     const {username} = useSelector(state=>state.auth)
 
     const handleLogout = ()=>{
-        dispatch(authLogout())
+        dispatch(chatsLogout())
+        dispatch(authLogout());
     }
 
     return (
