@@ -1,11 +1,39 @@
+import { connect } from "react-redux";
+import { Navigate } from "react-router";
 import { AtSymbolIcon, KeyIcon } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Button from "./Button";
+import { login } from "../../../redux/actions/auth";
+import { useEffect, useState } from "react";
 
-const LoginForm = () => {
+const LoginForm = ({ login }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const [activated, setActivated] = useState(false);
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login(email, password);
+    setActivated(true);
+  };
+
+  if (activated) return <Navigate to="/" />;
+
   return (
     <main className="flex min-h-screen flex-col p-40">
-      <form className="space-y-3">
+      <form className="space-y-3" onSubmit={(e) => onSubmit(e)}>
         <div className="flex-1 rounded-lg bg-fuchsia-950 px-6 pb-4 pt-8">
           <h1 className={`mb-3 text-2xl text-gray-50`}>
             Please log in to continue.
@@ -24,6 +52,8 @@ const LoginForm = () => {
                   id="email"
                   type="email"
                   name="email"
+                  value={email}
+                  onChange={(e) => onChange(e)}
                   placeholder="Enter your email address"
                   required
                 />
@@ -43,6 +73,8 @@ const LoginForm = () => {
                   id="password"
                   type="password"
                   name="password"
+                  value={password}
+                  onChange={(e) => onChange(e)}
                   placeholder="Enter password"
                   required
                   minLength={6}
@@ -69,4 +101,8 @@ function LoginButton() {
   );
 }
 
-export default LoginForm;
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, {
+  login,
+})(LoginForm);
