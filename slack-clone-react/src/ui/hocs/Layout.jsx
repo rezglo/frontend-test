@@ -1,11 +1,16 @@
-import React from "react";
+import Navbar from "../components/navigation/Navbar ";
+import DashboardLayout from "./DashboardLayout";
+import MessagesLayout from "./MessagesLayout";
 
 const RootLayout = ({ children }) => {
   return (
-    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-      <div className="w-full flex-none md:w-64">Layout</div>
-      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
-    </div>
+    <main className="flex min-h-screen flex-col p-6">
+      <Navbar />
+      <DashboardLayout>
+        <MessagesLayout />
+      </DashboardLayout>
+      {children}
+    </main>
   );
 };
 
