@@ -25,7 +25,7 @@ export const MessageBubble = ({ username, uid, timestamp, text, avatarURL, messa
                 <div className="chat-bubble">{text}</div>
             </div>
             <div className='self-end mb-3'>
-                <DeleteMessageButton />
+                <DeleteMessageButton messageId={messageId} />
                 <EditMessageButton />
             </div>
         </div>
