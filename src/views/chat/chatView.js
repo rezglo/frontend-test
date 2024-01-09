@@ -4,19 +4,18 @@ import { createStyles, makeStyles, Theme } from "@mui/styles";
 import { MessageLeft, MessageRight } from "../../components/messageComponent";
 import SendIcon from "@mui/icons-material/Send";
 import DeleteIcon from "@mui/icons-material/Delete";
-import  CancelIcon from "@mui/icons-material/Cancel";
+import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { massageDelete, massageUpdate } from "../../actions/chat";
 import { messageAddNew } from "../../actions/chat";
-import { v4 as uuid } from 'uuid';
-import { format } from 'date-fns';
+import { v4 as uuid } from "uuid";
+import { format } from "date-fns";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
-     
       paddingBottom: "10%",
     },
 
@@ -46,27 +45,43 @@ export const ChatView = () => {
 
   //Logic Hooks
   const dispatch = useDispatch();
-  const { listMassages } = useSelector((state) => state.chat);
+  const { listMassages, activeUserChat, activeChannel } = useSelector((state) => state.chat);
   const { user } = useSelector((state) => state.auth);
   const [clickedMassage, setActiveMessage] = useState(0);
   const [TextMassage, setTextMessage] = useState("");
+  const [filteredMessages, setFilteredMessages] = useState([]);
+
+  useEffect(() => {
+    // Filtra los mensajes para mostrar solo los privados del usuario activo contigo
+    const filtered = listMassages.filter((message) => {
+      return (
+        message.user.username === user.username || // Mensajes del usuario activo
+        message.user.username === activeUserChat
+      );
+    });
+    setFilteredMessages(filtered);
+  }, [listMassages, activeUserChat]);
+
+  useEffect(() => {   
+    setFilteredMessages(listMassages);
+  }, [activeChannel]);
+
   const onAdd = () => {
-  const msj = {
-    id: uuid(),      
-      timestamp: format(new Date(), 'MM-dd-yy HH:mm:ss'),      
+    const msj = {
+      id: uuid(),
+      timestamp: format(new Date(), "MM-dd-yy HH:mm:ss"),
       message: TextMassage,
-      user:{
-        avatar:user.avatar,
-        username: user.username
-      }
-      
-   }
-   console.log(JSON.stringify(TextMassage))
-   dispatch(messageAddNew(msj));
-   setTextMessage("");
+      user: {
+        avatar: user.avatar,
+        username: user.username,
+      },
+    };
+    dispatch(messageAddNew(msj));
+    setTextMessage("");
   };
   const onRemove = () => {
-    dispatch(massageDelete(clickedMassage));    
+    console.log("Removing message with id:", clickedMassage);
+    dispatch(massageDelete(clickedMassage));
     setActiveMessage(0);
     setTextMessage("");
   };
@@ -76,7 +91,7 @@ export const ChatView = () => {
     setActiveMessage(0);
     setTextMessage("");
   };
-  const onCancel = () => {   
+  const onCancel = () => {
     setActiveMessage(0);
     setTextMessage("");
   };
@@ -84,12 +99,28 @@ export const ChatView = () => {
   return (
     <div className={classes.container}>
       <div className={classes.messagesBody}>
-        {listMassages
-          .slice(0, 5)
-          .map(({ id, timestamp, message, user: { avatar, username } }) => (
-            <>
+        {filteredMessages
+          .slice()
+          .reverse()
+          .slice(0, 10)
+          .map(({ id, timestamp, message, user: { avatar, username } }) => {
+            const isCurrentUser = username === user.username;
+            return isCurrentUser ? (
+              <MessageRight
+                id={id}
+                key={id}
+                message={message}
+                timestamp={timestamp}
+                photoURL={avatar}
+                displayName={username}
+                avatarDisp={true}
+                setActiveMessage={setActiveMessage}
+                setTextMessage={setTextMessage}
+              />
+            ) : (
               <MessageLeft
                 id={id}
+                key={id}
                 message={message}
                 timestamp={timestamp}
                 photoURL={avatar}
@@ -98,15 +129,8 @@ export const ChatView = () => {
                 setActiveMessage={setActiveMessage}
                 setTextMessage={setTextMessage}
               />
-              <MessageRight
-                message="messageRあめんぼあかいなあいうえおあめんぼあかいなあいうえおあめんぼあかいなあいうえお"
-                timestamp="12-07-20"
-                photoURL="https://lh3.googleusercontent.com/a-/AOh14Gi4vkKYlfrbJ0QLJTg_DLjcYyyK7fYoWRpz2r4s=s96-c"
-                displayName="まさりぶ"
-                avatarDisp={true}
-              />
-            </>
-          ))}
+            );
+          })}
       </div>
 
       <form className={classes.wrapForm} noValidate autoComplete="off">
@@ -154,7 +178,6 @@ export const ChatView = () => {
             >
               <DeleteIcon />
             </Button>
-           
           </>
         )}
       </form>

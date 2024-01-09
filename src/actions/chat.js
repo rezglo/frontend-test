@@ -41,3 +41,14 @@ export const messageStartAddNew = (message) => {
     type: types.setActiveUser,
     payload: id,
   });
+  export const setActiveChannel = (id) => ({
+    type: types.setActiveChannel,
+    payload: id,
+  });
+  
+  export const clearSetActiveUser= () => ({
+    type: types.clearSetActiveUser,    
+  });
+  export const clearSetActiveChannel= () => ({
+    type: types.clearSetActiveChannel,   
+  });

@@ -118,11 +118,13 @@ export const MessageLeft = (props) => {
   const photoURL = props.photoURL ? props.photoURL : "";
   const displayName = props.displayName ? props.displayName : "";
   const classes = useStyles();
-  
    
   const handleSelect = (e) => {
+    if (props && props.id !== undefined) {
+    console.log(props.id)   
     props.setActiveMessage(props.id);
     props.setTextMessage(props.message);
+    }
   }
   return (
     <>
@@ -147,10 +149,16 @@ export const MessageLeft = (props) => {
 };
 export const MessageRight = (props) => {
   const classes = useStyles();
+  const handleSelect = (e) => {
+    if (props && props.id !== undefined) {
+    props.setActiveMessage(props.id);
+    props.setTextMessage(props.message);
+    }
+  }
   const message = props.message ? props.message : "no message";
   const timestamp = props.timestamp ? props.timestamp : "";
   return (
-    <div className={classes.messageRowRight} key={props.id}>
+    <div className={classes.messageRowRight} onClick={handleSelect} key={props.id}>
       <div className={classes.messageOrange}>
         <p className={classes.messageContent}>{message}</p>
         <div className={classes.messageTimeStampRight}>{format(new Date(timestamp), 'MM/dd/yyyy HH:mm:ss')}</div>

@@ -17,7 +17,13 @@ export const types = {
     messageAddNew: '[chat] Massage Add New',
     chatListUser :'[chat] Chat List Users',
     setActiveUser :'[chat] Chat Active Users',
+    setActiveChannel:'[chat] Set Active Users',
+    clearSetActiveChannel: '[chat] Clear Set Active Channel',
+    clearSetActiveUser: '[chat] Clear Set Active User',
+
 
     addChannel: '[channel] Channel Add New',
     removeChannel: '[channel] Channel Remove New',
+    
+
 }

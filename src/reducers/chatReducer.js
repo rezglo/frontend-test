@@ -12,9 +12,24 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.setActiveUser:
       return {
-         ...state, 
-         activeUserChat: payload 
-        };
+        ...state,
+        activeUserChat: payload,
+      };
+    case types.clearSetActiveUser:
+      return {
+        ...state,
+        activeUserChat: null,
+      };
+    case types.setActiveChannel:
+      return {
+        ...state,
+        activeChannel: payload,
+      };
+    case types.clearSetActiveChannel:
+      return {
+        ...state,
+        activeChannel: null,
+      };
     case types.chatListUser:
       return { ...state, users: payload };
 

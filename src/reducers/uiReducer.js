@@ -1,12 +1,12 @@
 import { types } from "../types/types";
 
-const initialState = {  
+const initialState = {
   activeAlert: false,
   activeModalTags: false,
 };
 
 export default (state = initialState, { type, payload }) => {
-  switch (type) {   
+  switch (type) {
     case types.uiOpenAlert: {
       return {
         ...state,

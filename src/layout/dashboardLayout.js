@@ -3,10 +3,8 @@ import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-// import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -16,15 +14,10 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-//import { mainListItems, secondaryListItems } from "./listItems";
-//import Deposits from './Deposits';
 import { Outlet } from "react-router-dom";
-//import { stringAvatar } from "../../helpers/stringAvatar";
-import { useDispatch, useSelector } from "react-redux";
 import ChannelList from "./channelList";
-import UserList from "./userList"
-import { Logout } from '../components/logoutComponent';
-
+import UserList from "./userList";
+import { Logout } from "../components/logoutComponent";
 
 const drawerWidth = 240;
 
@@ -76,7 +69,6 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
-//   const { first_name ,last_name } = useSelector((state) => state.auth.user);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -136,11 +128,11 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">         
-            <ChannelList/>         
+          <List component="nav">
+            <ChannelList />
             <Divider sx={{ my: 1 }} />
-            <UserList/>
-            <Logout/>
+            <UserList />
+            <Logout />
           </List>
         </Drawer>
         <Box
