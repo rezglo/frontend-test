@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import SlackLogo from "../SlackLogo";
 import Profile from "../dashboard/Profile";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
@@ -20,7 +21,7 @@ const Navbar = (props) => {
               </span>
             </button>
 
-            <Profile profile={{}} />
+            {!props.isAuthenticated || <Profile profile={{}} />}
           </div>
         </div>
       </div>
@@ -28,4 +29,8 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.Auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, {})(Navbar);

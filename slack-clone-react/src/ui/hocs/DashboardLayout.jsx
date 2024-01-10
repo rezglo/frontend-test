@@ -1,6 +1,10 @@
+import { connect } from "react-redux";
+import { Navigate } from "react-router";
 import SideNav from "../components/navigation/sidenav/SideNav";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ children, isAuthenticated, user }) => {
+  if (!isAuthenticated) return <Navigate to="/login" />;
+
   return (
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
       <div className="w-full flex-none md:w-64">
@@ -13,4 +17,9 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.Auth.isAuthenticated,
+  user: state.Auth.user,
+});
+
+export default connect(mapStateToProps, {})(DashboardLayout);
