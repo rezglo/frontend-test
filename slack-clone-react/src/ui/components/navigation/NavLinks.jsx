@@ -9,7 +9,7 @@ const NavLinks = (props) => {
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <li className="relative">
+          <li key={link.name} className="relative">
             <Link
               key={link.name}
               to={link.href}

@@ -6,7 +6,7 @@ const NavLinksHead = (props) => {
 
   return (
     <>
-      <li className="relative">
+      <li key={link.name} className="relative">
         <button
           key={link.name}
           className="flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm text-slate-300 font-medium hover:text-slate-100 md:flex-none md:justify-start md:p-2 md:px-3"
