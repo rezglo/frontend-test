@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { ChannelList } from './ChannelList'
 import { MessagesList } from './MessagesList'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,8 +15,10 @@ export const SideBar = () => {
     const { sidebar } = useSelector(state=>state.ui)
 
     const handleLogout = ()=>{
+        
         dispatch(chatsLogout());
         dispatch(authLogout());
+        
         if (screen.width<1024) {
             dispatch(closeSidebar())
         }

@@ -15,12 +15,9 @@ export const startLoadingChats = ()=>{
             dispatch(loadChannels(channels));
             dispatch(loadDms(dms))
 
-            console.log(contacts)
-            
-
 
         } catch (error) {
-            
+            console.log(error)
         }
     }   
 };
@@ -76,4 +73,4 @@ export const startSendingPrivateMessage = ( text, senderId, receiverId )=>{
         dispatch(sendPrivateMessage(newMessage))
 
     }
-}
+};

@@ -11,6 +11,7 @@ export const MessagesListItem = ({ username, uid }) => {
   const messagesWithCurrentContact = privateMessages.filter(message=>((message.senderId === uid) || (message.receiverId === uid) ));
 
   const handleSetActive = ()=>{
+    
     dispatch(setActiveChat({
       info: {
         chatName: username,
@@ -19,6 +20,7 @@ export const MessagesListItem = ({ username, uid }) => {
       },
       msgs: messagesWithCurrentContact
     }));
+    
     if (screen.width<1024) {
       dispatch(closeSidebar())
     }

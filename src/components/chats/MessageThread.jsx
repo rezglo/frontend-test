@@ -16,13 +16,11 @@ export const MessageThread = () => {
 
     <div className='mx-8 mt-5 flex-[3]'>
 
-    
-
-
       {msgs.map(text => {
 
         const user = users.filter(user => user.uid === text.senderId)[0]
         const { username, uid, avatarURL } = user
+        
         return <MessageBubble
           key={text.messageId}
           username={username}
@@ -33,6 +31,7 @@ export const MessageThread = () => {
           text={text.text}
         />
       })}
+      
     </div>
   )
 }

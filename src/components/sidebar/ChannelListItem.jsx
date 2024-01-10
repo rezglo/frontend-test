@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActiveChat } from '../../store/chats/chatsSlice';
-import { closeSidebar } from '../../store/ui/uiSlice';
 
 export const ChannelListItem = ( {chatName, chatId} ) => {
 

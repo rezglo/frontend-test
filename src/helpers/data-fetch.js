@@ -5,13 +5,12 @@ import { channels, users } from "../data/fake-data"
 // with the ones in the database
 export const fetchCredentials = (email, password)=>{
     
-    // Findng the user in the database
     const user = users.filter( user=> user.email === email )[0]        
     
     return new Promise((resolve, reject)=>{
         
         setTimeout(()=>{
-            // The passwords are compared, if not equal, the promise returns reject
+
             if( user?.password == password ){
                 resolve({
                     ok: true,
@@ -27,13 +26,14 @@ export const fetchCredentials = (email, password)=>{
             } else {
                 reject({
                     ok: false,
-                    msg: 'Email or password wrong'
+                    msg: 'Wrong Email or Password'
                 })
             }
         }, 1000)
        })
 };
 
+// This function "fetches" the existing channels, which contain name, id and texts 
 export const fetchChannels = ()=>{
     
     return new Promise((resolve)=>{
@@ -49,6 +49,7 @@ export const fetchChannels = ()=>{
 
 };
 
+// This function "fetches" the given user's private messages and contact list
 export const fetchPrivateMessages = (uid)=>{
     return new Promise((resolve)=>{
 

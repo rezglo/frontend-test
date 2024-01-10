@@ -15,7 +15,9 @@ export const ChannelList = () => {
                 <h3 className='pl-4 text-lg' >Channels</h3> 
                 {
                     channels.map(channel =>(
-                        <li className='mb-1' key={channel.channelId}><ChannelListItem chatId={channel.channelId} chatName={channel.channelName} /></li>
+                        <li className='mb-1' key={channel.channelId}>
+                            <ChannelListItem chatId={channel.channelId} chatName={channel.channelName} />
+                        </li>
                     ))
                 }
             </ul>

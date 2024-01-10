@@ -1,7 +1,6 @@
 import React from 'react'
 import { MessageThread } from './MessageThread'
 import { TextBox } from './TextBox'
-import { useSelector } from 'react-redux'
 import { ChatUpperInfo } from './ChatUpperInfo'
 
 export const ChatsDisplay = () => {

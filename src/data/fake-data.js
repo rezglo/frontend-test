@@ -10,84 +10,84 @@ export const users = [
                 senderId: 1,
                 receiverId: 3,
                 messageId:10,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698000000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:11,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698001000000).getTime()
             },
             {
                 senderId: 3,
                 receiverId: 1,
                 messageId:12,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698002000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:13,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:14,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:15,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698059000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:16,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698000000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:17,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698001000000).getTime()
             },
             {
                 senderId: 2,
                 receiverId: 1,
                 messageId:18,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698002000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:19,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:20,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:21,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698004000000).getTime()
             }
         ]
@@ -103,42 +103,42 @@ export const users = [
                 senderId: 1,
                 receiverId: 2,
                 messageId:16,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698000000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:17,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698001000000).getTime()
             },
             {
                 senderId: 2,
                 receiverId: 1,
                 messageId:18,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698002000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:19,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:20,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 2,
                 messageId:21,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698004000000).getTime()
             }
         ]
@@ -154,42 +154,42 @@ export const users = [
                 senderId: 1,
                 receiverId: 3,
                 messageId:10,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698000000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:11,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698001000000).getTime()
             },
             {
                 senderId: 3,
                 receiverId: 1,
                 messageId:12,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698002000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:13,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:14,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698003000000).getTime()
             },
             {
                 senderId: 1,
                 receiverId: 3,
                 messageId:15,
-                text: 'Texto de prueba',
+                text: 'Random text',
                 timestamp: new Date(1698059000000).getTime()
             }
         ]

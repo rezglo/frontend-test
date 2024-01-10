@@ -3,12 +3,11 @@ import { DeleteMessageButton } from './DeleteMessageButton'
 import { EditMessageButton } from './EditMessageButton'
 import moment from 'moment'
 
-export const MessageBubble = ({ username, uid, timestamp, text, avatarURL, messageId }) => {
+export const MessageBubble = ({ username, timestamp, text, avatarURL, messageId }) => {
 
     const timeMoment = moment(timestamp)
-    // const hours = timeMoment.format('LT')
     const hours = timeMoment.format('MMMM Do YYYY, h:mm')
-    
+
 
     return (
         <div className='flex mr-8 '>
