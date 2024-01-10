@@ -1,21 +1,20 @@
 import NavLinks from "../../NavLinks";
 import NavLinksHead from "../../NavLinksHead";
-import { PlayIcon } from "@heroicons/react/24/outline";
+import { PlayIcon, HashtagIcon } from "@heroicons/react/24/outline";
 
 const linkHead = { name: "Channels", icon: PlayIcon };
-const icon = () => <>#</>;
 
 const links = [
-  { name: "TeleTM", href: "/dashboard", icon: icon },
+  { name: "TeleTM", href: "/dashboard", icon: HashtagIcon },
   {
     name: "Invoices",
     href: "/dashboard/invoices",
-    icon: icon,
+    icon: HashtagIcon,
   },
   {
     name: "Customers",
     href: "/dashboard/customers",
-    icon: icon,
+    icon: HashtagIcon,
   },
 ];
 
