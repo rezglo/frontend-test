@@ -7,7 +7,16 @@ import { useCallback, useEffect, useState } from "react";
 import { get_direct_messages } from "../../../../../redux/actions/directMessages";
 
 const linkHead = { name: "Direct Messages", icon: PlayIcon };
-const profile = (urlImage) => <Stacked urlImage={urlImage} width="w-6 h-6" />;
+const friend = [
+  {
+    id: "friend",
+    name: "Jose",
+    href: "#",
+    icon: () => (
+      <Stacked urlImage={"https://i.pravatar.cc/300"} width="w-6 h-6" />
+    ),
+  },
+];
 
 let links = [];
 
@@ -17,7 +26,7 @@ const createLinks = (directMessages) => {
       id: index,
       name: "Dory",
       href: "#",
-      icon: profile(directMessage.url),
+      icon: () => <Stacked urlImage={directMessage.url} width="w-6 h-6" />,
     });
   });
 };
@@ -25,6 +34,7 @@ const createLinks = (directMessages) => {
 const DirectMessages = ({ directMessages, get_direct_messages }) => {
   const [directMessagesNow, setDirectMessagesNow] = useState([]);
   const [render, setRender] = useState(true);
+  const [online, setOnline] = useState(true);
 
   const memoryGetData = useCallback(async () => {
     await get_direct_messages();
@@ -34,8 +44,14 @@ const DirectMessages = ({ directMessages, get_direct_messages }) => {
     memoryGetData();
     setTimeout(() => {
       setRender(!render);
-    }, 5000);
+    }, 10000);
   }, [memoryGetData, render]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOnline(!online);
+    }, 5000);
+  }, [render, online]);
 
   useEffect(() => {
     setDirectMessagesNow(directMessages);
@@ -51,8 +67,15 @@ const DirectMessages = ({ directMessages, get_direct_messages }) => {
       <ul>
         <NavLinksHead link={linkHead} />
         <NavLinks links={links}>
-          <span className="absolute w-3 h-3 left-4 rounded-full bg-green-900 top-4 text-gray-400 hover:text-gray-500 sm:left-6 sm:top-8 md:left-6 md:top-6 lg:left-8 lg:top-8"></span>
+          {online && (
+            <span className="absolute w-3 h-3 left-4 rounded-full bg-green-900 top-4 text-gray-400 hover:text-gray-500 sm:left-6 sm:top-8 md:left-6 md:top-6 lg:left-8 lg:top-8"></span>
+          )}
         </NavLinks>
+        {render && (
+          <NavLinks links={friend}>
+            <span className="absolute w-3 h-3 left-4 rounded-full bg-green-900 top-4 text-gray-400 hover:text-gray-500 sm:left-6 sm:top-8 md:left-6 md:top-6 lg:left-8 lg:top-8"></span>
+          </NavLinks>
+        )}
       </ul>
     </>
   );

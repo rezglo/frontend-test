@@ -9,10 +9,10 @@ export const get_direct_messages = (url, status) => async (dispatch) => {
     const randomTime = Math.random() * 5000;
     try {
       const res = await fetch(apiUrl(randomTime), {
+        method: "GET",
         mode: "cors",
+        "Access-Control-Allow-Origin": "*",
       }).then((response) => response);
-
-      console.log(res);
 
       if (res.status === 200) {
         const data = { directMessages: [{ url: res.url }] };

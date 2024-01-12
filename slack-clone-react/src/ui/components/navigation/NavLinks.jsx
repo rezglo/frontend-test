@@ -22,7 +22,7 @@ const NavLinks = (props) => {
                 }
               )}
             >
-              <LinkIcon className="w-6" />
+              {LinkIcon && <LinkIcon className="w-6" />}
               <p className="hidden md:block">{link.name}</p>
             </Link>
             {implementDelete && (
