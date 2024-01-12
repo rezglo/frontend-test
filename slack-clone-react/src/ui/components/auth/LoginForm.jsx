@@ -6,6 +6,7 @@ import Button from "./Button";
 import { login } from "../../../redux/actions/auth";
 import { useEffect, useState } from "react";
 import RootLayout from "../../hocs/RootLayout";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ login, isAuthenticated }) => {
   useEffect(() => {
@@ -88,6 +89,7 @@ const LoginForm = ({ login, isAuthenticated }) => {
               </div>
             </div>
             <LoginButton />
+            <SignupButton />
             <div className="flex h-8 items-end space-x-1">
               {/* Add form errors here */}
             </div>
@@ -103,6 +105,17 @@ function LoginButton() {
     <Button className="mt-4 w-full">
       Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
     </Button>
+  );
+}
+
+function SignupButton() {
+  return (
+    <Link
+      className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 mt-4 w-full"
+      to="/signup"
+    >
+      Sign up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+    </Link>
   );
 }
 
