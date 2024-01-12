@@ -7,6 +7,7 @@ import {
   DELETE_MESSAGE_SUCCESS,
   DELETE_MESSAGE_FAIL,
 } from "./types";
+import moment from "moment";
 
 const users = LocalStorageManager.getItem("auths");
 const access = localStorage.getItem("access");
@@ -57,6 +58,7 @@ export const create_message =
           },
           channel_id,
           message: message,
+          timesTamp: moment(),
         };
 
         userMessages.push(newMessage);
