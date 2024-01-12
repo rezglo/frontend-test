@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import DashboardLayout from "../../ui/hocs/DashboardLayout";
 import RootLayout from "../../ui/hocs/RootLayout";
-import MessagesLayout from "../../ui/hocs/MessagesLayout";
+import Messager from "../../ui/components/messages/Messager";
 
 const HomePage = () => {
   return (
     <RootLayout>
       <DashboardLayout>
-        <MessagesLayout />
+        <Messager />
       </DashboardLayout>
     </RootLayout>
   );
