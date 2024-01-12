@@ -50,6 +50,7 @@ export const signup =
         last_name,
         email,
         password,
+        channels: [],
       };
 
       const auths = localStorage.getItem("auths");
@@ -109,7 +110,7 @@ export const load_user = () => async (dispatch) => {
       const authsArray = JSON.parse(auths);
       const userId = access.split("-")[0];
       const user = authsArray.find((object) => `${object.id}` === userId);
-      const res = { data: user };
+      const res = { data: { user, auths } };
 
       if (res) {
         dispatch({

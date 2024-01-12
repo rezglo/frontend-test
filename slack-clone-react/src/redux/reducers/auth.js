@@ -24,7 +24,8 @@ export default function Auth(state = initialState, action) {
     case USER_LOADED_SUCCESS:
       return {
         ...state,
-        user: payload,
+        user: payload.user,
+        auths: payload.auths,
       };
     case USER_LOADED_FAIL:
       return {
