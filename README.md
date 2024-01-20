@@ -15,6 +15,9 @@ be used by us for business purposes.
 ## Project description
 Make a simplified slack clone.
 
+## Example answer test front-end engineer challenge
+Deploy app prodution: [Deploy](https://slackclone-0b37.onrender.com)
+
 Structure:
 1. system login (only sign in and use fake data user)
 2. sidebar on the left:
