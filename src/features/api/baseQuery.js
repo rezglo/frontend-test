@@ -38,6 +38,7 @@ const mockResponse = async (url, data) => {
   }
 }
 
+// - Improve this function
 const mockLogin = ({ email, password}) => {
   if (email === envVars.TEST_AUTH_USER_EMAIL && password === envVars.TEST_AUTH_USER_PASSWORD) {
     return {
