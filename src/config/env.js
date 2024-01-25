@@ -1,0 +1,4 @@
+export const envVars = {
+  TEST_AUTH_USER_EMAIL: process.env.REACT_APP_AUTH_USER_EMAIL,
+  TEST_AUTH_USER_PASSWORD: process.env.REACT_APP_AUTH_USER_PASSWORD
+}
