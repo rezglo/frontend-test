@@ -12,15 +12,7 @@ import appleLogo from '@/assets/apple.svg'
 
 function LoginPage() {
   const navigate = useNavigate()
-  // const authenticationState = useAppSelector((state) => state.authentication)
   const { authUser, token } = useAuthData()
-
-  useEffect(() => {
-    // -If an user is already logged in, then redirect to home page
-    if (authUser && token) {
-      navigate('/')
-    }
-  })
 
   const onGoogleLogin = () => {
     console.log('Sigin with google')

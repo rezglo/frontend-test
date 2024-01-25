@@ -1,10 +1,10 @@
-import App from '@/App'
+import Layout from '@/pages/Layout'
 import { homeRoutes } from './homeRoutes'
 import { directMessagesRoutes } from './directMessagesRoutes'
 
-export const appRoutes = {
+export const layoutRoutes = {
   path: '/',
-  element: <App />,
+  element: <Layout />,
   children: [
     homeRoutes,
     directMessagesRoutes

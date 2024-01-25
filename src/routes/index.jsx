@@ -1,7 +1,9 @@
-import * as loginRoutes from './loginRoutes'
-import * as appRoutes from './appRoutes'
+import publicRoutes from './publicRoutes'
+import privateRoutes  from './privateRoutes'
+import loginRoute  from './loginRoute'
 
-export default {
-  ...appRoutes,
-  ...loginRoutes
+export {
+  privateRoutes,
+  publicRoutes,
+  loginRoute
 }

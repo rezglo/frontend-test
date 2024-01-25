@@ -1,18 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-const decodeToken = (token) => {
-  return token
-    ? {
-      id: 1,
-      firstName: 'Alvaro',
-      lastName: 'Alonso',
-      username: 'aalonso2024',
-      email: 'alvaro.alonso@test.com',
-      isOnline: true,
-      imagePath: 'path/to/profile/image.png'
-    }
-    : null
-}
+import { decodeToken } from '@/utils/jwt/jwtUtils'
 
 const initialState = { user: decodeToken(localStorage.getItem('token')), token: localStorage.getItem('token') || null }
 

@@ -1,20 +1,25 @@
 import {
   RouterProvider,
-  createBrowserRouter
+  createBrowserRouter,
+  Navigate
 } from 'react-router-dom'
-import routes from './routes'
+import { loginRoute, privateRoutes, publicRoutes } from './routes'
+import { useAuthData } from '@/hooks/useAuthData'
 
-const { appRoutes, loginRoutes } = routes
+function Router() {
+  const { authUser, token }  = useAuthData()
+  const isLoggedIn = authUser && token
+  console.log(authUser, token)
 
-const router = createBrowserRouter([
-  loginRoutes, // - Login routes
-  appRoutes // - Routes that using App component as layout
-])
+  const router = createBrowserRouter([
+    ...(isLoggedIn ? privateRoutes() : []),
+    ...publicRoutes(),
+    loginRoute(isLoggedIn)
+  ])
 
-function Provider() {
   return (
     <RouterProvider router={router}></RouterProvider>
   )
 }
 
-export default Provider
+export default Router
