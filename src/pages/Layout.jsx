@@ -11,7 +11,7 @@ function Layout() {
       <div className="w-full h-full flex flex-row justify-start">
         <LeftBarComponent />
 
-        <div id="content" className="w-full bg-white min-[981px]:rounded-b-md min-[981px]:rounded-t-md max-[981px]:rounded-t-lg">
+        <div id="content" className="w-full h-full bg-white min-[981px]:rounded-b-md min-[981px]:rounded-t-md max-[981px]:rounded-t-lg">
           <Outlet />
         </div>
 

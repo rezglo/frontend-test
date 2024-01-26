@@ -1,7 +1,3 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuthData } from '@/hooks/useAuthData'
-
 import SignInButton from '@/components/buttons/signInButton'
 import SignInForm from '@/components/forms/SignInForm'
 import HorizontalDivider from '@/components/dividers/HorizontalDivider'
@@ -11,9 +7,6 @@ import googleLogo from '@/assets/google.svg'
 import appleLogo from '@/assets/apple.svg'
 
 function LoginPage() {
-  const navigate = useNavigate()
-  const { authUser, token } = useAuthData()
-
   const onGoogleLogin = () => {
     console.log('Sigin with google')
   }

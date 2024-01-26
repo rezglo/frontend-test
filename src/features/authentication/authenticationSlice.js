@@ -14,9 +14,8 @@ const authenticationSlice = createSlice({
 
       switch (actionType) {
       case 'SET_TOKEN_FROM_STORAGE':
-        const tokenFromStorage = localStorage.getItem('token')
-        user = decodeToken(tokenFromStorage) || null
-        token = user ? tokenFromStorage : null
+        user = decodeToken(localStorage.getItem('token')) || null
+        token = user ? localStorage.getItem('token') : null
         break
 
       case 'SET_TOKEN_FROM_PAYLOAD':

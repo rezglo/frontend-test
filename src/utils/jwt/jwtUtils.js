@@ -8,7 +8,7 @@ export const decodeToken = (token) => {
       username: 'aalonso2024',
       email: 'alvaro.alonso@test.com',
       isOnline: true,
-      imagePath: 'path/to/profile/image.png'
+      imagePath: 'userImage.svg'
     }
     : null
 }

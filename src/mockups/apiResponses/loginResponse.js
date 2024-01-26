@@ -1,7 +1,7 @@
 import { envVars } from '@/config/env'
 
 // - Improve this function
-export const mockLogin = ({ email, password}) => {
+export const mockLogin = ({ email, password }) => {
   if (email === envVars.TEST_AUTH_USER_EMAIL && password === envVars.TEST_AUTH_USER_PASSWORD) {
     return {
       data: {
@@ -13,7 +13,7 @@ export const mockLogin = ({ email, password}) => {
           username: 'aalonso2024',
           email: 'alvaro.alonso@test.com',
           isOnline: true,
-          imagePath: 'path/to/profile/image.png'
+          imagePath: 'userImage.svg'
         }
       }
     }

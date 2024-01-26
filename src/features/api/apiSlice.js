@@ -7,10 +7,16 @@ export const apiSlice = createApi({
   endpoints(builder) {
     return {
       login: builder.mutation({
-        query: ({ email, password }) => ({ url: '/login', method: 'post', data: { email, password } })
+        query: ({ email, password }) => ({ url: '/login', method: 'POST', data: { email, password } })
+      }),
+      fetchWorkSpaceList: builder.query({
+        query: () => ({ url: '/workspaces', method: 'GET', data: {} })
+      }),
+      fetchWorkSpaceDetails: builder.mutation({
+        query: (id) => ({ url: '/workspace-details', method: 'GET', data: { id } })
       })
     }
   }
 })
 
-export const { useLoginMutation } = apiSlice
+export const { useLoginMutation, useFetchWorkSpaceListQuery, useFetchWorkSpaceDetailsMutation } = apiSlice

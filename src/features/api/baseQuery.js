@@ -13,7 +13,7 @@ export const baseQuery = ({ baseUrl }) => async ({ url, method, data, params, he
     // })
 
     // - Mocking response
-    const mockedResponse = await mockResponse(url, data)
+    const mockedResponse = await mockResponse(url, headers, data)
     return { data: mockedResponse.data }
   } catch (error) {
     console.error(error)
@@ -25,5 +25,3 @@ export const baseQuery = ({ baseUrl }) => async ({ url, method, data, params, he
     }
   }
 }
-
-

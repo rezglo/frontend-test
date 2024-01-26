@@ -1,7 +1,6 @@
 import {
   RouterProvider,
-  createBrowserRouter,
-  Navigate
+  createBrowserRouter
 } from 'react-router-dom'
 import { loginRoute, privateRoutes, publicRoutes } from './routes'
 import { useAuthData } from '@/hooks/useAuthData'
@@ -9,7 +8,6 @@ import { useAuthData } from '@/hooks/useAuthData'
 function Router() {
   const { authUser, token }  = useAuthData()
   const isLoggedIn = authUser && token
-  console.log(authUser, token)
 
   const router = createBrowserRouter([
     ...(isLoggedIn ? privateRoutes() : []),
