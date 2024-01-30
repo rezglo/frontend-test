@@ -14,7 +14,7 @@ function HomePage() {
             <p className="max-w-72 text-lg font-bold text-start">{activeWorkSpace.name}</p>
           </div>
         </div>}
-        <ChatListComponent type="users-channels" />
+        <ChatListComponent />
       </div>
       <div id="chat" className="max-[981px]:hidden w-full bg-white min-[981px]:rounded-r-md max-[981px]:rounded-t-lg pb-4">
         <ChatComponent />

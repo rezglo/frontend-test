@@ -3,7 +3,7 @@ import { mockUserListQuery } from '../apiResponses/userResponses'
 export const channelMessages = {
   1: {
     name: 'General',
-    public: false,
+    public: true,
     users: [
       mockUserListQuery().data.users[0],
       mockUserListQuery().data.users[1],

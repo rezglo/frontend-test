@@ -42,7 +42,7 @@ function ChatListComponent({ type = 'users-channels'}) {
         if (responseData.data) {
           const { channels, directMessages } = responseData.data
           dispatch(setWorkSpaceData({ channels, directMessages }))
-          if (type === ' users-channels') {
+          if (type === 'users-channels') {
             if (channels[0]) {
               const response = await fetchChannelMessages({ channelId: channels[0].id })
               const channel = response.data
