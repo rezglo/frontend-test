@@ -21,7 +21,8 @@ function DirectMessageRowComponent({ user }) {
         isOnline: user.isOnline
       },
       users: [user],
-      messages
+      messages,
+      showOnMobile: true
     }))
   }
 

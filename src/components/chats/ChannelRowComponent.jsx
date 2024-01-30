@@ -4,7 +4,6 @@ import { setData, clearData } from '@/features/chat/chatSlice'
 import { useAppDispatch } from '@/hooks/customReduxHooks'
 
 function ChannelRowComponent({ id, name, isPublic }) {
-  // - TODO: Handle onClick event and fetch messages for this channel
   const [fetchChannelMessages, { isLoading, isError }] = useFetchChannelMessageListMutation()
   const dispatch = useAppDispatch()
 
@@ -19,7 +18,8 @@ function ChannelRowComponent({ id, name, isPublic }) {
           name: channel.name,
           isPublic: channel.public
         }, users: channel.users,
-        messages: channel.messages
+        messages: channel.messages,
+        showOnMobile: true
       }))
     } else {
       console.error('Channel not found. Id:', id)

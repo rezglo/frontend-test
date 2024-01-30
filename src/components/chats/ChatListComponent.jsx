@@ -54,7 +54,8 @@ function ChatListComponent({ type = 'users-channels'}) {
                     name: channel.name,
                     isPublic: channel.public
                   }, users: channel.users,
-                  messages: channel.messages
+                  messages: channel.messages,
+                  showOnMobile: false
                 }))
               } else {
                 console.error('Channel not found. Id:', id)
@@ -75,7 +76,8 @@ function ChatListComponent({ type = 'users-channels'}) {
                     isOnline: user.isOnline
                   },
                   users: [user],
-                  messages: data.messages
+                  messages: data.messages,
+                  showOnMobile: false
                 }))
               } else {
                 console.error('Direct hcat not found. Id:', user.id)
@@ -119,7 +121,8 @@ function ChatListComponent({ type = 'users-channels'}) {
         isOnline: user.isOnline
       },
       users: [user],
-      messages
+      messages,
+      showOnMobile: true
     }))
   }
 

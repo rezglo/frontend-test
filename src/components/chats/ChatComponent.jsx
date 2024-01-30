@@ -14,7 +14,7 @@ function ChatComponent() {
             <div className="w-full h-[90%] flex flex-col">
               {chatType === 'DirectMessage'
                 ? <DirectChatHeaderComponent name={customData.name} isOnline={customData.isOnline} imagePath={users[0].imagePath}/>
-                : <ChannelChatHeaderComponent name={customData.name} isPublic={customData.isPublic} />
+                : <ChannelChatHeaderComponent name={customData.name} isPublic={customData.isPublic} totalMembers={users.length} />
               }
 
               <div className="h-full overflow-y-auto">
