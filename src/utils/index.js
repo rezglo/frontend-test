@@ -3,3 +3,7 @@ export const sleep = (ms) => {
     setTimeout(resolve, Math.floor(ms))
   })
 }
+
+export const getUserMessage = (message, authUser) => {
+  return message.to.id !== authUser.id ? message.to : message.from
+}

@@ -24,8 +24,8 @@ function TopBarComponent() {
   }
 
   return (
-    <div id="top-bar" className="w-full min-[981px]:h-[43px]">
-      <div className="min-[981px]:hidden w-full px-4 pt-5">
+    <div id="top-bar" className="w-full min-[981px]:h-[43px] max-[981px]:bg-gradient-to-br from-[#82418a] to-[#350d36]">
+      <div className="min-[981px]:hidden w-full px-4 pt-5 ">
         <div className="flex flex-row justify-between items-center mb-4">
           <div className="flex flex-row justify-start items-center">
             {activeWorkSpace && location.pathname === '/' &&
@@ -46,7 +46,7 @@ function TopBarComponent() {
           type="text"
           autoComplete="false"
           placeholder="Search or go to..."
-          className="block w-full h-10 mb-4 rounded-md border-1 bg-[#bb9ccf] border-gray-400 py-1.5 text-white shadow-sm placeholder:text-white placeholder:text-lg focus:ring-1 focus:border-[#bb9ccf] focus:ring-[#bb9ccf] sm:text-sm sm:leading-6"
+          className="w-full h-10 mb-4 rounded-md border-1 bg-[#bb9ccf] border-gray-400 py-1.5 text-white shadow-sm placeholder:text-white placeholder:text-lg focus:ring-1 focus:border-[#bb9ccf] focus:ring-[#bb9ccf] sm:text-sm sm:leading-6"
         />
       </div>
     </div>

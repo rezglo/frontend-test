@@ -14,9 +14,21 @@ export const apiSlice = createApi({
       }),
       fetchWorkSpaceDetails: builder.mutation({
         query: (id) => ({ url: '/workspace-details', method: 'GET', data: { id } })
+      }),
+      fetchDirectMessageList: builder.mutation({
+        query: ({ authUserId, userId }) => ({ url: '/direct-messages', method: 'GET', data: { authUserId, userId } })
+      }),
+      fetchChannelMessageList: builder.mutation({
+        query: ({ channelId }) => ({ url: '/channel-messages', method: 'GET', data: { channelId } })
       })
     }
   }
 })
 
-export const { useLoginMutation, useFetchWorkSpaceListQuery, useFetchWorkSpaceDetailsMutation } = apiSlice
+export const {
+  useLoginMutation,
+  useFetchWorkSpaceListQuery,
+  useFetchWorkSpaceDetailsMutation,
+  useFetchDirectMessageListMutation,
+  useFetchChannelMessageListMutation
+} = apiSlice

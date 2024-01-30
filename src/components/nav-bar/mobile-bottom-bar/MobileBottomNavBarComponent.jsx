@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function MobileBottomNavBarComponent() {
   return (
-    <div id="bottom-nav-bar" className="min-[981px]:hidden bg-white w-full h-16 border-t-slate-300 border-[1px] flex flex-row justify-center items-center">
+    <div id="bottom-nav-bar" className=" min-[981px]:hidden w-full sticky bottom-0 left-0 z-50 bg-white h-16 border-t-slate-300 border-[1px] flex flex-row justify-center items-center">
       <div>
         <Link to="/" autoFocus={true} id="home-button" className="w-full flex flex-col justify-center items-center rounded-lg cursor-pointer p-1">
           <HomeIcon className="w-7 h-7" color="gray" />

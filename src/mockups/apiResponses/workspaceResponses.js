@@ -1,3 +1,5 @@
+import { mockUserListQuery } from "./userResponses"
+
 export const mockWorkspaceListQuery = () => {
   return {
     data: {
@@ -16,30 +18,13 @@ export const mockWorkspaceListQuery = () => {
 export const mockWorkspaceBasicDataQuery = () => {
   return {
     data: {
-      users: [
+      directMessages: [
         {
           id: 2,
-          firstName: 'Pedro',
-          lastName: 'Alvarez',
-          email: 'palvarez@test.com',
-          isOnline: true,
-          imagePath: 'userImage.svg'
-        },
-        {
-          id: 3,
-          firstName: 'Juan',
-          lastName: 'Dealgado',
-          email: 'jdelgado2000@test.com',
-          isOnline: false,
-          imagePath: 'userImage.svg'
-        },
-        {
-          id: 4,
-          firstName: 'Miriam Maria',
-          lastName: 'Perez',
-          email: 'mmPerez1990@test.com',
-          isOnline: true,
-          imagePath: 'userImage.svg'
+          date: '01/25/24',
+          text: 'Todo bien gracias. Cómo está usted?',
+          to: mockUserListQuery().data.users[1],
+          from: mockUserListQuery().data.users[0]
         }
       ],
       channels: [
@@ -55,21 +40,11 @@ export const mockWorkspaceBasicDataQuery = () => {
         },
         {
           id: 3,
-          public: true,
-          name: 'Friday activity'
+          public: false,
+          name: '179 - Car list'
         },
         {
           id: 4,
-          public: false,
-          name: '179 - Car list'
-        },
-        {
-          id: 5,
-          public: false,
-          name: '179 - Car list'
-        },
-        {
-          id: 6,
           public: false,
           name: 'RRHH - Payment'
         }

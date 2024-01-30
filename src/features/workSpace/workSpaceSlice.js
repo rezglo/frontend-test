@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { activeWorkSpace: null, channels: [], users: [] }
+const initialState = { activeWorkSpace: null, channels: [], directMessages: [] }
 
 const workSpaceSlice = createSlice({
   name: 'workspace',
   initialState,
   reducers: {
     setWorkSpaceData(state, action) {
-      const { channels, users } = action.payload
+      const { channels, directMessages } = action.payload
       state.channels = channels || []
-      state.users = users || []
+      state.directMessages = directMessages || []
     },
     setActiveWorkSpace(state, action) {
       const activeWorkSpace = action.payload

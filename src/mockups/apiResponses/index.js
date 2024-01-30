@@ -1,10 +1,12 @@
+import { mockChannelMessagesListQuery } from './channelMessagesResponses'
+import { mockDirectMessagesListQuery } from './directMessagesResponses'
 import { mockLogin } from './loginResponse'
 import { mockWorkspaceListQuery, mockWorkspaceBasicDataQuery } from './workspaceResponses'
 import { sleep } from '@/utils'
 
 export const mockResponse = async (url, headers, data) => {
   // - Simulating a loading delay
-  await sleep(3000)
+  await sleep(1000)
 
   // - TODO: Verify if the token in headers is valid
 
@@ -17,6 +19,12 @@ export const mockResponse = async (url, headers, data) => {
 
   case '/workspace-details':
     return mockWorkspaceBasicDataQuery()
+
+  case '/direct-messages':
+    return mockDirectMessagesListQuery(data.authUserId, data.userId)
+
+  case '/channel-messages':
+    return mockChannelMessagesListQuery(data.channelId)
 
   default:
     return { data: {} }
